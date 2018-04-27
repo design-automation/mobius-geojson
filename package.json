@@ -1,7 +1,7 @@
 {
     "name": "mobius-geojson",
     "license": "MIT",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Patrick Janssen",
     "description": "A set of utility functions for geojson.",
     "homepage": "https://github.com/phtj/mobius-geojson#readme",
