@@ -1,5 +1,5 @@
-import * as collection from "./collection";
-export {collection};
+import * as fcoll from "./fcoll";
+export {fcoll};
 
-import * as feature from "./feature";
-export {feature};
+import * as prop from "./prop";
+export {prop};

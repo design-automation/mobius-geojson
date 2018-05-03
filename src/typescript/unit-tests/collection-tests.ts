@@ -11,7 +11,7 @@ describe("Tests for Collection Module", () => {
 
 export function test_collection_getPolygons(): boolean {
     const coll: turf.FeatureCollection = td.testData1();
-    const polys: Array<turf.Feature<turf.Polygon>> = tm.collection.getPolygons(coll);
+    const polys: Array<turf.Feature<turf.Polygon>> = tm.fcoll.getPolygons(coll);
     if (polys.length !== 1) {return false;}
     return true;
 }
