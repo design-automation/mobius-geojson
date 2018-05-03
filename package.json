@@ -4,7 +4,7 @@
     "version": "0.0.2",
     "author": "Patrick Janssen",
     "description": "A set of utility functions for geojson.",
-    "homepage": "https://github.com/phtj/mobius-geojson#readme",
+    "homepage": "https://github.com/design-automation/mobius-geojson#readme",
     "types": "dist/index.d.ts",
     "main": "dist/index.js",
     "directories": {
@@ -47,7 +47,7 @@
         "typescript": "^2.7.2"
     },
     "bugs": {
-        "url": "https://github.com/phtj/mobius-geojson/issues"
+        "url": "https://github.com/design-automation/mobius-geojson/issues"
     },
     "keywords": [
         "2d",
