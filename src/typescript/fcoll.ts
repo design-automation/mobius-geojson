@@ -1,17 +1,13 @@
 /**
- * Functions for working with geojson models.
+ * Functions for working with geojson feature collections.
  */
 
 /**
- * Models contain features.
+ *
  */
 
 import * as turf from "@turf/turf";
 import * as file from "./libs/filesys/file";
-
-//  ===============================================================================================================
-//  Model Constructors ===========================================================================================
-//  ===============================================================================================================
 
 /**
  * Get points from geojson featureColl.
