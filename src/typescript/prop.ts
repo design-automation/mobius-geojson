@@ -40,7 +40,7 @@ export function getNames(feature: turf.Feature): string[] {
  * @param feature The feature data.
  * @returns The number of properties.
  */
-export function numAttribs(feature: turf.Feature): number {
+export function numProps(feature: turf.Feature): number {
     if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
     return Object.keys(feature.properties).length;
 }
@@ -51,7 +51,7 @@ export function numAttribs(feature: turf.Feature): number {
  * @param feature The feature data.
  * @returns True if the feature contains a property with the specified name.
  */
-export function hasAttrib(feature: turf.Feature, name: string): boolean {
+export function hasProp(feature: turf.Feature, name: string): boolean {
     if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
     return feature.properties.hasOwnProperty(name);
 }

@@ -7,7 +7,7 @@
 
 import * as turf from "@turf/turf";
 
-interface CesiumExtrudeAttrib {
+interface CesiumExtrudeProp {
     name: string;
     min: number;
     max: number;
@@ -16,7 +16,7 @@ interface CesiumExtrudeAttrib {
     line: boolean;
 }
 
-interface CesiumColourAttrib {
+interface CesiumColourProp {
     name: string;
     min: number;
     max: number;
@@ -36,22 +36,22 @@ interface CesiumFeatureCollection extends turf.FeatureCollection {
         select?: Array<string>;
         extrude?: {
             descr: string;
-            attribs: Array<CesiumExtrudeAttrib>;
+            attribs: Array<CesiumExtrudeProp>;
         };
         colour?: {
             descr: string;
-            attribs: Array<CesiumColourAttrib>;
+            attribs: Array<CesiumColourProp>;
         };
         filters?: Array<CesiumFilter>;
     }
 }
 
 /**
- * Add an attribute display option.
- * @param name The name of the attribute to display.
+ * Add a property display option.
+ * @param name The name of the property to display.
  * @returns
  */
-export function addAttribDisplay(featureColl: CesiumFeatureCollection, namw:string):
+export function addPropDisplay(featureColl: CesiumFeatureCollection, namw:string):
                            CesiumFeatureCollection {
     if (!featureColl.hasOwnProperty("cesium")) {
         featureColl.cesium = {};
@@ -124,7 +124,7 @@ export function addColourEntry(featureColl: CesiumFeatureCollection,
     if (!featureColl.hasOwnProperty("cesium")) {
         featureColl.cesium = {};
     }
-    if (!featureColl.cesium.hasOwnProperty("extrude")) {
+    if (!featureColl.cesium.hasOwnProperty("colour")) {
         featureColl.cesium.colour = {descr: "", attribs: []};
     }
     featureColl.cesium.colour.attribs.push({name, min, max, invert});
