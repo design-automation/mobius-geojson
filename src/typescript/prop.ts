@@ -19,6 +19,7 @@ import * as turf from "@turf/turf";
  * @returns New model empty.
  */
 export function get(feature: turf.Feature): turf.Properties {
+	if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
     return feature.properties;
 }
 
@@ -29,7 +30,8 @@ export function get(feature: turf.Feature): turf.Properties {
  * @returns An array of property names
  */
 export function getNames(feature: turf.Feature): string[] {
-    return feature.properties.keys();
+    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    return Object.keys(feature.properties);
 }
 
 /**
@@ -38,8 +40,9 @@ export function getNames(feature: turf.Feature): string[] {
  * @param feature The feature data.
  * @returns The number of properties.
  */
-export function numProp(feature: turf.Feature): number {
-    return feature.properties.length;
+export function numAttribs(feature: turf.Feature): number {
+    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    return Object.keys(feature.properties).length;
 }
 
 /**
@@ -48,7 +51,8 @@ export function numProp(feature: turf.Feature): number {
  * @param feature The feature data.
  * @returns True if the feature contains a property with the specified name.
  */
-export function hasProp(feature: turf.Feature, name: string): boolean {
+export function hasAttrib(feature: turf.Feature, name: string): boolean {
+    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
     return feature.properties.hasOwnProperty(name);
 }
 
@@ -61,6 +65,7 @@ export function hasProp(feature: turf.Feature, name: string): boolean {
  * @returns The property value
  */
 export function getValue(feature: turf.Feature, name: string): any {
+    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
     const result: any = feature.properties[name];
     if (result === undefined) {throw new Error("Property " + name + " not found.");}
     return result;
@@ -75,5 +80,6 @@ export function getValue(feature: turf.Feature, name: string): any {
  * @param value The value of the property, any value.
  */
 export function setValue(feature: turf.Feature, name: string, value: any): void {
+    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
     feature.properties[name] = value;
 }
