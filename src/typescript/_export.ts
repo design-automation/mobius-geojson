@@ -6,3 +6,6 @@ export {prop};
 
 import * as parse from "./parse";
 export {parse};
+
+import * as cesium from "./cesium";
+export {cesium};
