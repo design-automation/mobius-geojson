@@ -1,0 +1,3523 @@
+{
+	"id": 0,
+	"name": "mobius-geojson",
+	"kind": 0,
+	"flags": {},
+	"children": [
+		{
+			"id": 191,
+			"name": "\"_export\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/_export.ts",
+			"sources": [
+				{
+					"fileName": "_export.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "\"cesium\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/cesium.ts",
+			"children": [
+				{
+					"id": 9,
+					"name": "CesiumColourProp",
+					"kind": 256,
+					"kindString": "Interface",
+					"flags": {},
+					"children": [
+						{
+							"id": 13,
+							"name": "invert",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 23,
+									"character": 10
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						},
+						{
+							"id": 12,
+							"name": "max",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 22,
+									"character": 7
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 11,
+							"name": "min",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 21,
+									"character": 7
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 10,
+							"name": "name",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 20,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"kind": 1024,
+							"children": [
+								13,
+								12,
+								11,
+								10
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 19,
+							"character": 26
+						}
+					]
+				},
+				{
+					"id": 2,
+					"name": "CesiumExtrudeProp",
+					"kind": 256,
+					"kindString": "Interface",
+					"flags": {},
+					"children": [
+						{
+							"id": 6,
+							"name": "invert",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 14,
+									"character": 10
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						},
+						{
+							"id": 8,
+							"name": "line",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 16,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						},
+						{
+							"id": 5,
+							"name": "max",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 13,
+									"character": 7
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 4,
+							"name": "min",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 12,
+									"character": 7
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 3,
+							"name": "name",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 11,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 7,
+							"name": "scale",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 15,
+									"character": 9
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"kind": 1024,
+							"children": [
+								6,
+								8,
+								5,
+								4,
+								3,
+								7
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 10,
+							"character": 27
+						}
+					]
+				},
+				{
+					"id": 19,
+					"name": "CesiumFeatureCollection",
+					"kind": 256,
+					"kindString": "Interface",
+					"flags": {},
+					"typeParameter": [
+						{
+							"id": 32,
+							"name": "G",
+							"kind": 131072,
+							"kindString": "Type parameter",
+							"flags": {}
+						},
+						{
+							"id": 33,
+							"name": "P",
+							"kind": 131072,
+							"kindString": "Type parameter",
+							"flags": {}
+						}
+					],
+					"children": [
+						{
+							"id": 36,
+							"name": "bbox",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isOptional": true
+							},
+							"comment": {
+								"shortText": "Bounding box of the coordinate range of the object's Geometries, Features, or Feature Collections.\nhttps://tools.ietf.org/html/rfc7946#section-5"
+							},
+							"sources": [
+								{
+									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"line": 107,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "BBox"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "GeoJSONObject.bbox"
+							}
+						},
+						{
+							"id": 20,
+							"name": "cesium",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isOptional": true
+							},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 35,
+									"character": 10
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 21,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"children": [
+										{
+											"id": 27,
+											"name": "colour",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isOptional": true
+											},
+											"sources": [
+												{
+													"fileName": "cesium.ts",
+													"line": 41,
+													"character": 14
+												}
+											],
+											"type": {
+												"type": "reflection",
+												"declaration": {
+													"id": 28,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"children": [
+														{
+															"id": 30,
+															"name": "attribs",
+															"kind": 32,
+															"kindString": "Variable",
+															"flags": {},
+															"sources": [
+																{
+																	"fileName": "cesium.ts",
+																	"line": 43,
+																	"character": 19
+																}
+															],
+															"type": {
+																"type": "reference",
+																"name": "Array",
+																"typeArguments": [
+																	{
+																		"type": "reference",
+																		"name": "CesiumColourProp",
+																		"id": 9
+																	}
+																]
+															}
+														},
+														{
+															"id": 29,
+															"name": "descr",
+															"kind": 32,
+															"kindString": "Variable",
+															"flags": {},
+															"sources": [
+																{
+																	"fileName": "cesium.ts",
+																	"line": 42,
+																	"character": 17
+																}
+															],
+															"type": {
+																"type": "intrinsic",
+																"name": "string"
+															}
+														}
+													],
+													"groups": [
+														{
+															"title": "Variables",
+															"kind": 32,
+															"children": [
+																30,
+																29
+															]
+														}
+													],
+													"sources": [
+														{
+															"fileName": "cesium.ts",
+															"line": 41,
+															"character": 16
+														}
+													]
+												}
+											}
+										},
+										{
+											"id": 23,
+											"name": "extrude",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isOptional": true
+											},
+											"sources": [
+												{
+													"fileName": "cesium.ts",
+													"line": 37,
+													"character": 15
+												}
+											],
+											"type": {
+												"type": "reflection",
+												"declaration": {
+													"id": 24,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"children": [
+														{
+															"id": 26,
+															"name": "attribs",
+															"kind": 32,
+															"kindString": "Variable",
+															"flags": {},
+															"sources": [
+																{
+																	"fileName": "cesium.ts",
+																	"line": 39,
+																	"character": 19
+																}
+															],
+															"type": {
+																"type": "reference",
+																"name": "Array",
+																"typeArguments": [
+																	{
+																		"type": "reference",
+																		"name": "CesiumExtrudeProp",
+																		"id": 2
+																	}
+																]
+															}
+														},
+														{
+															"id": 25,
+															"name": "descr",
+															"kind": 32,
+															"kindString": "Variable",
+															"flags": {},
+															"sources": [
+																{
+																	"fileName": "cesium.ts",
+																	"line": 38,
+																	"character": 17
+																}
+															],
+															"type": {
+																"type": "intrinsic",
+																"name": "string"
+															}
+														}
+													],
+													"groups": [
+														{
+															"title": "Variables",
+															"kind": 32,
+															"children": [
+																26,
+																25
+															]
+														}
+													],
+													"sources": [
+														{
+															"fileName": "cesium.ts",
+															"line": 37,
+															"character": 17
+														}
+													]
+												}
+											}
+										},
+										{
+											"id": 31,
+											"name": "filters",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isOptional": true
+											},
+											"sources": [
+												{
+													"fileName": "cesium.ts",
+													"line": 45,
+													"character": 15
+												}
+											],
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "reference",
+														"name": "CesiumFilter",
+														"id": 14
+													}
+												]
+											}
+										},
+										{
+											"id": 22,
+											"name": "select",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isOptional": true
+											},
+											"sources": [
+												{
+													"fileName": "cesium.ts",
+													"line": 36,
+													"character": 14
+												}
+											],
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "intrinsic",
+														"name": "string"
+													}
+												]
+											}
+										}
+									],
+									"groups": [
+										{
+											"title": "Variables",
+											"kind": 32,
+											"children": [
+												27,
+												23,
+												31,
+												22
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "cesium.ts",
+											"line": 35,
+											"character": 12
+										}
+									]
+								}
+							}
+						},
+						{
+							"id": 34,
+							"name": "features",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"line": 237,
+									"character": 12
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "typeParameter",
+												"name": "G"
+											},
+											{
+												"type": "typeParameter",
+												"name": "P"
+											}
+										]
+									}
+								]
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "FeatureCollection.features"
+							}
+						},
+						{
+							"id": 35,
+							"name": "type",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"comment": {
+								"shortText": "Specifies the type of GeoJSON object."
+							},
+							"sources": [
+								{
+									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"line": 102,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "GeoJSONObject.type"
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"kind": 1024,
+							"children": [
+								36,
+								20,
+								34,
+								35
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 34,
+							"character": 33
+						}
+					],
+					"extendedTypes": [
+						{
+							"type": "reference",
+							"name": "FeatureCollection"
+						}
+					]
+				},
+				{
+					"id": 14,
+					"name": "CesiumFilter",
+					"kind": 256,
+					"kindString": "Interface",
+					"flags": {},
+					"children": [
+						{
+							"id": 15,
+							"name": "descr",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 28,
+									"character": 9
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 16,
+							"name": "name",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 29,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 17,
+							"name": "relation",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 30,
+									"character": 12
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 18,
+							"name": "value",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "cesium.ts",
+									"line": 31,
+									"character": 9
+								}
+							],
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									}
+								]
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"kind": 1024,
+							"children": [
+								15,
+								16,
+								17,
+								18
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 27,
+							"character": 22
+						}
+					]
+				},
+				{
+					"id": 54,
+					"name": "addColour",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 55,
+							"name": "addColour",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Add a colour dropdown to the Cesium Viewer.",
+								"returns": "\n"
+							},
+							"parameters": [
+								{
+									"id": 56,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CesiumFeatureCollection",
+										"id": 19
+									}
+								},
+								{
+									"id": 57,
+									"name": "descr",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "A description."
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CesiumFeatureCollection",
+								"id": 19
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 106,
+							"character": 25
+						}
+					]
+				},
+				{
+					"id": 58,
+					"name": "addColourEntry",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 59,
+							"name": "addColourEntry",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Add an entry to the colour dropdown in the Cesium Viewer.",
+								"returns": "\n"
+							},
+							"parameters": [
+								{
+									"id": 60,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CesiumFeatureCollection",
+										"id": 19
+									}
+								},
+								{
+									"id": 61,
+									"name": "name",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 62,
+									"name": "min",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 63,
+									"name": "max",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 64,
+									"name": "invert",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CesiumFeatureCollection",
+								"id": 19
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 120,
+							"character": 30
+						}
+					]
+				},
+				{
+					"id": 41,
+					"name": "addExtrude",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 42,
+							"name": "addExtrude",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Add an extrude dropdown to the Cesium Viewer.",
+								"returns": "\n"
+							},
+							"parameters": [
+								{
+									"id": 43,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CesiumFeatureCollection",
+										"id": 19
+									}
+								},
+								{
+									"id": 44,
+									"name": "descr",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "A description."
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CesiumFeatureCollection",
+								"id": 19
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 71,
+							"character": 26
+						}
+					]
+				},
+				{
+					"id": 45,
+					"name": "addExtrudeEntry",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 46,
+							"name": "addExtrudeEntry",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Add an entry to the extrude dropdown in the Cesium Viewer.",
+								"returns": "\n"
+							},
+							"parameters": [
+								{
+									"id": 47,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CesiumFeatureCollection",
+										"id": 19
+									}
+								},
+								{
+									"id": 48,
+									"name": "name",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 49,
+									"name": "min",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 50,
+									"name": "max",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 51,
+									"name": "invert",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								},
+								{
+									"id": 52,
+									"name": "scale",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 53,
+									"name": "line",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CesiumFeatureCollection",
+								"id": 19
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 85,
+							"character": 31
+						}
+					]
+				},
+				{
+					"id": 65,
+					"name": "addFilterCat",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 66,
+							"name": "addFilterCat",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Add a category filter to the Cesium Viewer.",
+								"returns": "\n"
+							},
+							"parameters": [
+								{
+									"id": 67,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CesiumFeatureCollection",
+										"id": 19
+									}
+								},
+								{
+									"id": 68,
+									"name": "descr",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 69,
+									"name": "name",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 70,
+									"name": "relation",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 71,
+									"name": "value",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CesiumFeatureCollection",
+								"id": 19
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 139,
+							"character": 28
+						}
+					]
+				},
+				{
+					"id": 72,
+					"name": "addFilterNum",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 73,
+							"name": "addFilterNum",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Add a numeric filter.",
+								"returns": "\n"
+							},
+							"parameters": [
+								{
+									"id": 74,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CesiumFeatureCollection",
+										"id": 19
+									}
+								},
+								{
+									"id": 75,
+									"name": "descr",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 76,
+									"name": "name",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 77,
+									"name": "relation",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 78,
+									"name": "value",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CesiumFeatureCollection",
+								"id": 19
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 161,
+							"character": 28
+						}
+					]
+				},
+				{
+					"id": 37,
+					"name": "addPropDisplay",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 38,
+							"name": "addPropDisplay",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Add a property display option.",
+								"returns": "\n"
+							},
+							"parameters": [
+								{
+									"id": 39,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "CesiumFeatureCollection",
+										"id": 19
+									}
+								},
+								{
+									"id": 40,
+									"name": "namw",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "CesiumFeatureCollection",
+								"id": 19
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "cesium.ts",
+							"line": 54,
+							"character": 30
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Interfaces",
+					"kind": 256,
+					"children": [
+						9,
+						2,
+						19,
+						14
+					]
+				},
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						54,
+						58,
+						41,
+						45,
+						65,
+						72,
+						37
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "cesium.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 79,
+			"name": "\"crs\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/crs.ts",
+			"children": [
+				{
+					"id": 92,
+					"name": "bd2wgs",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 93,
+							"name": "bd2wgs",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Transform coordinate between earth(WGS-84) and mars in china(BD).\nhttps://www.npmjs.com/package/eviltransform",
+								"text": "Input BD coordinate(bdLat, bdLng) and convert to WGS-84 coordinate(wgsLat, wgsLng).\n",
+								"returns": "An array, [wgsLat, wgsLng]\n"
+							},
+							"parameters": [
+								{
+									"id": 94,
+									"name": "bdLatLng",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "An array, [bdLat, bdLng]."
+									},
+									"type": {
+										"type": "tuple",
+										"elements": [
+											{
+												"type": "intrinsic",
+												"name": "number"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "tuple",
+								"elements": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "crs.ts",
+							"line": 79,
+							"character": 22
+						}
+					]
+				},
+				{
+					"id": 104,
+					"name": "bd2wgsXform",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 105,
+							"name": "bd2wgsXform",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Transform all the points in a feature collection\nfrom BD coordinates to WGS-84  coordinates.\nhttps://www.npmjs.com/package/eviltransform",
+								"returns": "The number of points that were converted.\n"
+							},
+							"parameters": [
+								{
+									"id": 106,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "A feature collection."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "crs.ts",
+							"line": 159,
+							"character": 27
+						}
+					]
+				},
+				{
+					"id": 83,
+					"name": "gcj2wgs",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 84,
+							"name": "gcj2wgs",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Transform coordinate between earth(WGS-84) and mars in china(GCJ-02).\nhttps://www.npmjs.com/package/eviltransform",
+								"text": "Input GCJ-02 coordinate(gcjLat, gcjLng) and convert to WGS-84 coordinate(wgsLat, wgsLng).\n",
+								"returns": "An array, [wgsLat, wgsLng]\n"
+							},
+							"parameters": [
+								{
+									"id": 85,
+									"name": "gcjLatLng",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "An array, [gcjLat, gcjLng]."
+									},
+									"type": {
+										"type": "tuple",
+										"elements": [
+											{
+												"type": "intrinsic",
+												"name": "number"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "tuple",
+								"elements": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "crs.ts",
+							"line": 34,
+							"character": 23
+						}
+					]
+				},
+				{
+					"id": 86,
+					"name": "gcj2wgsExact",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 87,
+							"name": "gcj2wgsExact",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Transform coordinate between earth(WGS-84) and mars in china(GCJ-02).\nhttps://www.npmjs.com/package/eviltransform",
+								"text": "Input GCJ-02 coordinate(gcjLat, gcjLng) and convert to WGS-84 coordinate(wgsLat, wgsLng).\n\nThe output WGS-84 coordinate's accuracy is less than 0.5m,\nbut much slower than the gcj2wgs function.\n",
+								"returns": "An array, [wgsLat, wgsLng]\n"
+							},
+							"parameters": [
+								{
+									"id": 88,
+									"name": "gcjLatLng",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "An array, [gcjLat, gcjLng]."
+									},
+									"type": {
+										"type": "tuple",
+										"elements": [
+											{
+												"type": "intrinsic",
+												"name": "number"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "tuple",
+								"elements": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "crs.ts",
+							"line": 51,
+							"character": 28
+						}
+					]
+				},
+				{
+					"id": 98,
+					"name": "gcj2wgsXform",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 99,
+							"name": "gcj2wgsXform",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Transform all the points in a feature collection\nfrom GCJ-02 coordinates to WGS-84  coordinates.\nhttps://www.npmjs.com/package/eviltransform",
+								"returns": "The number of points that were converted.\n"
+							},
+							"parameters": [
+								{
+									"id": 100,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "A feature collection."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "crs.ts",
+							"line": 114,
+							"character": 28
+						}
+					]
+				},
+				{
+					"id": 89,
+					"name": "wgs2bd",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 90,
+							"name": "wgs2bd",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Transform coordinate between earth(WGS-84) and mars in china(BD).\nhttps://www.npmjs.com/package/eviltransform",
+								"text": "Input WGS-84 coordinate(wgsLat, wgsLng) and convert to BD coordinate(bdLat, bdLng).\n",
+								"returns": "An array, [gcjLat, gcjLng]\n"
+							},
+							"parameters": [
+								{
+									"id": 91,
+									"name": "wgsLatLng",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "An array, [wgsLat, wgsLng]."
+									},
+									"type": {
+										"type": "tuple",
+										"elements": [
+											{
+												"type": "intrinsic",
+												"name": "number"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "tuple",
+								"elements": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "crs.ts",
+							"line": 65,
+							"character": 22
+						}
+					]
+				},
+				{
+					"id": 101,
+					"name": "wgs2bdXform",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 102,
+							"name": "wgs2bdXform",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Transform all the points in a feature collection\nfrom WGS-84 coordinates to BD coordinates.\nhttps://www.npmjs.com/package/eviltransform",
+								"returns": "The number of points that were converted.\n"
+							},
+							"parameters": [
+								{
+									"id": 103,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "A feature collection."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "crs.ts",
+							"line": 137,
+							"character": 27
+						}
+					]
+				},
+				{
+					"id": 80,
+					"name": "wgs2gcj",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 81,
+							"name": "wgs2gcj",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Transform coordinate between earth(WGS-84) and mars in china(GCJ-02).\nhttps://www.npmjs.com/package/eviltransform",
+								"text": "Input WGS-84 coordinate(wgsLat, wgsLng) and convert to GCJ-02 coordinate(gcjLat, gcjLng).\n",
+								"returns": "An array, [gcjLat, gcjLng]\n"
+							},
+							"parameters": [
+								{
+									"id": 82,
+									"name": "wgsLatLng",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "An array, [wgsLat, wgsLng]."
+									},
+									"type": {
+										"type": "tuple",
+										"elements": [
+											{
+												"type": "intrinsic",
+												"name": "number"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "tuple",
+								"elements": [
+									{
+										"type": "intrinsic",
+										"name": "number"
+									},
+									{
+										"type": "intrinsic",
+										"name": "number"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "crs.ts",
+							"line": 20,
+							"character": 23
+						}
+					]
+				},
+				{
+					"id": 95,
+					"name": "wgs2gcjXform",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 96,
+							"name": "wgs2gcjXform",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Transform all the points in a feature collection\nfrom WGS-84 coordinates to GCJ-02 coordinates.\nhttps://www.npmjs.com/package/eviltransform",
+								"returns": "The number of points that were converted.\n"
+							},
+							"parameters": [
+								{
+									"id": 97,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "A feature collection."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "crs.ts",
+							"line": 92,
+							"character": 28
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						92,
+						104,
+						83,
+						86,
+						98,
+						89,
+						101,
+						80,
+						95
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "crs.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 116,
+			"name": "\"fcoll\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/fcoll.ts",
+			"comment": {
+				"shortText": "Functions for working with geojson feature collections."
+			},
+			"children": [
+				{
+					"id": 144,
+					"name": "addFeature",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 145,
+							"name": "addFeature",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Add a feature to the model."
+							},
+							"parameters": [
+								{
+									"id": 146,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl.."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								},
+								{
+									"id": 147,
+									"name": "feature",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The feature to add.\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "Feature"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 189,
+							"character": 26
+						}
+					]
+				},
+				{
+					"id": 148,
+					"name": "delFeature",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 149,
+							"name": "delFeature",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Delete a feature in the model.",
+								"returns": "Ture if the feature was deleted, false if the ID was not found.\n"
+							},
+							"parameters": [
+								{
+									"id": 150,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								},
+								{
+									"id": 151,
+									"name": "feature",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The feature to delete."
+									},
+									"type": {
+										"type": "reference",
+										"name": "Feature"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 199,
+							"character": 26
+						}
+					]
+				},
+				{
+					"id": 120,
+					"name": "getLinestrings",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 121,
+							"name": "getLinestrings",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get Linestrings from geojson featureColl.",
+								"returns": "An array of features\n"
+							},
+							"parameters": [
+								{
+									"id": 122,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl.."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "LineString"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 34,
+							"character": 30
+						}
+					]
+				},
+				{
+					"id": 132,
+					"name": "getMultiLineStrings",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 133,
+							"name": "getMultiLineStrings",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get MultiLinestrings from geojson featureColl.",
+								"returns": "An array of features\n"
+							},
+							"parameters": [
+								{
+									"id": 134,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl.."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "MultiLineString"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 106,
+							"character": 35
+						}
+					]
+				},
+				{
+					"id": 129,
+					"name": "getMultiPoints",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 130,
+							"name": "getMultiPoints",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get MultiPoints from geojson featureColl.",
+								"returns": "An array of features\n"
+							},
+							"parameters": [
+								{
+									"id": 131,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl.."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "MultiPoint"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 89,
+							"character": 30
+						}
+					]
+				},
+				{
+					"id": 135,
+					"name": "getMultiPolygons",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 136,
+							"name": "getMultiPolygons",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get MultiPolygons from geojson featureColl.",
+								"returns": "An array of features\n"
+							},
+							"parameters": [
+								{
+									"id": 137,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl.."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "MultiPolygon"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 123,
+							"character": 32
+						}
+					]
+				},
+				{
+					"id": 138,
+					"name": "getMultiPolygonsWithHoles",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 139,
+							"name": "getMultiPolygonsWithHoles",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get MultiPolygons with holes from geojson featureColl.",
+								"returns": "An array of features\n"
+							},
+							"parameters": [
+								{
+									"id": 140,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl.."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "MultiPolygon"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 140,
+							"character": 41
+						}
+					]
+				},
+				{
+					"id": 117,
+					"name": "getPoints",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 118,
+							"name": "getPoints",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get points from geojson featureColl.",
+								"returns": "An array of features\n"
+							},
+							"parameters": [
+								{
+									"id": 119,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl.."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Point"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 17,
+							"character": 25
+						}
+					]
+				},
+				{
+					"id": 123,
+					"name": "getPolygons",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 124,
+							"name": "getPolygons",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get Polygons from geojson featureColl.",
+								"returns": "An array of features\n"
+							},
+							"parameters": [
+								{
+									"id": 125,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl.."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Polygon"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 51,
+							"character": 27
+						}
+					]
+				},
+				{
+					"id": 126,
+					"name": "getPolygonsWithHoles",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 127,
+							"name": "getPolygonsWithHoles",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get Polygons with holes from geojson featureColl.",
+								"returns": "An array of features\n"
+							},
+							"parameters": [
+								{
+									"id": 128,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Polygon"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 68,
+							"character": 36
+						}
+					]
+				},
+				{
+					"id": 141,
+					"name": "getPropertyTypes",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 142,
+							"name": "getPropertyTypes",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get property names and types",
+								"returns": "A map of property names -> property types\n"
+							},
+							"parameters": [
+								{
+									"id": 143,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The geojson featureColl."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Map",
+								"typeArguments": [
+									{
+										"type": "intrinsic",
+										"name": "string"
+									},
+									{
+										"type": "intrinsic",
+										"name": "string"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 165,
+							"character": 32
+						}
+					]
+				},
+				{
+					"id": 152,
+					"name": "save",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 153,
+							"name": "save",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Save featureColl as geojson file.",
+								"returns": "True if successful.\n"
+							},
+							"parameters": [
+								{
+									"id": 154,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The collection to save."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								},
+								{
+									"id": 155,
+									"name": "filename",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 219,
+							"character": 20
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						144,
+						148,
+						120,
+						132,
+						129,
+						135,
+						138,
+						117,
+						123,
+						126,
+						141,
+						152
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "fcoll.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 107,
+			"name": "\"libs/filesys/file\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/libs/filesys/file.ts",
+			"children": [
+				{
+					"id": 112,
+					"name": "save",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 113,
+							"name": "save",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 114,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 115,
+									"name": "filename",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "libs/filesys/file.ts",
+							"line": 22,
+							"character": 20
+						}
+					]
+				},
+				{
+					"id": 108,
+					"name": "save_old",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 109,
+							"name": "save_old",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 110,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 111,
+									"name": "filename",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "libs/filesys/file.ts",
+							"line": 1,
+							"character": 24
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						112,
+						108
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "libs/filesys/file.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 156,
+			"name": "\"parse\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/parse.ts",
+			"comment": {
+				"shortText": "Functions for parsing zipped shape files.\nhttps://github.com/calvinmetcalf/shapefile-js"
+			},
+			"children": [
+				{
+					"id": 157,
+					"name": "shp",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 158,
+							"name": "shp",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Parse a shapefile\nhttps://github.com/calvinmetcalf/shapefile-js"
+							},
+							"parameters": [
+								{
+									"id": 159,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "parse.ts",
+							"line": 17,
+							"character": 19
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						157
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "parse.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 160,
+			"name": "\"prop\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/prop.ts",
+			"comment": {
+				"shortText": "Functions for working with geojson properties."
+			},
+			"children": [
+				{
+					"id": 161,
+					"name": "get",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 162,
+							"name": "get",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns an object of key-value pairs, the properties of this feature.",
+								"returns": "New model empty.\n"
+							},
+							"parameters": [
+								{
+									"id": 163,
+									"name": "feature",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The feature data."
+									},
+									"type": {
+										"type": "reference",
+										"name": "Feature"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "turf.Properties"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "prop.ts",
+							"line": 21,
+							"character": 19
+						}
+					]
+				},
+				{
+					"id": 164,
+					"name": "getNames",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 165,
+							"name": "getNames",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns an object of key-value pairs, the properties of this feature.",
+								"returns": "An array of property names\n"
+							},
+							"parameters": [
+								{
+									"id": 166,
+									"name": "feature",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The feature data."
+									},
+									"type": {
+										"type": "reference",
+										"name": "Feature"
+									}
+								}
+							],
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "string"
+								}
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "prop.ts",
+							"line": 32,
+							"character": 24
+						}
+					]
+				},
+				{
+					"id": 174,
+					"name": "getValue",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 175,
+							"name": "getValue",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the property value for the property with the specified name.\nIf the property does not exist, throws an error.",
+								"returns": "The property value\n"
+							},
+							"parameters": [
+								{
+									"id": 176,
+									"name": "feature",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The feature data."
+									},
+									"type": {
+										"type": "reference",
+										"name": "Feature"
+									}
+								},
+								{
+									"id": 177,
+									"name": "name",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The name of the property, a string."
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "prop.ts",
+							"line": 67,
+							"character": 24
+						}
+					]
+				},
+				{
+					"id": 170,
+					"name": "hasProp",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 171,
+							"name": "hasProp",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns true if the  feature contains a property with the specified name.",
+								"returns": "True if the feature contains a property with the specified name.\n"
+							},
+							"parameters": [
+								{
+									"id": 172,
+									"name": "feature",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The feature data."
+									},
+									"type": {
+										"type": "reference",
+										"name": "Feature"
+									}
+								},
+								{
+									"id": 173,
+									"name": "name",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "prop.ts",
+							"line": 54,
+							"character": 23
+						}
+					]
+				},
+				{
+					"id": 167,
+					"name": "numProps",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 168,
+							"name": "numProps",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Returns the number of properties in a feature.",
+								"returns": "The number of properties.\n"
+							},
+							"parameters": [
+								{
+									"id": 169,
+									"name": "feature",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The feature data."
+									},
+									"type": {
+										"type": "reference",
+										"name": "Feature"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "prop.ts",
+							"line": 43,
+							"character": 24
+						}
+					]
+				},
+				{
+					"id": 178,
+					"name": "setValue",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 179,
+							"name": "setValue",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Sets the property value for the property with the specified name.",
+								"returns": "The name of the property. (This may differe from input name.)\n"
+							},
+							"parameters": [
+								{
+									"id": 180,
+									"name": "feature",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The feature data."
+									},
+									"type": {
+										"type": "reference",
+										"name": "Feature"
+									}
+								},
+								{
+									"id": 181,
+									"name": "name",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The name of the property, a string."
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 182,
+									"name": "value",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The value of the property, any value."
+									},
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "intrinsic",
+												"name": "number"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "prop.ts",
+							"line": 82,
+							"character": 24
+						}
+					]
+				},
+				{
+					"id": 183,
+					"name": "setValues",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 184,
+							"name": "setValues",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Sets the property values for the properties with the specified names.",
+								"returns": "The number of properties that were set.\n"
+							},
+							"parameters": [
+								{
+									"id": 185,
+									"name": "feature",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The feature data."
+									},
+									"type": {
+										"type": "reference",
+										"name": "Feature"
+									}
+								},
+								{
+									"id": 186,
+									"name": "names",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "An array of names of the properties."
+									},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								},
+								{
+									"id": 187,
+									"name": "values",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "An array of values of the properties."
+									},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "union",
+											"types": [
+												{
+													"type": "intrinsic",
+													"name": "string"
+												},
+												{
+													"type": "intrinsic",
+													"name": "number"
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "prop.ts",
+							"line": 98,
+							"character": 25
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						161,
+						164,
+						174,
+						170,
+						167,
+						178,
+						183
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "prop.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 188,
+			"name": "\"test_data\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/test_data.ts",
+			"children": [
+				{
+					"id": 189,
+					"name": "testData1",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 190,
+							"name": "testData1",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "FeatureCollection"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "test_data.ts",
+							"line": 6,
+							"character": 25
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						189
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "test_data.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "External modules",
+			"kind": 1,
+			"children": [
+				191,
+				1,
+				79,
+				116,
+				107,
+				156,
+				160,
+				188
+			]
+		}
+	]
+}
