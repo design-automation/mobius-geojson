@@ -72,14 +72,40 @@ export function getValue(feature: turf.Feature, name: string): any {
 }
 
 /**
- * Returns the property value for the property with the specified name.
- * If the property does not exist, returns undefined.
+ * Sets the property value for the property with the specified name.
  *
  * @param feature The feature data.
  * @param name The name of the property, a string.
  * @param value The value of the property, any value.
+ * @returns The name of the property. (This may differe from input name.)
  */
-export function setValue(feature: turf.Feature, name: string, value: any): void {
+export function setValue(feature: turf.Feature, name: string, value: (string|number)): string {
     if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    const regexp = /^[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*$/;
+    if (!regexp.test(name)) { name = "_" + name};
     feature.properties[name] = value;
+    return name;
+}
+
+/**
+ * Sets the property values for the properties with the specified names.
+ *
+ * @param feature The feature data.
+ * @param names An array of names of the properties.
+ * @param values An array of values of the properties.
+ * @returns The number of properties that were set.
+ */
+export function setValues(feature: turf.Feature, names: string[], values: (string|number)[]): number {
+    if (names.length !== values.length) {throw new Error("Arrays must be of equal length.");}
+    let counter = 0;
+    for(let i = 0; i< names.length; i++) {
+        const name: string = names[i];
+        let value: (string|number) =  values[i];
+        if (name !== undefined) {
+            //if (value === undefined) {value = ???} /// TODO string or number
+            counter++;
+            setValue(feature, name, value);
+        }
+    }
+    return counter;
 }
