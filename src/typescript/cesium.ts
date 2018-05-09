@@ -51,7 +51,7 @@ interface CesiumFeatureCollection extends turf.FeatureCollection {
  * @param name The name of the property to display.
  * @returns
  */
-export function addPropDisplay(featureColl: CesiumFeatureCollection, namw:string):
+export function addPropDisplay(featureColl: CesiumFeatureCollection, name:string):
                            CesiumFeatureCollection {
     if (!featureColl.hasOwnProperty("cesium")) {
         featureColl.cesium = {};
@@ -150,8 +150,6 @@ export function addFilterCat(featureColl: CesiumFeatureCollection,
     featureColl.cesium.filters.push({descr, name, relation: relation_id, value});
     return featureColl;
 }
-
-
 
 /**
  * Add a numeric filter.

@@ -1,16 +1,12 @@
 /**
- * Functions for working with geojson properties.
+ * Functions for working with Feature properties.
  */
 
 /**
- * Features contain properties.
+ *
  */
 
 import * as turf from "@turf/turf";
-
-//  ===============================================================================================================
-//  Model Constructors ===========================================================================================
-//  ===============================================================================================================
 
 /**
  * Returns an object of key-value pairs, the properties of this feature.
@@ -19,7 +15,7 @@ import * as turf from "@turf/turf";
  * @returns New model empty.
  */
 export function get(feature: turf.Feature): turf.Properties {
-	if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
     return feature.properties;
 }
 

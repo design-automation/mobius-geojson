@@ -5,7 +5,7 @@
 	"flags": {},
 	"children": [
 		{
-			"id": 191,
+			"id": 193,
 			"name": "\"_export\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -1303,7 +1303,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 161,
+							"line": 159,
 							"character": 28
 						}
 					]
@@ -1342,10 +1342,13 @@
 								},
 								{
 									"id": 40,
-									"name": "namw",
+									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "The name of the property to display."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -1523,7 +1526,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 159,
+							"line": 158,
 							"character": 27
 						}
 					]
@@ -1825,7 +1828,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 137,
+							"line": 136,
 							"character": 27
 						}
 					]
@@ -2002,7 +2005,8 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Add a feature to the model."
+								"shortText": "Add a Feature to the model.",
+								"returns": "Number of Features in the colletion after adding.\n"
 							},
 							"parameters": [
 								{
@@ -2012,7 +2016,7 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The geojson featureColl.."
+										"text": "The FeatureCollection.."
 									},
 									"type": {
 										"type": "reference",
@@ -2026,7 +2030,7 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The feature to add.\n"
+										"text": "The Feature to add."
 									},
 									"type": {
 										"type": "reference",
@@ -2036,14 +2040,14 @@
 							],
 							"type": {
 								"type": "intrinsic",
-								"name": "void"
+								"name": "number"
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 189,
+							"line": 175,
 							"character": 26
 						}
 					]
@@ -2064,8 +2068,8 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Delete a feature in the model.",
-								"returns": "Ture if the feature was deleted, false if the ID was not found.\n"
+								"shortText": "Delete a Feature in the model.",
+								"returns": "Ture if the Feature was deleted, false if the Feature was not found.\n"
 							},
 							"parameters": [
 								{
@@ -2075,7 +2079,7 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The geojson featureColl."
+										"text": "The FeatureCollection."
 									},
 									"type": {
 										"type": "reference",
@@ -2106,14 +2110,14 @@
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 199,
+							"line": 186,
 							"character": 26
 						}
 					]
 				},
 				{
-					"id": 120,
-					"name": "getLinestrings",
+					"id": 117,
+					"name": "getAllFeatures",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {
@@ -2121,24 +2125,73 @@
 					},
 					"signatures": [
 						{
-							"id": 121,
-							"name": "getLinestrings",
+							"id": 118,
+							"name": "getAllFeatures",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Get Linestrings from geojson featureColl.",
-								"returns": "An array of features\n"
+								"shortText": "Get all features from the FeatureCollection.",
+								"returns": "An array of features of different types.\n"
 							},
 							"parameters": [
 								{
-									"id": 122,
+									"id": 119,
 									"name": "featureColl",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The geojson featureColl.."
+										"text": "The FeatureCollection."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 17,
+							"character": 30
+						}
+					]
+				},
+				{
+					"id": 123,
+					"name": "getLineStrings",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 124,
+							"name": "getLineStrings",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get LineStrings from the FeatureCollection.",
+								"returns": "An array of LineString features.\n"
+							},
+							"parameters": [
+								{
+									"id": 125,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The FeatureCollection.."
 									},
 									"type": {
 										"type": "reference",
@@ -2167,13 +2220,13 @@
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 34,
+							"line": 43,
 							"character": 30
 						}
 					]
 				},
 				{
-					"id": 132,
+					"id": 135,
 					"name": "getMultiLineStrings",
 					"kind": 64,
 					"kindString": "Function",
@@ -2182,24 +2235,24 @@
 					},
 					"signatures": [
 						{
-							"id": 133,
+							"id": 136,
 							"name": "getMultiLineStrings",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Get MultiLinestrings from geojson featureColl.",
-								"returns": "An array of features\n"
+								"shortText": "Get MultiLineStrings from the FeatureCollection.",
+								"returns": "An array of MultiLineString features.\n"
 							},
 							"parameters": [
 								{
-									"id": 134,
+									"id": 137,
 									"name": "featureColl",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The geojson featureColl.."
+										"text": "The FeatureCollection.."
 									},
 									"type": {
 										"type": "reference",
@@ -2228,13 +2281,13 @@
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 106,
+							"line": 115,
 							"character": 35
 						}
 					]
 				},
 				{
-					"id": 129,
+					"id": 132,
 					"name": "getMultiPoints",
 					"kind": 64,
 					"kindString": "Function",
@@ -2243,24 +2296,24 @@
 					},
 					"signatures": [
 						{
-							"id": 130,
+							"id": 133,
 							"name": "getMultiPoints",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Get MultiPoints from geojson featureColl.",
-								"returns": "An array of features\n"
+								"shortText": "Get MultiPoints from the FeatureCollection.",
+								"returns": "An array of MultiPoint features.\n"
 							},
 							"parameters": [
 								{
-									"id": 131,
+									"id": 134,
 									"name": "featureColl",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The geojson featureColl.."
+										"text": "The FeatureCollection.."
 									},
 									"type": {
 										"type": "reference",
@@ -2289,13 +2342,13 @@
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 89,
+							"line": 98,
 							"character": 30
 						}
 					]
 				},
 				{
-					"id": 135,
+					"id": 138,
 					"name": "getMultiPolygons",
 					"kind": 64,
 					"kindString": "Function",
@@ -2304,75 +2357,14 @@
 					},
 					"signatures": [
 						{
-							"id": 136,
+							"id": 139,
 							"name": "getMultiPolygons",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Get MultiPolygons from geojson featureColl.",
-								"returns": "An array of features\n"
-							},
-							"parameters": [
-								{
-									"id": 137,
-									"name": "featureColl",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"comment": {
-										"text": "The geojson featureColl.."
-									},
-									"type": {
-										"type": "reference",
-										"name": "FeatureCollection"
-									}
-								}
-							],
-							"type": {
-								"type": "reference",
-								"name": "Array",
-								"typeArguments": [
-									{
-										"type": "reference",
-										"name": "Feature",
-										"typeArguments": [
-											{
-												"type": "reference",
-												"name": "MultiPolygon"
-											}
-										]
-									}
-								]
-							}
-						}
-					],
-					"sources": [
-						{
-							"fileName": "fcoll.ts",
-							"line": 123,
-							"character": 32
-						}
-					]
-				},
-				{
-					"id": 138,
-					"name": "getMultiPolygonsWithHoles",
-					"kind": 64,
-					"kindString": "Function",
-					"flags": {
-						"isExported": true
-					},
-					"signatures": [
-						{
-							"id": 139,
-							"name": "getMultiPolygonsWithHoles",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"comment": {
-								"shortText": "Get MultiPolygons with holes from geojson featureColl.",
-								"returns": "An array of features\n"
+								"shortText": "Get MultiPolygons from the FeatureCollection.",
+								"returns": "An array of MultiPolygon features.\n"
 							},
 							"parameters": [
 								{
@@ -2382,7 +2374,7 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The geojson featureColl.."
+										"text": "The FeatureCollection.."
 									},
 									"type": {
 										"type": "reference",
@@ -2411,13 +2403,74 @@
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 140,
+							"line": 132,
+							"character": 32
+						}
+					]
+				},
+				{
+					"id": 141,
+					"name": "getMultiPolygonsWithHoles",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 142,
+							"name": "getMultiPolygonsWithHoles",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Get MultiPolygons with holes from the FeatureCollection.",
+								"returns": "An array of MultiPolygon features with holes.\n"
+							},
+							"parameters": [
+								{
+									"id": 143,
+									"name": "featureColl",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "The FeatureCollection.."
+									},
+									"type": {
+										"type": "reference",
+										"name": "FeatureCollection"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "MultiPolygon"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "fcoll.ts",
+							"line": 149,
 							"character": 41
 						}
 					]
 				},
 				{
-					"id": 117,
+					"id": 120,
 					"name": "getPoints",
 					"kind": 64,
 					"kindString": "Function",
@@ -2426,24 +2479,24 @@
 					},
 					"signatures": [
 						{
-							"id": 118,
+							"id": 121,
 							"name": "getPoints",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Get points from geojson featureColl.",
-								"returns": "An array of features\n"
+								"shortText": "Get Points from the FeatureCollection.",
+								"returns": "An array of Point features.\n"
 							},
 							"parameters": [
 								{
-									"id": 119,
+									"id": 122,
 									"name": "featureColl",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The geojson featureColl.."
+										"text": "The FeatureCollection."
 									},
 									"type": {
 										"type": "reference",
@@ -2472,13 +2525,13 @@
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 17,
+							"line": 26,
 							"character": 25
 						}
 					]
 				},
 				{
-					"id": 123,
+					"id": 126,
 					"name": "getPolygons",
 					"kind": 64,
 					"kindString": "Function",
@@ -2487,75 +2540,14 @@
 					},
 					"signatures": [
 						{
-							"id": 124,
+							"id": 127,
 							"name": "getPolygons",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Get Polygons from geojson featureColl.",
-								"returns": "An array of features\n"
-							},
-							"parameters": [
-								{
-									"id": 125,
-									"name": "featureColl",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"comment": {
-										"text": "The geojson featureColl.."
-									},
-									"type": {
-										"type": "reference",
-										"name": "FeatureCollection"
-									}
-								}
-							],
-							"type": {
-								"type": "reference",
-								"name": "Array",
-								"typeArguments": [
-									{
-										"type": "reference",
-										"name": "Feature",
-										"typeArguments": [
-											{
-												"type": "reference",
-												"name": "Polygon"
-											}
-										]
-									}
-								]
-							}
-						}
-					],
-					"sources": [
-						{
-							"fileName": "fcoll.ts",
-							"line": 51,
-							"character": 27
-						}
-					]
-				},
-				{
-					"id": 126,
-					"name": "getPolygonsWithHoles",
-					"kind": 64,
-					"kindString": "Function",
-					"flags": {
-						"isExported": true
-					},
-					"signatures": [
-						{
-							"id": 127,
-							"name": "getPolygonsWithHoles",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"comment": {
-								"shortText": "Get Polygons with holes from geojson featureColl.",
-								"returns": "An array of features\n"
+								"shortText": "Get Polygons from the FeatureCollection.",
+								"returns": "An array of Polygon features.\n"
 							},
 							"parameters": [
 								{
@@ -2565,7 +2557,7 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The geojson featureColl."
+										"text": "The FeatureCollection.."
 									},
 									"type": {
 										"type": "reference",
@@ -2594,14 +2586,14 @@
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 68,
-							"character": 36
+							"line": 60,
+							"character": 27
 						}
 					]
 				},
 				{
-					"id": 141,
-					"name": "getPropertyTypes",
+					"id": 129,
+					"name": "getPolygonsWithHoles",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {
@@ -2609,24 +2601,24 @@
 					},
 					"signatures": [
 						{
-							"id": 142,
-							"name": "getPropertyTypes",
+							"id": 130,
+							"name": "getPolygonsWithHoles",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Get property names and types",
-								"returns": "A map of property names -> property types\n"
+								"shortText": "Get Polygons with holes from the FeatureCollection.",
+								"returns": "An array of Polygon features with holes.\n"
 							},
 							"parameters": [
 								{
-									"id": 143,
+									"id": 131,
 									"name": "featureColl",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "The geojson featureColl."
+										"text": "The FeatureCollection."
 									},
 									"type": {
 										"type": "reference",
@@ -2636,15 +2628,17 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "Map",
+								"name": "Array",
 								"typeArguments": [
 									{
-										"type": "intrinsic",
-										"name": "string"
-									},
-									{
-										"type": "intrinsic",
-										"name": "string"
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Polygon"
+											}
+										]
 									}
 								]
 							}
@@ -2653,8 +2647,8 @@
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 165,
-							"character": 32
+							"line": 77,
+							"character": 36
 						}
 					]
 				},
@@ -2674,7 +2668,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Save featureColl as geojson file.",
+								"shortText": "Save the FeatureCollection as a geojson file.",
 								"returns": "True if successful.\n"
 							},
 							"parameters": [
@@ -2698,6 +2692,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "The name of the geojson file."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -2713,7 +2710,7 @@
 					"sources": [
 						{
 							"fileName": "fcoll.ts",
-							"line": 219,
+							"line": 206,
 							"character": 20
 						}
 					]
@@ -2726,15 +2723,15 @@
 					"children": [
 						144,
 						148,
-						120,
-						132,
-						129,
-						135,
-						138,
 						117,
 						123,
-						126,
+						135,
+						132,
+						138,
 						141,
+						120,
+						126,
+						129,
 						152
 					]
 				}
@@ -2968,7 +2965,7 @@
 			},
 			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/prop.ts",
 			"comment": {
-				"shortText": "Functions for working with geojson properties."
+				"shortText": "Functions for working with Feature properties."
 			},
 			"children": [
 				{
@@ -3015,7 +3012,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 21,
+							"line": 17,
 							"character": 19
 						}
 					]
@@ -3067,7 +3064,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 32,
+							"line": 28,
 							"character": 24
 						}
 					]
@@ -3130,7 +3127,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 67,
+							"line": 63,
 							"character": 24
 						}
 					]
@@ -3190,7 +3187,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 54,
+							"line": 50,
 							"character": 23
 						}
 					]
@@ -3239,7 +3236,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 43,
+							"line": 39,
 							"character": 24
 						}
 					]
@@ -3325,7 +3322,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 82,
+							"line": 78,
 							"character": 24
 						}
 					]
@@ -3417,7 +3414,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 98,
+							"line": 94,
 							"character": 25
 						}
 					]
@@ -3484,6 +3481,35 @@
 							"character": 25
 						}
 					]
+				},
+				{
+					"id": 191,
+					"name": "testDataChina",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 192,
+							"name": "testDataChina",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "FeatureCollection"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "test_data.ts",
+							"line": 79,
+							"character": 29
+						}
+					]
 				}
 			],
 			"groups": [
@@ -3491,7 +3517,8 @@
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						189
+						189,
+						191
 					]
 				}
 			],
@@ -3509,7 +3536,7 @@
 			"title": "External modules",
 			"kind": 1,
 			"children": [
-				191,
+				193,
 				1,
 				79,
 				116,
