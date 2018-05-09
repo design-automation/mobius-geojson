@@ -1,8 +1,5 @@
 /**
  * Functions for adding UI components to Cesium.
-
-/**
- *
  */
 
 import * as turf from "@turf/turf";

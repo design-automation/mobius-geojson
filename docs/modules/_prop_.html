@@ -102,12 +102,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/prop.ts#L17">prop.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/72d9937/src/typescript/prop.ts#L17">prop.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an object of key-value pairs, the properties of this feature.</p>
+									<p>Returns an object of key-value pairs for all the properties of this feature.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -120,7 +120,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">turf.Properties</span></h4>
-							<p>New model empty.</p>
+							<p>An object of key-value pairs.</p>
 						</li>
 					</ul>
 				</section>
@@ -134,12 +134,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/prop.ts#L28">prop.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/72d9937/src/typescript/prop.ts#L28">prop.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an object of key-value pairs, the properties of this feature.</p>
+									<p>Returns an array of all the property names for this feature.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -166,7 +166,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/prop.ts#L63">prop.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/72d9937/src/typescript/prop.ts#L64">prop.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -191,7 +191,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-							<p>The property value</p>
+							<p>The property value.</p>
 						</li>
 					</ul>
 				</section>
@@ -205,12 +205,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/prop.ts#L50">prop.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/72d9937/src/typescript/prop.ts#L51">prop.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns true if the  feature contains a property with the specified name.</p>
+									<p>Returns true if the feature contains a property with the specified name.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -223,6 +223,9 @@
 								</li>
 								<li>
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property, a string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -240,7 +243,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/prop.ts#L39">prop.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/72d9937/src/typescript/prop.ts#L39">prop.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,12 +275,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/prop.ts#L78">prop.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/72d9937/src/typescript/prop.ts#L80">prop.ts:80</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets the property value for the property with the specified name.</p>
+									<p>Sets the property value for the property with the specified name.
+									If the property does not exist, it is created.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -302,7 +306,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>The name of the property. (This may differe from input name.)</p>
+							<p>The name of the property. (This may differ from input name if input name is not valid.)</p>
 						</li>
 					</ul>
 				</section>
@@ -316,12 +320,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/prop.ts#L94">prop.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/72d9937/src/typescript/prop.ts#L97">prop.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets the property values for the properties with the specified names.</p>
+									<p>Sets the property values for the properties with the specified names.
+									If the properties do not exist, they are created.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>

@@ -12,7 +12,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/_export.ts",
+			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/_export.ts",
 			"sources": [
 				{
 					"fileName": "_export.ts",
@@ -29,7 +29,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/cesium.ts",
+			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/cesium.ts",
 			"children": [
 				{
 					"id": 9,
@@ -47,7 +47,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 23,
+									"line": 20,
 									"character": 10
 								}
 							],
@@ -65,7 +65,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 22,
+									"line": 19,
 									"character": 7
 								}
 							],
@@ -83,7 +83,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 21,
+									"line": 18,
 									"character": 7
 								}
 							],
@@ -101,7 +101,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 20,
+									"line": 17,
 									"character": 8
 								}
 							],
@@ -126,7 +126,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 19,
+							"line": 16,
 							"character": 26
 						}
 					]
@@ -147,7 +147,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 14,
+									"line": 11,
 									"character": 10
 								}
 							],
@@ -165,7 +165,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 16,
+									"line": 13,
 									"character": 8
 								}
 							],
@@ -183,7 +183,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 13,
+									"line": 10,
 									"character": 7
 								}
 							],
@@ -201,7 +201,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 12,
+									"line": 9,
 									"character": 7
 								}
 							],
@@ -219,7 +219,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 11,
+									"line": 8,
 									"character": 8
 								}
 							],
@@ -237,7 +237,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 15,
+									"line": 12,
 									"character": 9
 								}
 							],
@@ -264,7 +264,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 10,
+							"line": 7,
 							"character": 27
 						}
 					]
@@ -305,7 +305,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 107,
 									"character": 8
 								}
@@ -330,7 +330,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 35,
+									"line": 32,
 									"character": 10
 								}
 							],
@@ -354,7 +354,7 @@
 											"sources": [
 												{
 													"fileName": "cesium.ts",
-													"line": 41,
+													"line": 38,
 													"character": 14
 												}
 											],
@@ -376,7 +376,7 @@
 															"sources": [
 																{
 																	"fileName": "cesium.ts",
-																	"line": 43,
+																	"line": 40,
 																	"character": 19
 																}
 															],
@@ -401,7 +401,7 @@
 															"sources": [
 																{
 																	"fileName": "cesium.ts",
-																	"line": 42,
+																	"line": 39,
 																	"character": 17
 																}
 															],
@@ -424,7 +424,7 @@
 													"sources": [
 														{
 															"fileName": "cesium.ts",
-															"line": 41,
+															"line": 38,
 															"character": 16
 														}
 													]
@@ -442,7 +442,7 @@
 											"sources": [
 												{
 													"fileName": "cesium.ts",
-													"line": 37,
+													"line": 34,
 													"character": 15
 												}
 											],
@@ -464,7 +464,7 @@
 															"sources": [
 																{
 																	"fileName": "cesium.ts",
-																	"line": 39,
+																	"line": 36,
 																	"character": 19
 																}
 															],
@@ -489,7 +489,7 @@
 															"sources": [
 																{
 																	"fileName": "cesium.ts",
-																	"line": 38,
+																	"line": 35,
 																	"character": 17
 																}
 															],
@@ -512,7 +512,7 @@
 													"sources": [
 														{
 															"fileName": "cesium.ts",
-															"line": 37,
+															"line": 34,
 															"character": 17
 														}
 													]
@@ -530,7 +530,7 @@
 											"sources": [
 												{
 													"fileName": "cesium.ts",
-													"line": 45,
+													"line": 42,
 													"character": 15
 												}
 											],
@@ -557,7 +557,7 @@
 											"sources": [
 												{
 													"fileName": "cesium.ts",
-													"line": 36,
+													"line": 33,
 													"character": 14
 												}
 											],
@@ -588,7 +588,7 @@
 									"sources": [
 										{
 											"fileName": "cesium.ts",
-											"line": 35,
+											"line": 32,
 											"character": 12
 										}
 									]
@@ -603,7 +603,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 237,
 									"character": 12
 								}
@@ -644,7 +644,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 102,
 									"character": 8
 								}
@@ -674,7 +674,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 34,
+							"line": 31,
 							"character": 33
 						}
 					],
@@ -701,7 +701,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 28,
+									"line": 25,
 									"character": 9
 								}
 							],
@@ -719,7 +719,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 29,
+									"line": 26,
 									"character": 8
 								}
 							],
@@ -737,7 +737,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 30,
+									"line": 27,
 									"character": 12
 								}
 							],
@@ -755,7 +755,7 @@
 							"sources": [
 								{
 									"fileName": "cesium.ts",
-									"line": 31,
+									"line": 28,
 									"character": 9
 								}
 							],
@@ -789,7 +789,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 27,
+							"line": 24,
 							"character": 22
 						}
 					]
@@ -811,7 +811,7 @@
 							"flags": {},
 							"comment": {
 								"shortText": "Add a colour dropdown to the Cesium Viewer.",
-								"returns": "\n"
+								"returns": "FeatureCollection with added colour dropdown property.\n"
 							},
 							"parameters": [
 								{
@@ -820,6 +820,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "FeatureCollection to add extrude dropdown to"
+									},
 									"type": {
 										"type": "reference",
 										"name": "CesiumFeatureCollection",
@@ -833,7 +836,7 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "A description."
+										"text": "A description for the dropdown."
 									},
 									"type": {
 										"type": "intrinsic",
@@ -851,7 +854,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 106,
+							"line": 111,
 							"character": 25
 						}
 					]
@@ -873,7 +876,7 @@
 							"flags": {},
 							"comment": {
 								"shortText": "Add an entry to the colour dropdown in the Cesium Viewer.",
-								"returns": "\n"
+								"returns": "FeatureCollection with added colour dropdown property.\n"
 							},
 							"parameters": [
 								{
@@ -882,6 +885,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "FeatureCollection to add entry to"
+									},
 									"type": {
 										"type": "reference",
 										"name": "CesiumFeatureCollection",
@@ -894,6 +900,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "The name of the property to add as entry."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -905,6 +914,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Minimum value in data to colour (blue)."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "number"
@@ -916,6 +928,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Maximum value in data to colour (red)."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "number"
@@ -927,6 +942,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Inverts the colours if true (larger values are coloured blue)."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "boolean"
@@ -943,7 +961,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 120,
+							"line": 129,
 							"character": 30
 						}
 					]
@@ -965,7 +983,7 @@
 							"flags": {},
 							"comment": {
 								"shortText": "Add an extrude dropdown to the Cesium Viewer.",
-								"returns": "\n"
+								"returns": "FeatureCollection with added extrude dropdown property.\n"
 							},
 							"parameters": [
 								{
@@ -974,6 +992,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "FeatureCollection to add extrude dropdown to"
+									},
 									"type": {
 										"type": "reference",
 										"name": "CesiumFeatureCollection",
@@ -987,7 +1008,7 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "A description."
+										"text": "A description for the dropdown."
 									},
 									"type": {
 										"type": "intrinsic",
@@ -1005,7 +1026,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 71,
+							"line": 70,
 							"character": 26
 						}
 					]
@@ -1027,7 +1048,7 @@
 							"flags": {},
 							"comment": {
 								"shortText": "Add an entry to the extrude dropdown in the Cesium Viewer.",
-								"returns": "\n"
+								"returns": "FeatureCollection with added extrude dropdown property.\n"
 							},
 							"parameters": [
 								{
@@ -1036,6 +1057,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "FeatureCollection to add entry to"
+									},
 									"type": {
 										"type": "reference",
 										"name": "CesiumFeatureCollection",
@@ -1048,6 +1072,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "The name of the property to add as entry."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -1059,6 +1086,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Minimum value in data to extrude."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "number"
@@ -1070,6 +1100,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Maximum value in data to extrude."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "number"
@@ -1081,6 +1114,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Inverts the extrusion if true (larger values are extruded less)."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "boolean"
@@ -1092,6 +1128,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Scale factor of extrusion (if scale = 1, extrusion distance = value)."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "number"
@@ -1103,6 +1142,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Displays FeatureCollection as lines if true."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "boolean"
@@ -1119,7 +1161,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 85,
+							"line": 90,
 							"character": 31
 						}
 					]
@@ -1141,7 +1183,7 @@
 							"flags": {},
 							"comment": {
 								"shortText": "Add a category filter to the Cesium Viewer.",
-								"returns": "\n"
+								"returns": "FeatureCollection with added filter property.\n"
 							},
 							"parameters": [
 								{
@@ -1150,6 +1192,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "FeatureCollection to add entry to"
+									},
 									"type": {
 										"type": "reference",
 										"name": "CesiumFeatureCollection",
@@ -1173,6 +1218,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "The name of the property to add as filter."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -1184,6 +1232,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Relation between data to filter and value. (no relation: \"none\", equal: \"==\", not equal: \"!=\")"
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -1195,6 +1246,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Value used to filter data."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -1211,7 +1265,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 139,
+							"line": 151,
 							"character": 28
 						}
 					]
@@ -1233,7 +1287,7 @@
 							"flags": {},
 							"comment": {
 								"shortText": "Add a numeric filter.",
-								"returns": "\n"
+								"returns": "FeatureCollection with added filter property.\n"
 							},
 							"parameters": [
 								{
@@ -1242,6 +1296,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "FeatureCollection to add entry to"
+									},
 									"type": {
 										"type": "reference",
 										"name": "CesiumFeatureCollection",
@@ -1265,6 +1322,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "The name of the property to add as filter."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -1276,6 +1336,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Relation between data to filter and value. (more than: \">\", less than: \"<\", equal: \"==\")"
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -1287,6 +1350,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Value used to filter data."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "number"
@@ -1303,7 +1369,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 159,
+							"line": 174,
 							"character": 28
 						}
 					]
@@ -1325,7 +1391,7 @@
 							"flags": {},
 							"comment": {
 								"shortText": "Add a property display option.",
-								"returns": "\n"
+								"returns": "FeatureCollection with added display properties.\n"
 							},
 							"parameters": [
 								{
@@ -1334,6 +1400,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "FeatureCollection to add property display option to"
+									},
 									"type": {
 										"type": "reference",
 										"name": "CesiumFeatureCollection",
@@ -1365,7 +1434,7 @@
 					"sources": [
 						{
 							"fileName": "cesium.ts",
-							"line": 54,
+							"line": 52,
 							"character": 30
 						}
 					]
@@ -1412,7 +1481,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/crs.ts",
+			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/crs.ts",
 			"children": [
 				{
 					"id": 92,
@@ -1477,7 +1546,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 79,
+							"line": 76,
 							"character": 22
 						}
 					]
@@ -1498,7 +1567,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Transform all the points in a feature collection\nfrom BD coordinates to WGS-84  coordinates.\nhttps://www.npmjs.com/package/eviltransform",
+								"shortText": "Transform all the points in a feature collection\nfrom BD coordinates to WGS-84  coordinates.\nhttps://www.npmjs.com/package/eviltransform\n(Changes original input.)",
 								"returns": "The number of points that were converted.\n"
 							},
 							"parameters": [
@@ -1526,7 +1595,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 158,
+							"line": 159,
 							"character": 27
 						}
 					]
@@ -1594,7 +1663,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 34,
+							"line": 31,
 							"character": 23
 						}
 					]
@@ -1662,7 +1731,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 51,
+							"line": 48,
 							"character": 28
 						}
 					]
@@ -1683,7 +1752,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Transform all the points in a feature collection\nfrom GCJ-02 coordinates to WGS-84  coordinates.\nhttps://www.npmjs.com/package/eviltransform",
+								"shortText": "Transform all the points in a feature collection\nfrom GCJ-02 coordinates to WGS-84  coordinates.\nhttps://www.npmjs.com/package/eviltransform\n(Changes original input.)",
 								"returns": "The number of points that were converted.\n"
 							},
 							"parameters": [
@@ -1711,7 +1780,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 114,
+							"line": 113,
 							"character": 28
 						}
 					]
@@ -1779,7 +1848,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 65,
+							"line": 62,
 							"character": 22
 						}
 					]
@@ -1800,7 +1869,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Transform all the points in a feature collection\nfrom WGS-84 coordinates to BD coordinates.\nhttps://www.npmjs.com/package/eviltransform",
+								"shortText": "Transform all the points in a feature collection\nfrom WGS-84 coordinates to BD coordinates.\nhttps://www.npmjs.com/package/eviltransform\n(Changes original input.)",
 								"returns": "The number of points that were converted.\n"
 							},
 							"parameters": [
@@ -1896,7 +1965,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 20,
+							"line": 17,
 							"character": 23
 						}
 					]
@@ -1917,7 +1986,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Transform all the points in a feature collection\nfrom WGS-84 coordinates to GCJ-02 coordinates.\nhttps://www.npmjs.com/package/eviltransform",
+								"shortText": "Transform all the points in a feature collection\nfrom WGS-84 coordinates to GCJ-02 coordinates.\nhttps://www.npmjs.com/package/eviltransform\n(Changes original input.)",
 								"returns": "The number of points that were converted.\n"
 							},
 							"parameters": [
@@ -1945,7 +2014,7 @@
 					"sources": [
 						{
 							"fileName": "crs.ts",
-							"line": 92,
+							"line": 90,
 							"character": 28
 						}
 					]
@@ -1984,7 +2053,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/fcoll.ts",
+			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/fcoll.ts",
 			"comment": {
 				"shortText": "Functions for working with geojson feature collections."
 			},
@@ -2752,7 +2821,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/libs/filesys/file.ts",
+			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/libs/filesys/file.ts",
 			"children": [
 				{
 					"id": 112,
@@ -2887,7 +2956,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/parse.ts",
+			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/parse.ts",
 			"comment": {
 				"shortText": "Functions for parsing zipped shape files.\nhttps://github.com/calvinmetcalf/shapefile-js"
 			},
@@ -2908,7 +2977,8 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Parse a shapefile\nhttps://github.com/calvinmetcalf/shapefile-js"
+								"shortText": "Parse a shapefile\nhttps://github.com/calvinmetcalf/shapefile-js",
+								"returns": "Parsed data.\n"
 							},
 							"parameters": [
 								{
@@ -2917,6 +2987,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Shapfile data."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "any"
@@ -2932,7 +3005,7 @@
 					"sources": [
 						{
 							"fileName": "parse.ts",
-							"line": 17,
+							"line": 19,
 							"character": 19
 						}
 					]
@@ -2963,7 +3036,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/prop.ts",
+			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/prop.ts",
 			"comment": {
 				"shortText": "Functions for working with Feature properties."
 			},
@@ -2984,8 +3057,8 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Returns an object of key-value pairs, the properties of this feature.",
-								"returns": "New model empty.\n"
+								"shortText": "Returns an object of key-value pairs for all the properties of this feature.",
+								"returns": "An object of key-value pairs.\n"
 							},
 							"parameters": [
 								{
@@ -3033,7 +3106,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Returns an object of key-value pairs, the properties of this feature.",
+								"shortText": "Returns an array of all the property names for this feature.",
 								"returns": "An array of property names\n"
 							},
 							"parameters": [
@@ -3086,7 +3159,7 @@
 							"flags": {},
 							"comment": {
 								"shortText": "Returns the property value for the property with the specified name.\nIf the property does not exist, throws an error.",
-								"returns": "The property value\n"
+								"returns": "The property value.\n"
 							},
 							"parameters": [
 								{
@@ -3127,7 +3200,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 63,
+							"line": 64,
 							"character": 24
 						}
 					]
@@ -3148,7 +3221,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Returns true if the  feature contains a property with the specified name.",
+								"shortText": "Returns true if the feature contains a property with the specified name.",
 								"returns": "True if the feature contains a property with the specified name.\n"
 							},
 							"parameters": [
@@ -3172,6 +3245,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "The name of the property, a string."
+									},
 									"type": {
 										"type": "intrinsic",
 										"name": "string"
@@ -3187,7 +3263,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 50,
+							"line": 51,
 							"character": 23
 						}
 					]
@@ -3257,8 +3333,8 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Sets the property value for the property with the specified name.",
-								"returns": "The name of the property. (This may differe from input name.)\n"
+								"shortText": "Sets the property value for the property with the specified name.\nIf the property does not exist, it is created.",
+								"returns": "The name of the property. (This may differ from input name if input name is not valid.)\n"
 							},
 							"parameters": [
 								{
@@ -3322,7 +3398,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 78,
+							"line": 80,
 							"character": 24
 						}
 					]
@@ -3343,7 +3419,7 @@
 							"kindString": "Call signature",
 							"flags": {},
 							"comment": {
-								"shortText": "Sets the property values for the properties with the specified names.",
+								"shortText": "Sets the property values for the properties with the specified names.\nIf the properties do not exist, they are created.",
 								"returns": "The number of properties that were set.\n"
 							},
 							"parameters": [
@@ -3414,7 +3490,7 @@
 					"sources": [
 						{
 							"fileName": "prop.ts",
-							"line": 94,
+							"line": 97,
 							"character": 25
 						}
 					]
@@ -3451,7 +3527,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/test_data.ts",
+			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/test_data.ts",
 			"children": [
 				{
 					"id": 189,
