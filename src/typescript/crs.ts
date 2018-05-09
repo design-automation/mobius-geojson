@@ -15,7 +15,7 @@ import * as evil from "eviltransform";
  * @returns An array, [gcjLat, gcjLng]
  */
 export function wgs2gcj(wgsLatLng: [number, number]): [number, number] {
-    const result: {lat: number, lng: number} = evil.wgs2gcj(...wgsLatLng);
+    const result: {lat: number, lng: number} = evil.wgs2gcj(wgsLatLng[1], wgsLatLng[0]);
     return [result.lat, result.lng];
 }
 
@@ -29,7 +29,7 @@ export function wgs2gcj(wgsLatLng: [number, number]): [number, number] {
  * @returns An array, [wgsLat, wgsLng]
  */
 export function gcj2wgs(gcjLatLng: [number, number]): [number, number] {
-    const result: {lat: number, lng: number} = evil.gcj2wgs(...gcjLatLng);
+    const result: {lat: number, lng: number} = evil.gcj2wgs(gcjLatLng[1], gcjLatLng[0]);
     return [result.lat, result.lng];
 }
 
@@ -46,7 +46,7 @@ export function gcj2wgs(gcjLatLng: [number, number]): [number, number] {
  * @returns An array, [wgsLat, wgsLng]
  */
 export function gcj2wgsExact(gcjLatLng: [number, number]): [number, number] {
-    const result: {lat: number, lng: number} = evil.gcj2wgs_exact(...gcjLatLng);
+    const result: {lat: number, lng: number} = evil.gcj2wgs_exact(gcjLatLng[1], gcjLatLng[0]);
     return [result.lat, result.lng];
 }
 
@@ -60,7 +60,7 @@ export function gcj2wgsExact(gcjLatLng: [number, number]): [number, number] {
  * @returns An array, [gcjLat, gcjLng]
  */
 export function wgs2bd(wgsLatLng: [number, number]): [number, number] {
-    const result: {lat: number, lng: number} = evil.wgs2bd(...wgsLatLng);
+    const result: {lat: number, lng: number} = evil.wgs2bd(wgsLatLng[1], wgsLatLng[0]);
     return [result.lat, result.lng];
 }
 
@@ -74,7 +74,7 @@ export function wgs2bd(wgsLatLng: [number, number]): [number, number] {
  * @returns An array, [wgsLat, wgsLng]
  */
 export function bd2wgs(bdLatLng: [number, number]): [number, number] {
-    const result: {lat: number, lng: number} = evil.bd2wgs(...bdLatLng);
+    const result: {lat: number, lng: number} = evil.bd2wgs(bdLatLng[1], bdLatLng[0]);
     return [result.lat, result.lng];
 }
 
@@ -90,7 +90,7 @@ export function bd2wgs(bdLatLng: [number, number]): [number, number] {
 export function wgs2gcjXform(featureColl: turf.FeatureCollection): number {
     let counter: number = 0;
     for (const feature of featureColl.features) {
-        const latLngs: [number, number][][] = turf.getCoords(feature)
+        const latLngs: [number, number][][] = turf.getCoords(feature);
         for (let i = 0;i<latLngs.length; i++) {
             for (let j = 0;j<latLngs[i].length; j++) {
                 latLngs[i][j] = wgs2gcj(latLngs[i][j]);
@@ -113,7 +113,7 @@ export function wgs2gcjXform(featureColl: turf.FeatureCollection): number {
 export function gcj2wgsXform(featureColl: turf.FeatureCollection): number {
     let counter: number = 0;
     for (const feature of featureColl.features) {
-        const latLngs: [number, number][][] = turf.getCoords(feature)
+        const latLngs: [number, number][][] = turf.getCoords(feature);
         for (let i = 0;i<latLngs.length; i++) {
             for (let j = 0;j<latLngs[i].length; j++) {
                 latLngs[i][j] = gcj2wgs(latLngs[i][j]);
@@ -136,7 +136,7 @@ export function gcj2wgsXform(featureColl: turf.FeatureCollection): number {
 export function wgs2bdXform(featureColl: turf.FeatureCollection): number {
     let counter: number = 0;
     for (const feature of featureColl.features) {
-        const latLngs: [number, number][][] = turf.getCoords(feature)
+        const latLngs: [number, number][][] = turf.getCoords(feature);
         for (let i = 0;i<latLngs.length; i++) {
             for (let j = 0;j<latLngs[i].length; j++) {
                 latLngs[i][j] = wgs2bd(latLngs[i][j]);
@@ -159,7 +159,7 @@ export function wgs2bdXform(featureColl: turf.FeatureCollection): number {
 export function bd2wgsXform(featureColl: turf.FeatureCollection): number {
     let counter: number = 0;
     for (const feature of featureColl.features) {
-        const latLngs: [number, number][][] = turf.getCoords(feature)
+        const latLngs: [number, number][][] = turf.getCoords(feature);
         for (let i = 0;i<latLngs.length; i++) {
             for (let j = 0;j<latLngs[i].length; j++) {
                 latLngs[i][j] = bd2wgs(latLngs[i][j]);
