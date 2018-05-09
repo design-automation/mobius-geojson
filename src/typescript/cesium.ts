@@ -48,10 +48,11 @@ interface CesiumFeatureCollection extends turf.FeatureCollection {
 
 /**
  * Add a property display option.
+ * @param featureColl FeatureCollection to add property display option to
  * @param name The name of the property to display.
- * @returns
+ * @returns FeatureCollection with added display properties.
  */
-export function addPropDisplay(featureColl: CesiumFeatureCollection, namw:string):
+export function addPropDisplay(featureColl: CesiumFeatureCollection, namw: string):
                            CesiumFeatureCollection {
     if (!featureColl.hasOwnProperty("cesium")) {
         featureColl.cesium = {};
@@ -65,10 +66,11 @@ export function addPropDisplay(featureColl: CesiumFeatureCollection, namw:string
 
 /**
  * Add an extrude dropdown to the Cesium Viewer.
- * @param descr A description.
- * @returns
+ * @param featureColl FeatureCollection to add extrude dropdown to
+ * @param descr A description for the dropdown.
+ * @returns FeatureCollection with added extrude dropdown property.
  */
-export function addExtrude(featureColl: CesiumFeatureCollection, descr:string):
+export function addExtrude(featureColl: CesiumFeatureCollection, descr: string):
                            CesiumFeatureCollection {
     if (!featureColl.hasOwnProperty("cesium")) {
         featureColl.cesium = {};
@@ -79,8 +81,14 @@ export function addExtrude(featureColl: CesiumFeatureCollection, descr:string):
 
 /**
  * Add an entry to the extrude dropdown in the Cesium Viewer.
- * @param
- * @returns
+ * @param featureColl FeatureCollection to add entry to
+ * @param name The name of the property to add as entry.
+ * @param min Minimum value in data to extrude.
+ * @param max Maximum value in data to extrude.
+ * @param invert Inverts the extrusion if true (larger values are extruded less).
+ * @param scale Scale factor of extrusion (if scale = 1, extrusion distance = value).
+ * @param line Displays FeatureCollection as lines if true.
+ * @returns FeatureCollection with added extrude dropdown property.
  */
 export function addExtrudeEntry(featureColl: CesiumFeatureCollection,
                                 name: string, min: number, max: number, invert: boolean,
@@ -100,10 +108,11 @@ export function addExtrudeEntry(featureColl: CesiumFeatureCollection,
 
 /**
  * Add a colour dropdown to the Cesium Viewer.
- * @param descr A description.
- * @returns
+ * @param featureColl FeatureCollection to add extrude dropdown to
+ * @param descr A description for the dropdown.
+ * @returns FeatureCollection with added colour dropdown property.
  */
-export function addColour(featureColl: CesiumFeatureCollection, descr:string):
+export function addColour(featureColl: CesiumFeatureCollection, descr: string):
                           CesiumFeatureCollection {
     if (!featureColl.hasOwnProperty("cesium")) {
         featureColl.cesium = {};
@@ -114,8 +123,12 @@ export function addColour(featureColl: CesiumFeatureCollection, descr:string):
 
 /**
  * Add an entry to the colour dropdown in the Cesium Viewer.
- * @param
- * @returns
+ * @param featureColl FeatureCollection to add entry to
+ * @param name The name of the property to add as entry.
+ * @param min Minimum value in data to colour (blue).
+ * @param max Maximum value in data to colour (red).
+ * @param invert Inverts the colours if true (larger values are coloured blue).
+ * @returns FeatureCollection with added colour dropdown property.
  */
 export function addColourEntry(featureColl: CesiumFeatureCollection,
                                name: string, min: number, max: number, invert: boolean):
@@ -133,8 +146,11 @@ export function addColourEntry(featureColl: CesiumFeatureCollection,
 
 /**
  * Add a category filter to the Cesium Viewer.
- * @param
- * @returns
+ * @param featureColl FeatureCollection to add entry to
+ * @param name The name of the property to add as filter.
+ * @param relation Relation between data to filter and value. (no relation: "none", equal: "==", not equal: "!=")
+ * @param value Value used to filter data.
+ * @returns FeatureCollection with added filter property.
  */
 export function addFilterCat(featureColl: CesiumFeatureCollection,
                              descr: string, name: string, relation: string, value: string):
@@ -151,12 +167,13 @@ export function addFilterCat(featureColl: CesiumFeatureCollection,
     return featureColl;
 }
 
-
-
 /**
  * Add a numeric filter.
- * @param
- * @returns
+ * @param featureColl FeatureCollection to add entry to
+ * @param name The name of the property to add as filter.
+ * @param relation Relation between data to filter and value. (more than: ">", less than: "<", equal: "==")
+ * @param value Value used to filter data.
+ * @returns FeatureCollection with added filter property.
  */
 export function addFilterNum(featureColl: CesiumFeatureCollection,
                              descr: string, name: string, relation: string, value: number):

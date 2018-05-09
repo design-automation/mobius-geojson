@@ -13,18 +13,18 @@ import * as turf from "@turf/turf";
 //  ===============================================================================================================
 
 /**
- * Returns an object of key-value pairs, the properties of this feature.
+ * Returns an object of key-value pairs for all the properties of this feature.
  *
  * @param feature The feature data.
- * @returns New model empty.
+ * @returns An object of key-value pairs.
  */
 export function get(feature: turf.Feature): turf.Properties {
-	if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
     return feature.properties;
 }
 
 /**
- * Returns an object of key-value pairs, the properties of this feature.
+ * Returns an array of all the property names for this feature.
  *
  * @param feature The feature data.
  * @returns An array of property names
@@ -46,9 +46,10 @@ export function numProps(feature: turf.Feature): number {
 }
 
 /**
- * Returns true if the  feature contains a property with the specified name.
+ * Returns true if the feature contains a property with the specified name.
  *
  * @param feature The feature data.
+ * @param name The name of the property, a string.
  * @returns True if the feature contains a property with the specified name.
  */
 export function hasProp(feature: turf.Feature, name: string): boolean {
@@ -62,7 +63,7 @@ export function hasProp(feature: turf.Feature, name: string): boolean {
  *
  * @param feature The feature data.
  * @param name The name of the property, a string.
- * @returns The property value
+ * @returns The property value.
  */
 export function getValue(feature: turf.Feature, name: string): any {
     if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
@@ -73,22 +74,24 @@ export function getValue(feature: turf.Feature, name: string): any {
 
 /**
  * Sets the property value for the property with the specified name.
+ * If the property does not exist, it is created.
  *
  * @param feature The feature data.
  * @param name The name of the property, a string.
  * @param value The value of the property, any value.
- * @returns The name of the property. (This may differe from input name.)
+ * @returns The name of the property. (This may differ from input name if input name is not valid.)
  */
 export function setValue(feature: turf.Feature, name: string, value: (string|number)): string {
     if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
     const regexp = /^[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*$/;
-    if (!regexp.test(name)) { name = "_" + name};
+    if (!regexp.test(name)) { name = "_" + name}
     feature.properties[name] = value;
     return name;
 }
 
 /**
  * Sets the property values for the properties with the specified names.
+ * If the properties do not exist, they are created.
  *
  * @param feature The feature data.
  * @param names An array of names of the properties.

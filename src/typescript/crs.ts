@@ -85,6 +85,7 @@ export function bd2wgs(bdLatLng: [number, number]): [number, number] {
  * Transform all the points in a feature collection
  * from WGS-84 coordinates to GCJ-02 coordinates.
  * https://www.npmjs.com/package/eviltransform
+ * (Changes original input.)
  *
  * @param featureColl A feature collection.
  * @returns The number of points that were converted.
@@ -107,6 +108,7 @@ export function wgs2gcjXform(featureColl: turf.FeatureCollection): number {
  * Transform all the points in a feature collection
  * from GCJ-02 coordinates to WGS-84  coordinates.
  * https://www.npmjs.com/package/eviltransform
+ * (Changes original input.)
  *
  * @param featureColl A feature collection.
  * @returns The number of points that were converted.
@@ -130,6 +132,7 @@ export function gcj2wgsXform(featureColl: turf.FeatureCollection): number {
  * Transform all the points in a feature collection
  * from WGS-84 coordinates to BD coordinates.
  * https://www.npmjs.com/package/eviltransform
+ * (Changes original input.)
  *
  * @param featureColl A feature collection.
  * @returns The number of points that were converted.
@@ -152,6 +155,7 @@ export function wgs2bdXform(featureColl: turf.FeatureCollection): number {
  * Transform all the points in a feature collection
  * from BD coordinates to WGS-84  coordinates.
  * https://www.npmjs.com/package/eviltransform
+ * (Changes original input.)
  *
  * @param featureColl A feature collection.
  * @returns The number of points that were converted.
