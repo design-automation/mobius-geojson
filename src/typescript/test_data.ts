@@ -74,3 +74,40 @@ export function testData1(): turf.FeatureCollection {
         }],
     }
 }
+
+
+export function testDataChina(): turf.FeatureCollection {
+    return {
+        type: "FeatureCollection",
+        features: [{
+            type: "Feature",
+            id: 0,
+            geometry: {
+                type: "Polygon",
+                coordinates: [
+                    [
+                        [
+                            39.0,
+                            116.0,
+                        ],
+                        [
+                            39.2,
+                            116.0,
+                        ],
+                        [
+                            39.2,
+                            116.2,
+                        ],
+                        [
+                            39.0,
+                            116.2,
+                        ],
+                    ],
+                ],
+            },
+            properties: {
+                FID: 0,
+            },
+        }],
+    }
+}

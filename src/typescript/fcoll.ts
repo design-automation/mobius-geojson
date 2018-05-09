@@ -10,9 +10,18 @@ import * as turf from "@turf/turf";
 import * as file from "./libs/filesys/file";
 
 /**
- * Get points from geojson featureColl.
- * @param featureColl The geojson featureColl..
- * @returns An array of features
+ * Get all features from the FeatureCollection.
+ * @param featureColl The FeatureCollection.
+ * @returns An array of features of different types.
+ */
+export function getAllFeatures(featureColl: turf.FeatureCollection): any {
+    return featureColl.features; //TODO return type should not be any
+}
+
+/**
+ * Get Points from the FeatureCollection.
+ * @param featureColl The FeatureCollection.
+ * @returns An array of Point features.
  */
 export function getPoints(featureColl: turf.FeatureCollection): Array<turf.Feature<turf.Point>> {
     const points: Array<turf.Feature<turf.Point>> = [];
@@ -27,11 +36,11 @@ export function getPoints(featureColl: turf.FeatureCollection): Array<turf.Featu
 }
 
 /**
- * Get Linestrings from geojson featureColl.
- * @param featureColl The geojson featureColl..
- * @returns An array of features
+ * Get LineStrings from the FeatureCollection.
+ * @param featureColl The FeatureCollection..
+ * @returns An array of LineString features.
  */
-export function getLinestrings(featureColl: turf.FeatureCollection): Array<turf.Feature<turf.LineString>> {
+export function getLineStrings(featureColl: turf.FeatureCollection): Array<turf.Feature<turf.LineString>> {
     const linestrings: Array<turf.Feature<turf.LineString>> = [];
     // loop through all features
     for (const feature of featureColl.features) {
@@ -44,9 +53,9 @@ export function getLinestrings(featureColl: turf.FeatureCollection): Array<turf.
 }
 
 /**
- * Get Polygons from geojson featureColl.
- * @param featureColl The geojson featureColl..
- * @returns An array of features
+ * Get Polygons from the FeatureCollection.
+ * @param featureColl The FeatureCollection..
+ * @returns An array of Polygon features.
  */
 export function getPolygons(featureColl: turf.FeatureCollection): Array<turf.Feature<turf.Polygon>> {
     const polygons: Array<turf.Feature<turf.Polygon>> = [];
@@ -61,9 +70,9 @@ export function getPolygons(featureColl: turf.FeatureCollection): Array<turf.Fea
 }
 
 /**
- * Get Polygons with holes from geojson featureColl.
- * @param featureColl The geojson featureColl.
- * @returns An array of features
+ * Get Polygons with holes from the FeatureCollection.
+ * @param featureColl The FeatureCollection.
+ * @returns An array of Polygon features with holes.
  */
 export function getPolygonsWithHoles(featureColl: turf.FeatureCollection): Array<turf.Feature<turf.Polygon>> {
     const polygons_holes: Array<turf.Feature<turf.Polygon>> = [];
@@ -82,9 +91,9 @@ export function getPolygonsWithHoles(featureColl: turf.FeatureCollection): Array
 }
 
 /**
- * Get MultiPoints from geojson featureColl.
- * @param featureColl The geojson featureColl..
- * @returns An array of features
+ * Get MultiPoints from the FeatureCollection.
+ * @param featureColl The FeatureCollection..
+ * @returns An array of MultiPoint features.
  */
 export function getMultiPoints(featureColl: turf.FeatureCollection): Array<turf.Feature<turf.MultiPoint>> {
     const multipoints: Array<turf.Feature<turf.MultiPoint>> = [];
@@ -99,9 +108,9 @@ export function getMultiPoints(featureColl: turf.FeatureCollection): Array<turf.
 }
 
 /**
- * Get MultiLinestrings from geojson featureColl.
- * @param featureColl The geojson featureColl..
- * @returns An array of features
+ * Get MultiLineStrings from the FeatureCollection.
+ * @param featureColl The FeatureCollection..
+ * @returns An array of MultiLineString features.
  */
 export function getMultiLineStrings(featureColl: turf.FeatureCollection): Array<turf.Feature<turf.MultiLineString>> {
     const multilinestrings: Array<turf.Feature<turf.MultiLineString>> = [];
@@ -116,9 +125,9 @@ export function getMultiLineStrings(featureColl: turf.FeatureCollection): Array<
 }
 
 /**
- * Get MultiPolygons from geojson featureColl.
- * @param featureColl The geojson featureColl..
- * @returns An array of features
+ * Get MultiPolygons from the FeatureCollection.
+ * @param featureColl The FeatureCollection..
+ * @returns An array of MultiPolygon features.
  */
 export function getMultiPolygons(featureColl: turf.FeatureCollection): Array<turf.Feature<turf.MultiPolygon>> {
     const multipolygons: Array<turf.Feature<turf.MultiPolygon>> = [];
@@ -133,9 +142,9 @@ export function getMultiPolygons(featureColl: turf.FeatureCollection): Array<tur
 }
 
 /**
- * Get MultiPolygons with holes from geojson featureColl.
- * @param featureColl The geojson featureColl..
- * @returns An array of features
+ * Get MultiPolygons with holes from the FeatureCollection.
+ * @param featureColl The FeatureCollection..
+ * @returns An array of MultiPolygon features with holes.
  */
 export function getMultiPolygonsWithHoles(featureColl: turf.FeatureCollection): Array<turf.Feature<turf.MultiPolygon>> {
     const multipolygons_holes: Array<turf.Feature<turf.MultiPolygon>> = [];
@@ -158,43 +167,21 @@ export function getMultiPolygonsWithHoles(featureColl: turf.FeatureCollection): 
 }
 
 /**
- * Get property names and types
- * @param featureColl The geojson featureColl.
- * @returns A map of property names -> property types
+ * Add a Feature to the model.
+ * @param featureColl The FeatureCollection..
+ * @param feature The Feature to add.
+ * @returns Number of Features in the colletion after adding.
  */
-export function getPropertyTypes(featureColl: turf.FeatureCollection): Map<string, string> {
-    const properties: Map<string, string> = new Map();
-    // loop through all features
-    for (const feature of featureColl.features) {
-        const propos: any = feature.properties;
-        for (const key of Object.keys(propos)) {
-            if (!properties.has(key)) {
-                if (isNaN(propos[key])) {
-                    properties.set(key, "string"); // TODO what about objs
-                } else {
-                    properties.set(key, "number");
-                }
-            }
-        }
-    }
-    // return featureColl
-    return properties;
-}
-
-/**
- * Add a feature to the model.
- * @param featureColl The geojson featureColl..
- * @param feature The feature to add.
- */
-export function addFeature(featureColl: turf.FeatureCollection, feature: turf.Feature): void {
+export function addFeature(featureColl: turf.FeatureCollection, feature: turf.Feature): number {
     featureColl.features.push(feature);
+    return featureColl.features.length;
 }
 
 /**
- * Delete a feature in the model.
- * @param featureColl The geojson featureColl.
+ * Delete a Feature in the model.
+ * @param featureColl The FeatureCollection.
  * @param feature The feature to delete.
- * @returns Ture if the feature was deleted, false if the ID was not found.
+ * @returns Ture if the Feature was deleted, false if the Feature was not found.
  */
 export function delFeature(featureColl: turf.FeatureCollection, feature: turf.Feature): boolean {
     let counter: number = 0;
@@ -210,10 +197,10 @@ export function delFeature(featureColl: turf.FeatureCollection, feature: turf.Fe
 }
 
 /**
- * Save featureColl as geojson file.
+ * Save the FeatureCollection as a geojson file.
  *
  * @param featureColl The collection to save.
- * @param filepath The path to the geojson file.
+ * @param filename The name of the geojson file.
  * @returns True if successful.
  */
 export function save(featureColl: turf.FeatureCollection, filename: string): boolean {

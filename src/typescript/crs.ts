@@ -127,7 +127,6 @@ export function gcj2wgsXform(featureColl: turf.FeatureCollection): number {
     return counter;
 }
 
-
 /**
  * Transform all the points in a feature collection
  * from WGS-84 coordinates to BD coordinates.

@@ -80,7 +80,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#addfeature" class="tsd-kind-icon">add<wbr>Feature</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#delfeature" class="tsd-kind-icon">del<wbr>Feature</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getlinestrings" class="tsd-kind-icon">get<wbr>Linestrings</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getallfeatures" class="tsd-kind-icon">get<wbr>All<wbr>Features</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getlinestrings" class="tsd-kind-icon">get<wbr>Line<wbr>Strings</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getmultilinestrings" class="tsd-kind-icon">get<wbr>Multi<wbr>Line<wbr>Strings</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getmultipoints" class="tsd-kind-icon">get<wbr>Multi<wbr>Points</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getmultipolygons" class="tsd-kind-icon">get<wbr>Multi<wbr>Polygons</a></li>
@@ -88,7 +89,6 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getpoints" class="tsd-kind-icon">get<wbr>Points</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getpolygons" class="tsd-kind-icon">get<wbr>Polygons</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getpolygonswithholes" class="tsd-kind-icon">get<wbr>Polygons<wbr>With<wbr>Holes</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#getpropertytypes" class="tsd-kind-icon">get<wbr>Property<wbr>Types</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_fcoll_.html#save" class="tsd-kind-icon">save</a></li>
 							</ul>
 						</section>
@@ -101,18 +101,18 @@
 					<a name="addfeature" class="tsd-anchor"></a>
 					<h3>add<wbr>Feature</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Feature<span class="tsd-signature-symbol">(</span>featureColl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FeatureCollection</span>, feature<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Feature<span class="tsd-signature-symbol">(</span>featureColl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FeatureCollection</span>, feature<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L189">fcoll.ts:189</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L175">fcoll.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Add a feature to the model.</p>
+									<p>Add a Feature to the model.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -120,17 +120,18 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl..</p>
+										<p>The FeatureCollection..</p>
 									</div>
 								</li>
 								<li>
 									<h5>feature: <span class="tsd-signature-type">Feature</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The feature to add.</p>
+										<p>The Feature to add.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>Number of Features in the colletion after adding.</p>
 						</li>
 					</ul>
 				</section>
@@ -144,12 +145,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L199">fcoll.ts:199</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L186">fcoll.ts:186</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Delete a feature in the model.</p>
+									<p>Delete a Feature in the model.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -157,7 +158,7 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl.</p>
+										<p>The FeatureCollection.</p>
 									</div>
 								</li>
 								<li>
@@ -168,26 +169,26 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>Ture if the feature was deleted, false if the ID was not found.</p>
+							<p>Ture if the Feature was deleted, false if the Feature was not found.</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="getlinestrings" class="tsd-anchor"></a>
-					<h3>get<wbr>Linestrings</h3>
+					<a name="getallfeatures" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Features</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Linestrings<span class="tsd-signature-symbol">(</span>featureColl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FeatureCollection</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">LineString</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Features<span class="tsd-signature-symbol">(</span>featureColl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FeatureCollection</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L34">fcoll.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L17">fcoll.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get Linestrings from geojson featureColl.</p>
+									<p>Get all features from the FeatureCollection.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -195,12 +196,44 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl..</p>
+										<p>The FeatureCollection.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<p>An array of features of different types.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getlinestrings" class="tsd-anchor"></a>
+					<h3>get<wbr>Line<wbr>Strings</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Line<wbr>Strings<span class="tsd-signature-symbol">(</span>featureColl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FeatureCollection</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">LineString</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L43">fcoll.ts:43</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get LineStrings from the FeatureCollection.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The FeatureCollection..</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">LineString</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of features</p>
+							<p>An array of LineString features.</p>
 						</li>
 					</ul>
 				</section>
@@ -214,12 +247,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L106">fcoll.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L115">fcoll.ts:115</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get MultiLinestrings from geojson featureColl.</p>
+									<p>Get MultiLineStrings from the FeatureCollection.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -227,12 +260,12 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl..</p>
+										<p>The FeatureCollection..</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MultiLineString</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of features</p>
+							<p>An array of MultiLineString features.</p>
 						</li>
 					</ul>
 				</section>
@@ -246,12 +279,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L89">fcoll.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L98">fcoll.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get MultiPoints from geojson featureColl.</p>
+									<p>Get MultiPoints from the FeatureCollection.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -259,12 +292,12 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl..</p>
+										<p>The FeatureCollection..</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MultiPoint</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of features</p>
+							<p>An array of MultiPoint features.</p>
 						</li>
 					</ul>
 				</section>
@@ -278,12 +311,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L123">fcoll.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L132">fcoll.ts:132</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get MultiPolygons from geojson featureColl.</p>
+									<p>Get MultiPolygons from the FeatureCollection.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -291,12 +324,12 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl..</p>
+										<p>The FeatureCollection..</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MultiPolygon</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of features</p>
+							<p>An array of MultiPolygon features.</p>
 						</li>
 					</ul>
 				</section>
@@ -310,12 +343,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L140">fcoll.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L149">fcoll.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get MultiPolygons with holes from geojson featureColl.</p>
+									<p>Get MultiPolygons with holes from the FeatureCollection.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -323,12 +356,12 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl..</p>
+										<p>The FeatureCollection..</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MultiPolygon</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of features</p>
+							<p>An array of MultiPolygon features with holes.</p>
 						</li>
 					</ul>
 				</section>
@@ -342,12 +375,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L17">fcoll.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L26">fcoll.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get points from geojson featureColl.</p>
+									<p>Get Points from the FeatureCollection.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -355,12 +388,12 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl..</p>
+										<p>The FeatureCollection.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Point</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of features</p>
+							<p>An array of Point features.</p>
 						</li>
 					</ul>
 				</section>
@@ -374,12 +407,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L51">fcoll.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L60">fcoll.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get Polygons from geojson featureColl.</p>
+									<p>Get Polygons from the FeatureCollection.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -387,12 +420,12 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl..</p>
+										<p>The FeatureCollection..</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Polygon</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of features</p>
+							<p>An array of Polygon features.</p>
 						</li>
 					</ul>
 				</section>
@@ -406,12 +439,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L68">fcoll.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L77">fcoll.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get Polygons with holes from geojson featureColl.</p>
+									<p>Get Polygons with holes from the FeatureCollection.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -419,44 +452,12 @@
 								<li>
 									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl.</p>
+										<p>The FeatureCollection.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Polygon</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An array of features</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="getpropertytypes" class="tsd-anchor"></a>
-					<h3>get<wbr>Property<wbr>Types</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Property<wbr>Types<span class="tsd-signature-symbol">(</span>featureColl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FeatureCollection</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L165">fcoll.ts:165</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Get property names and types</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>featureColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The geojson featureColl.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A map of property names -&gt; property types</p>
+							<p>An array of Polygon features with holes.</p>
 						</li>
 					</ul>
 				</section>
@@ -470,12 +471,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/c82ef39/src/typescript/fcoll.ts#L219">fcoll.ts:219</a></li>
+									<li>Defined in <a href="https://github.com/phtj/mobius-geojson/blob/9287d06/src/typescript/fcoll.ts#L206">fcoll.ts:206</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Save featureColl as geojson file.</p>
+									<p>Save the FeatureCollection as a geojson file.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -488,6 +489,9 @@
 								</li>
 								<li>
 									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the geojson file.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -538,7 +542,10 @@
 						<a href="_fcoll_.html#delfeature" class="tsd-kind-icon">del<wbr>Feature</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_fcoll_.html#getlinestrings" class="tsd-kind-icon">get<wbr>Linestrings</a>
+						<a href="_fcoll_.html#getallfeatures" class="tsd-kind-icon">get<wbr>All<wbr>Features</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_fcoll_.html#getlinestrings" class="tsd-kind-icon">get<wbr>Line<wbr>Strings</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="_fcoll_.html#getmultilinestrings" class="tsd-kind-icon">get<wbr>Multi<wbr>Line<wbr>Strings</a>
@@ -560,9 +567,6 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="_fcoll_.html#getpolygonswithholes" class="tsd-kind-icon">get<wbr>Polygons<wbr>With<wbr>Holes</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_fcoll_.html#getpropertytypes" class="tsd-kind-icon">get<wbr>Property<wbr>Types</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="_fcoll_.html#save" class="tsd-kind-icon">save</a>

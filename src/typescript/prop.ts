@@ -1,16 +1,12 @@
 /**
- * Functions for working with geojson properties.
+ * Functions for working with Feature properties.
  */
 
 /**
- * Features contain properties.
+ *
  */
 
 import * as turf from "@turf/turf";
-
-//  ===============================================================================================================
-//  Model Constructors ===========================================================================================
-//  ===============================================================================================================
 
 /**
  * Returns an object of key-value pairs for all the properties of this feature.

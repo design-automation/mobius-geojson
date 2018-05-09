@@ -1,8 +1,5 @@
 /**
  * Functions for adding UI components to Cesium.
-
-/**
- *
  */
 
 import * as turf from "@turf/turf";
@@ -52,7 +49,7 @@ interface CesiumFeatureCollection extends turf.FeatureCollection {
  * @param name The name of the property to display.
  * @returns FeatureCollection with added display properties.
  */
-export function addPropDisplay(featureColl: CesiumFeatureCollection, namw: string):
+export function addPropDisplay(featureColl: CesiumFeatureCollection, name:string):
                            CesiumFeatureCollection {
     if (!featureColl.hasOwnProperty("cesium")) {
         featureColl.cesium = {};
@@ -104,7 +101,6 @@ export function addExtrudeEntry(featureColl: CesiumFeatureCollection,
     featureColl.cesium.extrude.attribs.push({name, min, max, invert, scale, line});
     return featureColl;
 }
-
 
 /**
  * Add a colour dropdown to the Cesium Viewer.
