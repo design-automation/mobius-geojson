@@ -18,5 +18,8 @@ export function test_prop_setValues(): boolean {
     const result2: number = tm.prop.setValues(polys[0], ["1",, "3"], [11,22,33]);
     if (result2 !== 2) {return false;}
     if (tm.prop.getValue(polys[0], "_3") !== 33) {return false;}
+    delete polys[0].properties;
+    const result3: number = tm.prop.setValues(polys[0], ["A", "B", "C"], [11,22,33]);
+    if (tm.prop.getValue(polys[0], "B") !== 22) {return false;}
     return true;
 }

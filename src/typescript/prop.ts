@@ -15,7 +15,7 @@ import * as turf from "@turf/turf";
  * @returns An object of key-value pairs.
  */
 export function get(feature: turf.Feature): turf.Properties {
-    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    if (!feature.hasOwnProperty("properties")) {return {};}
     return feature.properties;
 }
 
@@ -26,7 +26,7 @@ export function get(feature: turf.Feature): turf.Properties {
  * @returns An array of property names
  */
 export function getNames(feature: turf.Feature): string[] {
-    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    if (!feature.hasOwnProperty("properties")) {return [];}
     return Object.keys(feature.properties);
 }
 
@@ -37,7 +37,7 @@ export function getNames(feature: turf.Feature): string[] {
  * @returns The number of properties.
  */
 export function numProps(feature: turf.Feature): number {
-    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    if (!feature.hasOwnProperty("properties")) {return 0;}
     return Object.keys(feature.properties).length;
 }
 
@@ -49,7 +49,7 @@ export function numProps(feature: turf.Feature): number {
  * @returns True if the feature contains a property with the specified name.
  */
 export function hasProp(feature: turf.Feature, name: string): boolean {
-    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    if (!feature.hasOwnProperty("properties")) {return false;}
     return feature.properties.hasOwnProperty(name);
 }
 
@@ -78,9 +78,9 @@ export function getValue(feature: turf.Feature, name: string): any {
  * @returns The name of the property. (This may differ from input name if input name is not valid.)
  */
 export function setValue(feature: turf.Feature, name: string, value: (string|number)): string {
-    if (!feature.hasOwnProperty("properties")) {throw new Error("Feature does not contain properties");}
+    if (!feature.hasOwnProperty("properties")) {feature.properties = {};}
     const regexp = /^[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*$/;
-    if (!regexp.test(name)) { name = "_" + name}
+    if (!regexp.test(name)) { name = "_" + name;}
     feature.properties[name] = value;
     return name;
 }
