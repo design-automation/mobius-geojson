@@ -12,7 +12,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/_export.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/_export.ts",
 			"sources": [
 				{
 					"fileName": "_export.ts",
@@ -29,7 +29,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/cesium.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/cesium.ts",
 			"children": [
 				{
 					"id": 9,
@@ -305,7 +305,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 107,
 									"character": 8
 								}
@@ -603,7 +603,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 237,
 									"character": 12
 								}
@@ -644,7 +644,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 102,
 									"character": 8
 								}
@@ -1481,7 +1481,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/crs.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/crs.ts",
 			"children": [
 				{
 					"id": 92,
@@ -2053,7 +2053,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/fcoll.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/fcoll.ts",
 			"comment": {
 				"shortText": "Functions for working with geojson feature collections."
 			},
@@ -2821,7 +2821,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/libs/filesys/file.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/libs/filesys/file.ts",
 			"children": [
 				{
 					"id": 112,
@@ -2956,7 +2956,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/parse.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/parse.ts",
 			"comment": {
 				"shortText": "Functions for parsing zipped shape files.\nhttps://github.com/calvinmetcalf/shapefile-js"
 			},
@@ -3036,7 +3036,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/prop.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/prop.ts",
 			"comment": {
 				"shortText": "Functions for working with Feature properties."
 			},
@@ -3527,7 +3527,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "C:/Users/a0115775/Desktop/Cesium Functions/mobius-geojson/src/typescript/test_data.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/test_data.ts",
 			"children": [
 				{
 					"id": 189,
