@@ -31,6 +31,7 @@ export function angles(features: turf.Feature<turf.LineString|turf.Polygon>): nu
 		if (b2 === bearingArr.length && lnChk === false) {b2 = 0;}
 		let angle: number = bearingArr[b2] - bearingArr [i];
 		if (angle < 0) {angle += 360;}
+		if (lnChk === true && i === bearingArr.length - 1) {angle = 360;}
 		angleArr.push(angle);
 	}
 	angleArr.unshift(angleArr[angleArr.length - 1]);
