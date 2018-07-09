@@ -18,5 +18,9 @@ export {line};
 
 import * as cesium from "./cesium";
 export {cesium};
+
 // import * as crs from "./crs";
 // export {crs};
+
+import * as io from "./io";
+export {io};
