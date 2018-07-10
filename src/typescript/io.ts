@@ -15,6 +15,6 @@
  * @param filename The name of the geojson file.
  * @returns True if successful.
  */
-export function save(featureColl: turf.FeatureCollection, filename: string): boolean {
+export function saveFColl(fcoll: turf.FeatureCollection, filename: string): boolean {
     return file.save(JSON.stringify(featureColl), filename);
 }

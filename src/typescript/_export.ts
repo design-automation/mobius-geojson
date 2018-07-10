@@ -4,17 +4,17 @@
 // import * as prop from "./prop";
 // export {prop};
 
-import * as parse from "./parse";
-export {parse};
+// import * as parse from "./parse";
+// export {parse};
 
-import * as coords from "./coords";
-export {coords};
+// import * as coords from "./coords";
+// export {coords};
 
 import * as calc from "./calc";
 export {calc};
 
-import * as line from "./line";
-export {line};
+// import * as line from "./line";
+// export {line};
 
 import * as cesium from "./cesium";
 export {cesium};
@@ -24,3 +24,9 @@ export {cesium};
 
 import * as io from "./io";
 export {io};
+
+import * as modify from "./modify";
+export {modify};
+
+import * as create from "./create";
+export {create};

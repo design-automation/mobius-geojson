@@ -10,14 +10,14 @@ import * as turf from "@turf/turf";
 
 /**
  * Calculates all internal angles within a feature
- * @param features Accepts Line or Polygon
+ * @param feature Accepts Line or Polygon
  * @returns An array of internal angles in degrees
  */
-export function angles(features: turf.Feature<turf.LineString|turf.Polygon>): number[] {
-	if (features === undefined) {throw new Error("Invalid arg: features must be defined.");}
+export function anglesInternal(feature: turf.Feature<turf.LineString|turf.Polygon>): number[] {
+	if (feature === undefined) {throw new Error("Invalid arg: feature must be defined.");}
 	let lnChk: boolean = false;
-	if (features.geometry.type === "LineString") {lnChk = true;}
-	let coordArr: any = features.geometry.coordinates;
+	if (feature.geometry.type === "LineString") {lnChk = true;}
+	let coordArr: any = feature.geometry.coordinates;
 	while (coordArr.length === 1) {coordArr = coordArr[0];}
 	let bearingArr: number[];
 	for(let i = 0; i <= coordArr.length - 2 ; i++) {

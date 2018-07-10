@@ -13,7 +13,7 @@ interface CesiumExtrudeProp {
     line: boolean;
 }
 
-interface CesiumColourProp {
+interface CesiumColourProp {    
     name: string;
     min: number;
     max: number;
@@ -45,40 +45,40 @@ interface CesiumFeatureCollection extends turf.FeatureCollection {
 
 /**
  * Add a property display option.
- * @param featureColl FeatureCollection to add property display option to
+ * @param fColl FeatureCollection to add property display option to
  * @param name The name of the property to display.
  * @returns FeatureCollection with added display properties.
  */
-export function addPropDisplay(featureColl: CesiumFeatureCollection, name:string):
+export function addPropDisplay(fColl: CesiumFeatureCollection, name:string):
                            CesiumFeatureCollection {
-    if (!featureColl.hasOwnProperty("cesium")) {
-        featureColl.cesium = {};
+    if (!fColl.hasOwnProperty("cesium")) {
+        fColl.cesium = {};
     }
-    if (!featureColl.cesium.hasOwnProperty("select")) {
-        featureColl.cesium.select = [];
+    if (!fColl.cesium.hasOwnProperty("select")) {
+        fColl.cesium.select = [];
     }
-    featureColl.cesium.select.push(name);
-    return featureColl;
+    fColl.cesium.select.push(name);
+    return fColl;
 }
 
 /**
  * Add an extrude dropdown to the Cesium Viewer.
- * @param featureColl FeatureCollection to add extrude dropdown to
+ * @param fColl FeatureCollection to add extrude dropdown to
  * @param descr A description for the dropdown.
  * @returns FeatureCollection with added extrude dropdown property.
  */
-export function addExtrude(featureColl: CesiumFeatureCollection, descr: string):
+export function addExtrude(fColl: CesiumFeatureCollection, descr: string):
                            CesiumFeatureCollection {
-    if (!featureColl.hasOwnProperty("cesium")) {
-        featureColl.cesium = {};
+    if (!fColl.hasOwnProperty("cesium")) {
+        fColl.cesium = {};
     }
-    featureColl.cesium.extrude = {descr, attribs: []};
-    return featureColl;
+    fColl.cesium.extrude = {descr, attribs: []};
+    return fColl;
 }
 
 /**
  * Add an entry to the extrude dropdown in the Cesium Viewer.
- * @param featureColl FeatureCollection to add entry to
+ * @param fColl FeatureCollection to add entry to
  * @param name The name of the property to add as entry.
  * @param min Minimum value in data to extrude.
  * @param max Maximum value in data to extrude.
@@ -87,101 +87,101 @@ export function addExtrude(featureColl: CesiumFeatureCollection, descr: string):
  * @param line Displays FeatureCollection as lines if true.
  * @returns FeatureCollection with added extrude dropdown property.
  */
-export function addExtrudeEntry(featureColl: CesiumFeatureCollection,
+export function addExtrudeEntry(fColl: CesiumFeatureCollection,
                                 name: string, min: number, max: number, invert: boolean,
                                 scale: number, line: boolean):
                                 CesiumFeatureCollection {
 
-    if (!featureColl.hasOwnProperty("cesium")) {
-        featureColl.cesium = {};
+    if (!fColl.hasOwnProperty("cesium")) {
+        fColl.cesium = {};
     }
-    if (!featureColl.cesium.hasOwnProperty("extrude")) {
-        featureColl.cesium.extrude = {descr: "", attribs: []};
+    if (!fColl.cesium.hasOwnProperty("extrude")) {
+        fColl.cesium.extrude = {descr: "", attribs: []};
     }
-    featureColl.cesium.extrude.attribs.push({name, min, max, invert, scale, line});
-    return featureColl;
+    fColl.cesium.extrude.attribs.push({name, min, max, invert, scale, line});
+    return fColl;
 }
 
 /**
  * Add a colour dropdown to the Cesium Viewer.
- * @param featureColl FeatureCollection to add extrude dropdown to
+ * @param fColl FeatureCollection to add extrude dropdown to
  * @param descr A description for the dropdown.
  * @returns FeatureCollection with added colour dropdown property.
  */
-export function addColour(featureColl: CesiumFeatureCollection, descr: string):
+export function addColour(fColl: CesiumFeatureCollection, descr: string):
                           CesiumFeatureCollection {
-    if (!featureColl.hasOwnProperty("cesium")) {
-        featureColl.cesium = {};
+    if (!fColl.hasOwnProperty("cesium")) {
+        fColl.cesium = {};
     }
-    featureColl.cesium.colour = {descr, attribs: []};
-    return featureColl;
+    fColl.cesium.colour = {descr, attribs: []};
+    return fColl;
 }
 
 /**
  * Add an entry to the colour dropdown in the Cesium Viewer.
- * @param featureColl FeatureCollection to add entry to
+ * @param fColl FeatureCollection to add entry to
  * @param name The name of the property to add as entry.
  * @param min Minimum value in data to colour (blue).
  * @param max Maximum value in data to colour (red).
  * @param invert Inverts the colours if true (larger values are coloured blue).
  * @returns FeatureCollection with added colour dropdown property.
  */
-export function addColourEntry(featureColl: CesiumFeatureCollection,
+export function addColourEntry(fColl: CesiumFeatureCollection,
                                name: string, min: number, max: number, invert: boolean):
                                CesiumFeatureCollection {
 
-    if (!featureColl.hasOwnProperty("cesium")) {
-        featureColl.cesium = {};
+    if (!fColl.hasOwnProperty("cesium")) {
+        fColl.cesium = {};
     }
-    if (!featureColl.cesium.hasOwnProperty("colour")) {
-        featureColl.cesium.colour = {descr: "", attribs: []};
+    if (!fColl.cesium.hasOwnProperty("colour")) {
+        fColl.cesium.colour = {descr: "", attribs: []};
     }
-    featureColl.cesium.colour.attribs.push({name, min, max, invert});
-    return featureColl;
+    fColl.cesium.colour.attribs.push({name, min, max, invert});
+    return fColl;
 }
 
 /**
  * Add a category filter to the Cesium Viewer.
- * @param featureColl FeatureCollection to add entry to
+ * @param fColl FeatureCollection to add entry to
  * @param name The name of the property to add as filter.
  * @param relation Relation between data to filter and value. (no relation: "none", equal: "==", not equal: "!=")
  * @param value Value used to filter data.
  * @returns FeatureCollection with added filter property.
  */
-export function addFilterCat(featureColl: CesiumFeatureCollection,
+export function addFilterCat(fColl: CesiumFeatureCollection,
                              descr: string, name: string, relation: string, value: string):
                              CesiumFeatureCollection {
-    if (!featureColl.hasOwnProperty("cesium")) {
-        featureColl.cesium = {};
+    if (!fColl.hasOwnProperty("cesium")) {
+        fColl.cesium = {};
     }
-    if (!featureColl.cesium.hasOwnProperty("filters")) {
-        featureColl.cesium.filters = [];
+    if (!fColl.cesium.hasOwnProperty("filters")) {
+        fColl.cesium.filters = [];
     }
     const relations_cat: Map<string, number> = new Map([["none", 0], ["==", 1], ["!=", 2]]);
     const relation_id: number = relations_cat.get(relation);
-    featureColl.cesium.filters.push({descr, name, relation: relation_id, value});
-    return featureColl;
+    fColl.cesium.filters.push({descr, name, relation: relation_id, value});
+    return fColl;
 }
 
 /**
  * Add a numeric filter.
- * @param featureColl FeatureCollection to add entry to
+ * @param fColl FeatureCollection to add entry to
  * @param name The name of the property to add as filter.
  * @param relation Relation between data to filter and value. (more than: ">", less than: "<", equal: "==")
  * @param value Value used to filter data.
  * @returns FeatureCollection with added filter property.
  */
-export function addFilterNum(featureColl: CesiumFeatureCollection,
+export function addFilterNum(fColl: CesiumFeatureCollection,
                              descr: string, name: string, relation: string, value: number):
                              CesiumFeatureCollection {
-    if (!featureColl.hasOwnProperty("cesium")) {
-        featureColl.cesium = {};
+    if (!fColl.hasOwnProperty("cesium")) {
+        fColl.cesium = {};
     }
-    if (!featureColl.cesium.hasOwnProperty("filters")) {
-        featureColl.cesium.filters = [];
+    if (!fColl.cesium.hasOwnProperty("filters")) {
+        fColl.cesium.filters = [];
     }
     const relations_num: Map<string, number> = new Map([[">", 0], ["<", 1], ["==", 2]]);
     const relation_id: number = relations_num.get(relation);
-    featureColl.cesium.filters.push({descr, name, relation: relation_id, value});
-    return featureColl;
+    fColl.cesium.filters.push({descr, name, relation: relation_id, value});
+    return fColl;
 }
