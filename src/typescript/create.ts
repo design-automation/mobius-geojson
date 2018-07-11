@@ -100,6 +100,20 @@ export function linesByDivide(line: turf.Feature<turf.LineString>, num: number):
 }
 
 /**
+ *Explodes polygon into lines
+ * @param poly Accepts a Polygon feature
+ * @returns FeatureCollection of lines
+ */
+export function linesByExplode(poly: turf.Feature<turf.Polygon>): turf.FeatureCollection<turf.LineString> {
+	let lnArr: turf.LineString[] = [];
+	let coordArr = ensureCoordArr(poly);
+	for (let i = 0; i < coordArr.length; i++) {
+		lnArr.push(turf.lineString([coordArr[i], coordArr[i+1]]));
+	}
+	return turf.featureCollection(lnArr);
+}
+
+/**
  * Extends line on either ends
  * @param line Accepts a line feature
  * @param distance Distance to extend line by (in meters)
@@ -215,7 +229,7 @@ util functions *****************************************************************
 
 */
 
-function ensureCoordArr(feature: turf.Feature<turf.LineString|turf.Point|turf.Polygon>): number[] {
+function ensureCoordArr(feature: turf.Feature<turf.LineString|turf.Point|turf.Polygon>): number[][] {
 	let coordArr: any = feature.geometry.coordinates;
 	while (coordArr.length === 1) {coordArr = coordArr[0];}
 	return coordArr;
@@ -258,16 +272,11 @@ function findShortest(coordArr: turf.Coord[]): number {
 	return index;
 }
 
-function findNewCoord(origin: number[], target: number[]): number[] {
-	// treat target as vector: find angle between target vector and 'north' vector == [0,1] acos returns in RAD - change to deg
-	let northVec = [0,1];
-	let tarMag = findMagnitude(target); // find magnitude of vector - also diagonal distance from origin to target location, still in meters
-	let cosAngle = findDotProduct(target,northVec)/tarMag; // magnitude of northVec is 1
-	let angle = Math.acos(cosAngle)/Math.PI*180; //returns absolute angle, regardless of direction. Between 0 and 180
-	let det = find2DDeterminant(target,northVec); // use determinant to fix direction issue
-	if (det < 0) {angle = 360 - angle;}
-	let newPoint = turf.rhumbDestination(origin, tarMag/1000, angle);// new endpoint using direction and distance set
-	return newPoint.geometry.coordinates;// retrieve and return coords from created point
+function findAngleBtwVec(vector1: number[], vector2: number[]): number {
+	let vec1mag = findMagnitude(vector1);
+	let vec2mag = findMagnitude(vector2);
+	let cosAngle = findDotProduct(vector1,vector2)/(vec1mag*vec2mag);
+	return Math.acos(cosAngle)/Math.PI*180;
 }
 
 function findDotProduct(vector1: number[], vector2: number[]): number {
@@ -290,3 +299,51 @@ function findMagnitude(vector: number[]): number {
 function find2DDeterminant(vector1: number[], vector2: number[]): number {
 	return (vector1[0]*vector2[1] - vector1[1]*vector2[0]);
 }
+
+
+/*
+util function - for drawing only *******************************************************************************************************
+*/
+
+function findNewCoord(origin: number[], target: number[]): number[] {
+	// treat target as vector: find angle between target vector and 'north' vector == [0,1] acos returns in RAD - change to deg
+	let northVec = [0,1];
+	let tarMag = findMagnitude(target);// magnitude of vector == diagonal distance from origin to target location, still in meters.
+	let angle = findAngleBtwVec(target,northVec); // returns absolute angle, regardless of direction. Between 0 and 180
+	let det = find2DDeterminant(target,northVec); // use determinant to fix direction issue
+	if (det < 0) {angle = 360 - angle;}
+	let newPoint = turf.rhumbDestination(origin, tarMag/1000, angle);// new endpoint using direction and distance set
+	return newPoint.geometry.coordinates;// retrieve and return coords from created point
+}
+
+/*
+
+WIP ***********************************************************************************************************************************
+
+*/
+
+// function polygonsByDivide(poly: turf.Feature<turf.Polygon>, num: number): turf.FeatureCollection<turf.Polygon> {
+// 	let firstDivide = checkNSplit(poly);
+
+// }
+
+// function checkNSplit(poly: turf.Feature<turf.Polygon> ): turf.FeatureCollection<turf.Polygon> {
+// 	// check for internal angles that are larger than 180deg
+// 	let coordArr = ensureCoordArr(poly);
+// 	for (let j = 0; j<coordArr.length; j++) {
+// 		let i = j - 1;
+// 		let k = j + 1;
+// 		if (j === 0) {i = coordArr.length - 1;}
+// 		if (j === coordArr.length - 1) {k = 0;}
+// 		let vec1 = [coordArr[i][0] - coordArr[j][0], coordArr[i][1] - coordArr[j][1]];
+// 		let vec2 = [coordArr[k][0] - coordArr[j][0], coordArr[k][1] - coordArr[j][1]];
+// 		let det = find2DDeterminant(vec1,vec2);
+// 		if (det > 0) {	
+// 			// split polygon at vertices larger than 180deg, and Break
+// 			// new line will be the first line of new polygons
+// 			//vector sum & flip, reduce to basis, multiply by max dist to every other point, check for intersection against all other lines
+// 		}
+// 	} return turf.featureCollection([poly]); // no vertex >180 deg, return original in FeatureCollection
+// }
+
+// function splitPoly() {}
