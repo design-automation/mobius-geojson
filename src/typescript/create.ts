@@ -10,6 +10,60 @@ import * as turf from "@turf/turf";
 
 /*
 
+Drawing functions ******************************************************************************************************************************
+
+*/
+
+/**
+ * Draws a point using (x,y) coordinates in reference to an origin point
+ * @param origin Accepts coordinates
+ * @param xyCoords New target location, in meters, from origin.
+ * @returns Point Feature
+ */
+ export function pointByOriginCoords(origin: number[], xyCoords: number[]): turf.Feature<turf.Point> {
+ 	return turf.point(findNewCoord(origin,xyCoord));
+ }
+
+/**
+ * Draws a line using an array of (x,y) coordinates in reference to an origin point
+ * @param origin Accepts coordinates
+ * @param array Array of target coordinates, in meters, from origin.
+ * @returns Line Feature
+ */
+ export function lineByOriginCoords(origin: number[], array: number[][]): turf.Feature<turf.LineString> {
+ 	let coordArr = [];
+ 	array.forEach(function(c) {
+ 		coordArr.push(findNewCoord(origin,c));
+ 	});
+ 	return turf.lineString(coordArr);
+ }
+
+/**
+ * Draws a polygon using an array of (x,y) coordinates in reference to an origin point
+ * @param origin Accepts coordinates
+ * @param array1 Array of target coordinates for overall polygon, in meters, from origin.
+ * @param array2 Array of Array(s) of target coordinates for hole(s), in meters, from origin: [[hole1coords],[hole2coords]]
+ * @returns Polygon Feature
+ */
+ export function polygonByOriginCoords(origin: number[], array1: number[][], array2: number[][][] = []): turf.Feature<turf.Polygon> {
+ 	let coordArr = [];
+  	let outArr = [];
+ 	array1.forEach(function(c) {
+ 		outArr.push(findNewCoord(origin,c));
+ 	});
+  	coordArr.push(outArr);
+ 	array2.forEach(function(hole) {
+ 		let holeCoordArr = [];
+ 		hole.forEach(function(c) {
+ 			holeCoordArr.push(findNewCoord(origin,c));
+ 		});
+ 		coordArr.push(holeCoordArr);
+ 	});
+ 	return turf.polygon(coordArr);
+ }
+
+/*
+
 Coords *******************************************************************************************************************************************
 
 */
@@ -20,7 +74,7 @@ Coords *************************************************************************
  * @param num Number to shift by
  * @returns An array of internal angles in degrees
  */
-export function coordsShift(coords: number[], num: number) {
+export function coordsByShift(coords: number[], num: number) {
 	for (let i = 0; i < num; i++) {
 		coords.unshift(coords[coords.length - 1]);
 		coords.pop();
@@ -40,7 +94,7 @@ Lines **************************************************************************
  * @param num Number to divide by
  * @returns FeatureCollection of lines
  */
-export function linesDivide(line: turf.Feature<turf.LineString>, num: number): turf.FeatureCollection {
+export function linesByDivide(line: turf.Feature<turf.LineString>, num: number): turf.FeatureCollection {
 	let len: number = turf.length(line);
 	return turf.lineChunk(line,len/num);
 }
@@ -52,9 +106,8 @@ export function linesDivide(line: turf.Feature<turf.LineString>, num: number): t
  * @param reverse Boolean. True to reverse direction
  * @returns line
  */
-export function lineExtend(line: turf.Feature<turf.LineString>, distance: number, reverse: boolean): turf.Feature<turf.LineString> {
-	let coordArr: any = line.geometry.coordinates;
-	while (coordArr.length === 1) {coordArr = coordArr[0];}
+export function lineByExtend(line: turf.Feature<turf.LineString>, distance: number, reverse: boolean): turf.Feature<turf.LineString> {
+	let coordArr: any = ensureCoordArr(line);
 	let point1: number[];
 	let point2: number[];
 	if (reverse === false) {
@@ -64,10 +117,10 @@ export function lineExtend(line: turf.Feature<turf.LineString>, distance: number
 		point1 = coordArr[coordArr.length - 2];
 		point2 = coordArr[coordArr.length - 1];
 	}
-	let bearing = turf.bearing(point1,point2);
-	let newPoint = turf.rhumbDestination(point2, distance/1000, bearing);
-	let newCoords: number[] = newPoint.geometry.coordinates;
-	if (reverse === false) {
+	let bearing = turf.bearing(point1,point2);// direction from endpoint, pointing outwards
+	let newPoint = turf.rhumbDestination(point2, distance/1000, bearing);// new endpoint using direction and distance set
+	let newCoords: number[] = newPoint.geometry.coordinates;// coords of new endpoint
+	if (reverse === false) {// add to coordArr to draw new line
 		coordArr.unshift(newCoords);
 	} else {
 		coordArr.push(newCoords);
@@ -81,11 +134,10 @@ export function lineExtend(line: turf.Feature<turf.LineString>, distance: number
  * @param num target number of vertices
  * @returns line
  */
-export function lineRebuild(line: turf.Feature<turf.LineString>, num: number): turf.Feature<turf.LineString> {
+export function lineByRebuild(line: turf.Feature<turf.LineString>, num: number): turf.Feature<turf.LineString> {
 	if (num < 2) {throw new Error("Number of vertices cannot be less than two");}
-	let coordArr: any = line.geometry.coordinates;
-	while (coordArr.length === 1) {coordArr = coordArr[0];}
-	if (coordArr.length === num) {return line;}
+	let coordArr: any = ensureCoordArr(line);
+	if (coordArr.length === num) {return line;}// line has target number of vertices. No rebuild required
 	while (coordArr.length !== num) {
 		let cArrLen: number = coordArr.length;
 		if (cArrLen > num) { // reduce
@@ -100,6 +152,18 @@ export function lineRebuild(line: turf.Feature<turf.LineString>, num: number): t
 	return turf.lineString(coordArr);
 }
 
+/**
+ * Reverse line
+ * @param line Accepts a line
+ * @returns line feature
+ */
+export function lineByReverse(line: turf.Feature<turf.LineString>): turf.Feature<turf.LineString> {
+	if (line === undefined) {throw new Error ("line must be defined");}
+	let coordArr: any = ensureCoordArr(line);// get coords
+	coordArr.reverse();// reverse coordArray
+	return turf.lineString(coordArr);// draw and return new curve
+}
+
 /*
 
 Polygon functions ******************************************************************************************************************************
@@ -109,38 +173,45 @@ Polygon functions **************************************************************
 /**
  * Loft FeatureCollection of lines and returns a FeatureCollection of Polygons. Curves will be rebuilt based on the maximum number of coordinates of either extreme curve
  * @param lines FeatureCollection of lines
- * @returns line
+ * @param array Array of indices to flip, if applicable.
+ * @returns FeatureCollection of polygons, with "polygonNumber" property. User may use this to verify direction of loft and input lines to flip in array
  */
-export function loft(lines: turf.FeatureCollection<turf.LineString>): turf.FeatureCollection<turf.Polygon> {
+export function polygonsByLoft(lines: turf.FeatureCollection<turf.LineString>, array: number[] = []): turf.FeatureCollection<turf.Polygon> {
 	let feats = lines.features;
 	if (feats.length < 2) {throw new Error("Insufficient lines to loft");} // check for sufficient lines
-	let extremes = [feats[0],feats[feats.length-1]];
-	let extremesLenArr: number[] = [];
-	extremes.forEach(function(ln) {
-		extremesLenArr.push(ensureCoordArr(ln).length);
-	}); // find number of coords of extreme lines
-	let rebuildNo: number = Math.min(extremesLenArr[0],extremesLenArr[1]);
-	let polygonArr: turf.Feature<turf.Polygon>[] = [];
-	for (let i=0; i<feats.length-2; i++) {
-		let line1 = rebuild(feats[i],rebuildNo);
-		let line2 = rebuild(feats[i+1],rebuildNo);
-		let lnPair = [line1,line2];
-		let coordsPair = [];
-		lnPair.forEach(function(ln) {
-			coordsPair.push(ensureCoordArr(ln));
-		});
-		for (let j=0; j<rebuildNo-2) {
-			let polyCArr = [coordsPair[0][j],coordsPair[1][j],coordsPair[1][j+1],coordsPair[0][j+1]];
-			polygonArr.push(turf.polygon([polyCArr]));
+	for (let i=0; i<feats.length-1; i++) {// flip curves according to array
+		if (array.includes(i)) {
+			feats[i] = lineByReverse(feats[i]);
 		}
 	}
-	return {features: polygonArr};
-	
+	let extremes = [feats[0],feats[feats.length-1]];
+	let extremesLenArr: number[] = [];
+	extremes.forEach(function(ln) { // find number of coords of extreme lines
+		extremesLenArr.push(ensureCoordArr(ln).length);
+	}); 
+	let rebuildNo: number = Math.max(extremesLenArr[0],extremesLenArr[1]); // rebuild lines based on the max of extreme lines
+	let polygonArr: turf.Feature<turf.Polygon>[] = [];
+	for (let i=0; i<feats.length-1; i++) {
+		let line1 = lineByRebuild(feats[i],rebuildNo);// rebuild first line
+		let line2 = lineByRebuild(feats[i+1],rebuildNo);// rebuild next line
+		let lnPair = [line1,line2];
+		let coordsPair = [];
+		lnPair.forEach(function(ln) {// break down pair into coords
+			coordsPair.push(ensureCoordArr(ln));
+		});
+		for (let j=0; j<rebuildNo-1; j++) {// create polygon
+			let polyCArr = [coordsPair[0][j],coordsPair[1][j],coordsPair[1][j+1],coordsPair[0][j+1],coordsPair[0][j]];
+			let partialPlot = turf.polygon([polyCArr]);
+			partialPlot.properties["polygonNumber"] = (i*(rebuildNo-1)+j);// assign number for easy loft direction and line verification later
+			polygonArr.push(partialPlot);
+		}
+	}
+	return turf.featureCollection(polygonArr);
 }
 
 /*
 
-Nested functions *********************************************************************************************************************************
+util functions *********************************************************************************************************************************
 
 */
 
@@ -185,4 +256,37 @@ function findShortest(coordArr: turf.Coord[]): number {
 		}
 	}
 	return index;
+}
+
+function findNewCoord(origin: number[], target: number[]): number[] {
+	// treat target as vector: find angle between target vector and 'north' vector == [0,1] acos returns in RAD - change to deg
+	let northVec = [0,1];
+	let tarMag = findMagnitude(target); // find magnitude of vector - also diagonal distance from origin to target location, still in meters
+	let cosAngle = findDotProduct(target,northVec)/tarMag; // magnitude of northVec is 1
+	let angle = Math.acos(cosAngle)/Math.PI*180; //returns absolute angle, regardless of direction. Between 0 and 180
+	let det = find2DDeterminant(target,northVec); // use determinant to fix direction issue
+	if (det < 0) {angle = 360 - angle;}
+	let newPoint = turf.rhumbDestination(origin, tarMag/1000, angle);// new endpoint using direction and distance set
+	return newPoint.geometry.coordinates;// retrieve and return coords from created point
+}
+
+function findDotProduct(vector1: number[], vector2: number[]): number {
+	if (vector1.length !== vector2.length) {throw new Error("Vectors are of unequal length");}
+	let sum: number = 0;
+	for (let i=0; i<=vector1.length-1; i++) {
+		sum += vector1[i]*vector2[i];
+	}
+	return sum;
+}
+
+function findMagnitude(vector: number[]): number {
+	let sum: number = 0;
+	vector.forEach(function(c) {
+		sum += Math.pow(c,2);
+	});
+	return Math.sqrt(sum);
+}
+
+function find2DDeterminant(vector1: number[], vector2: number[]): number {
+	return (vector1[0]*vector2[1] - vector1[1]*vector2[0]);
 }
