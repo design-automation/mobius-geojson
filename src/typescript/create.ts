@@ -14,9 +14,16 @@ import * as turf from "@turf/turf";
 
 /**
  * Merge features into a single FeatureCollection
- * @param features1 Accepts Eeature or FeatureCollection
- * @param features2 Accepts Feature or FeatureCollection
+ * @param features1 Accepts Single Eeature or FeatureCollection
+ * @param features2 Accepts Single Feature or FeatureCollection
  * @returns Merged FeatureCollection
+ * @example
+ * var firstPlot = turf.flatten(firstFile.file);// fcoll input
+ * var firstFeat = firstPlot.features[0];// single feature input
+ * var secondPlot = turf.flatten(secondFile.file);// fcoll input
+ * var secondFeat = secondPlot.features[0];// single feature input
+ *
+ * var mergedFiles = featuresByMerge(firstPlot,secondFeat);
  */
  export function featuresByMerge(features1: turf.Feature|turf.FeatureCollection, features2: turf.Feature|turf.FeatureCollection): turf.FeatureCollection {
  	let arr: turf.Feature[] = [];
@@ -43,6 +50,11 @@ import * as turf from "@turf/turf";
  * @param origin Accepts coordinates
  * @param xyCoords New target location, in meters, from origin.
  * @returns Point Feature
+ * @example
+ * var origin = [-97.522259, 35.4691];
+ * var xyCoords = [5000,3000]
+ * 
+ * var newPoint = pointByOriginCoords(origin,xyCoords);
  */
  export function pointByOriginCoords(origin: number[], xyCoords: number[]): turf.Feature<turf.Point> {
  	return turf.point(findNewCoord(origin,xyCoords));
@@ -53,6 +65,11 @@ import * as turf from "@turf/turf";
  * @param origin Accepts coordinates
  * @param array Array of target coordinates, in meters, from origin.
  * @returns Line Feature
+ * @example
+ * var origin = [-97.522259, 35.4691];
+ * var coordArray = [[5000,3000],[3000,2000],[-1000,6000]];
+ * 
+ * var newLine = lineByOriginCoords(origin,coordArray);
  */
  export function lineByOriginCoords(origin: number[], array: number[][]): turf.Feature<turf.LineString> {
  	let coordArr = [];
@@ -68,6 +85,11 @@ import * as turf from "@turf/turf";
  * @param array1 Array of target coordinates for overall polygon, in meters, from origin.
  * @param array2 Array of Array(s) of target coordinates for hole(s), in meters, from origin: [[hole1coords],[hole2coords]]
  * @returns Polygon Feature
+ * @example
+ * var origin = [-97.522259, 35.4691];
+ * var coordArray = [[5000,3000],[3000,2000],[-1000,6000],[5000,3000]];
+ * 
+ * var newPoly = polygonByOriginCoords(origin,coordArray, undefined);
  */
  export function polygonByOriginCoords(origin: number[], array1: number[][], array2: number[][][] = []): turf.Feature<turf.Polygon> {
  	let coordArr = [];
@@ -93,8 +115,12 @@ import * as turf from "@turf/turf";
  * @param width width of rectange, in meters
  * @param rotation angle of rotation from North, in degrees.
  * @returns Rectangle Polygon Feature
+ * @example
+ * var origin = [-97.522259, 35.4691];
+ * 
+ * var newPoly = polygonByOriginCoords(origin,3000,6000,45);
  */
-export function polygonByOriginRect(origin: number[], width: number, height: number, rotation: number): turf.Feature<turf.Polygon> {
+export function polygonByOriginRect(origin: number[], width: number, height: number, rotation: number = 0): turf.Feature<turf.Polygon> {
 	let firstPt = findNewCoord(origin, [width/2,height/2], rotation);
 	let secondPt = findNewCoord(origin, [-width/2,height/2], rotation);
 	let thirdPt = findNewCoord(origin, [-width/2,-height/2], rotation);
@@ -109,6 +135,10 @@ export function polygonByOriginRect(origin: number[], width: number, height: num
  * @param sides Number of sides
  * @param rotation angle of rotation from North, in degrees.
  * @returns n-sided Polygon Feature
+ * @example
+ * var origin = [-97.522259, 35.4691];
+
+ * var newPoly = polygonByOriginCoords(origin,500,5,60);
  */
 export function polygonByOriginSides(origin: number[], radius: number, sides: number, rotation: number = 0): turf.Feature<turf.Polygon> {
 	return turf.transformRotate(turf.circle(origin,radius/1000,{steps:sides}),rotation,{pivot:origin});
@@ -124,6 +154,9 @@ export function polygonByOriginSides(origin: number[], radius: number, sides: nu
  * @param coordinates Array of coordinates
  * @param num Number to shift by
  * @returns An array of internal angles in degrees
+ * @example
+ * var coordArr = feature.geometry.coordinates;
+ * var shiftedArr = coordsByShift(coordArr, 2);
  */
 export function coordsByShift(coords: number[][], num: number) {
 	for (let i = 0; i < num; i++) {
@@ -144,6 +177,9 @@ export function coordsByShift(coords: number[][], num: number) {
  * @param line Accepts a line feature
  * @param num Number to divide by
  * @returns FeatureCollection of lines
+ * @example
+ * var line = lineByCoords([[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245]]);
+ * var dividedLines = linesByDivide(line,4);
  */
 export function linesByDivide(line: turf.Feature<turf.LineString>, num: number): turf.FeatureCollection {
 	let len: number = turf.length(line);
@@ -154,6 +190,9 @@ export function linesByDivide(line: turf.Feature<turf.LineString>, num: number):
  *Explodes polygon into lines
  * @param poly Accepts a Polygon feature
  * @returns FeatureCollection of lines
+ * @example
+ * var poly = polygonByCoords([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);
+ * var lines = linesByExplode(poly);
  */
 export function linesByExplode(poly: turf.Feature<turf.Polygon>): turf.FeatureCollection<turf.LineString> {
 	let lnArr: turf.LineString[] = [];
@@ -169,7 +208,10 @@ export function linesByExplode(poly: turf.Feature<turf.Polygon>): turf.FeatureCo
  * @param line Accepts a line feature
  * @param distance Distance to extend line by (in meters)
  * @param reverse Boolean. True to reverse direction
- * @returns line
+ * @returns line feature
+ * @example
+ * var line = lineByCoords([[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245]]);
+ * var extendedLine = lineByExtend(line, 1000, false);
  */
 export function lineByExtend(line: turf.Feature<turf.LineString>, distance: number, reverse: boolean): turf.Feature<turf.LineString> {
 	let coordArr: any = ensureCoordArr(line);
@@ -198,6 +240,9 @@ export function lineByExtend(line: turf.Feature<turf.LineString>, distance: numb
  * @param line Accepts a line feature
  * @param num target number of vertices
  * @returns line
+ * @example
+ * var line = lineByCoords([[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245]]);
+ * var rebuiltLine = lineByRebuild(line,4);
  */
 export function lineByRebuild(line: turf.Feature<turf.LineString>, num: number): turf.Feature<turf.LineString> {
 	if (num < 2) {throw new Error("Number of vertices cannot be less than two");}
@@ -221,6 +266,9 @@ export function lineByRebuild(line: turf.Feature<turf.LineString>, num: number):
  * Reverse line
  * @param line Accepts a line
  * @returns line feature
+ * @example
+ * var line = lineByCoords([[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245]]);
+ * var reversedLine = lineByReverse(line);
  */
 export function lineByReverse(line: turf.Feature<turf.LineString>): turf.Feature<turf.LineString> {
 	if (line === undefined) {throw new Error ("line must be defined");}
@@ -240,6 +288,12 @@ export function lineByReverse(line: turf.Feature<turf.LineString>): turf.Feature
  * @param lines FeatureCollection of lines
  * @param array Array of indices to flip, if applicable.
  * @returns FeatureCollection of polygons, with "polygonNumber" property. User may use this to verify direction of loft and input lines to flip in array
+ * @example
+ * var line1 = lineByCoords([[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245]]);
+ * var line2 = lineByCoords([[-87.522259, 35.4691],[-87.502754, 35.463455],[-87.508269, 35.463245]]);
+ * var line 3 = lineByCoords([[-57.522259, 35.4691],[-57.502754, 35.463455],[-57.508269, 35.463245]]);
+ * var lineColl = turf.featureCollection([line1,line2,line3]);
+ * var polygonsByLoft(lineColl, undefined);
  */
 export function polygonsByLoft(lines: turf.FeatureCollection<turf.LineString>, array: number[] = []): turf.FeatureCollection<turf.Polygon> {
 	let feats = lines.features;
@@ -281,6 +335,9 @@ export function polygonsByLoft(lines: turf.FeatureCollection<turf.LineString>, a
  * @param distance distance to extend, in meters
  * @param reverse reverse perpendicular direction (note: may result in kinks)
  * @returns Extended polygon Feature
+ * @example
+ * var poly = polygonByCoords([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);
+ * var extendedPoly = polygonByExtend(poly, 1, 500, false);
  */
 export function polygonByExtend(poly: turf.Feature<turf.Polygon>, index: number, distance: number, reverse: boolean = false): turf.Feature<turf.Polygon> {
 	distance/= 1000;
@@ -304,8 +361,14 @@ export function polygonByExtend(poly: turf.Feature<turf.Polygon>, index: number,
  * @param points Points Feature Collection
  * @param poly Polygon Feature
  * @returns FeatureCollection of Voronoi divided polygons
+ * @example
+ * var poly = polygonByCoords([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);
+ * var point1 = pointByCoords([-97.513675,35.4635]);
+ * var point2 = pointByCoords([-97.525674, 35.4534]);
+ * var pointColl = turf.featureCollection([point1,point2]);
+ * var voronoiPoly = polygonsByVoronoi(pointColl,poly);
  */
-export function polygonsByvoronoi(points: turf.FeatureCollection<turf.Point>, poly: turf.Feature<turf.Polygon>): turf.FeatureCollection<turf.Polygon> {
+export function polygonsByVoronoi(points: turf.FeatureCollection<turf.Point>, poly: turf.Feature<turf.Polygon>): turf.FeatureCollection<turf.Polygon> {
 	let voronoi: turf.FeatureCollection<turf.Polygon> = turf.voronoi(points,{bbox: turf.bbox(poly)});
 	let polyArr: turf.Feature<turf.Polygon>[] = [];
 	voronoi.features.forEach(function(feat) {
@@ -325,6 +388,9 @@ export function polygonsByvoronoi(points: turf.FeatureCollection<turf.Point>, po
  * Divides any sized polygon into Quads. Does not take polygons with Reflex points
  * @param poly Polygon Feature to divide
  * @returns FeatureCollection of divided polygons
+ * @example
+ * var poly = turf.polygon([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);
+ * var quadsByRadialSplit(poly);
  */
 
  // ideas to refactor: internally deals with reflex? Check for reflex first? Or assume passed in polygon was already checked?
@@ -354,6 +420,9 @@ export function quadsByRadialSplit(poly: turf.Feature<turf.Polygon>/*, reflex: b
  * Checks and splits polygon at first reflex point
  * @param poly Polygon Feature
  * @returns FeatureCollection of polygon(s)
+ * @example
+ * var poly = polygonByCoords([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.513642,35.463765],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);
+ * var polygonsByReflexSplit(poly);
  */
 export function polygonsByReflexSplit(poly: turf.Feature<turf.Polygon>): turf.FeatureCollection<turf.Polygon> {
 	let chkResult = findAllReflexPt(poly);
@@ -384,9 +453,14 @@ export function polygonsByReflexSplit(poly: turf.Feature<turf.Polygon>): turf.Fe
 }
 
 /**
- * Checks and splits polygon first reflex point
+ * Divides a Quad into smaller quads along the longest side
  * @param poly Polygon Feature
+ * @param num target number of polygons
+ * @param split_reflex Throws an error if set to false and quad has a reflex point. Reflex quad will be split into three, regardless of number if set to True.
  * @returns FeatureCollection of polygon(s)
+ * @example
+ * var poly = polygonByCoords([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.513642,35.463765],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);
+ * var quadByNumberSplit(poly, 4, false);
  */
 export function quadsByNumberSplit(poly: turf.Feature<turf.Polygon>, num: number, split_reflex: boolean = false): turf.FeatureCollection<turf.Polygon> {
 	let coordArr = ensureCoordArr(poly);
