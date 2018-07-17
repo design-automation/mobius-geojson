@@ -277,6 +277,29 @@ export function lineByReverse(line: turf.Feature<turf.LineString>): turf.Feature
 	return turf.lineString(coordArr);// draw and return new curve
 }
 
+/**
+ * Adds vertices to each line segment
+ * @param line Accepts a line
+ * @param num Number of segments in each existing segment
+ * @returns line feature
+ * @example
+ * var line = lineByCoords([[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245]]);
+ * var newLine = lineBySegDivide(line,3);
+ */
+export function lineBySegDivide(line: turf.Feature<turf.LineString>, num: number):turf.Feature<turf.LineString> {
+	let coordArr = ensureCoordArr(line);
+	let range = rangeFromNumberNStep(0,num,1/num);
+	let arr: number[][] = [];
+	for (let i = 0; i<coordArr.length-1; i++) {
+		if (i === coordArr.length-2) {range = rangeFromNumberNStep(0,num+1,1/num);}// to include endpoint
+		let ln = turf.lineString([coordArr[i],coordArr[i+1]]);
+		let len = turf.length(ln);
+		range.forEach(function(ind) {
+			arr.push(turf.along(ln,ind*len).geometry.coordinates);
+		});
+	}
+	return turf.lineString(arr);
+}
 /*
 
 ** Polygon functions ******************************************************************************************************************************
