@@ -12,6 +12,9 @@ import * as turf from "@turf/turf";
  * Calculates all internal angles within a feature
  * @param feature Accepts Line or Polygon
  * @returns An array of internal angles in degrees
+ * @example
+ * var feat = feature.features[0];
+ * var angle = anglesInternal(feat);
  */
 export function anglesInternal(feature: turf.Feature<turf.LineString|turf.Polygon>): number[] {
 	if (feature === undefined) {throw new Error("Invalid arg: feature must be defined.");}

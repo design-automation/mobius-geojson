@@ -111,7 +111,7 @@ export function polygonByOriginRect(origin: number[], width: number, height: num
  * @returns n-sided Polygon Feature
  */
 export function polygonByOriginSides(origin: number[], radius: number, sides: number, rotation: number = 0): turf.Feature<turf.Polygon> {
-	return turf.transformRotate(turf.circle(origin,radius,{steps:sides}),rotation,{pivot:origin});
+	return turf.transformRotate(turf.circle(origin,radius/1000,{steps:sides}),rotation,{pivot:origin});
 }
 /*
 
@@ -316,6 +316,92 @@ export function polygonsByvoronoi(points: turf.FeatureCollection<turf.Point>, po
 	});
 	return turf.featureCollection(polyArr);
 }
+
+/*
+** Divide Functions *********************************************************************************************************************************************
+*/
+
+/**
+ * Divides any sized polygon into Quads. Does not take polygons with Reflex points
+ * @param poly Polygon Feature to divide
+ * @returns FeatureCollection of divided polygons
+ */
+
+ // ideas to refactor: internally deals with reflex? Check for reflex first? Or assume passed in polygon was already checked?
+ // use lineAlong instead of midpoint - tried, may allow user to pass in ratio which the cutting point is made from each edge
+export function quadsByRadialSplit(poly: turf.Feature<turf.Polygon>/*, reflex: boolean = false*/): turf.FeatureCollection<turf.Polygon> {
+	let coordArr = ensureCoordArr(poly);
+	coordArr.pop();// remove duplicate or looping back will give two same coords
+	let cen = turf.center(poly); // center will 100% be in polygon since this does not look at reflex cases, also, center works better than centroid.
+	let polyArr: turf.Feature<turf.Polygon> [] = [];
+	for (let i = 0; i<coordArr.length; i++) {
+		let indices = [i-1,i,i+1];
+		let subCArr: number[][] = [coordArr[i]];
+		if (i === 0||i === coordArr.length-1) {indices = indexCheck(indices, coordArr.length);}// loop back cases
+		for (let j = 0; j<indices.length - 1; j++) {// should only run twice
+			let midPoint = turf.midpoint(coordArr[indices[j]],coordArr[indices[j+1]]);
+			subCArr.push(midPoint.geometry.coordinates);
+		}
+		subCArr = coordsByShift(subCArr,1);
+		subCArr.unshift(cen.geometry.coordinates);
+		subCArr.push(cen.geometry.coordinates);
+		polyArr.push(turf.polygon([subCArr]));
+	}
+	return turf.featureCollection(polyArr);
+}
+
+/**
+ * Checks and splits polygon at first reflex point
+ * @param poly Polygon Feature
+ * @returns FeatureCollection of polygon(s)
+ */
+export function polygonsByReflexSplit(poly: turf.Feature<turf.Polygon>): turf.FeatureCollection<turf.Polygon> {
+	let chkResult = findAllReflexPt(poly);
+	if (chkResult.length !== 0) {
+		return reflexSplitHandler(poly,chkResult);
+	} else {
+		return turf.featureCollection([poly]);
+	// let toCheck = [poly];
+	// let finalFArr = [];
+	// while (true) {
+	// 	let next = [];
+	// 	toCheck.forEach(function(pGon) {
+	// 		let chkResult = findAllReflexPt(poly);
+	// 		let splitCnt = chkResult.length;
+	// 		if (splitCnt === 0) {
+	// 			finalFArr.push(pGon);
+	// 		} else {
+	// 			next = next.concat(reflexSplitHandler(pGon,chkResult).features);
+	// 		}
+	// 	});
+	// 	if (next.length === 0 || split_all === false) {
+	// 		finalFArr = finalFArr.concat(next);
+	// 		break;
+	// 	}
+	// 	toCheck = next;
+	// }
+	// return turf.featureCollection(finalFArr);
+}
+
+/**
+ * Checks and splits polygon first reflex point
+ * @param poly Polygon Feature
+ * @returns FeatureCollection of polygon(s)
+ */
+export function quadsByNumberSplit(poly: turf.Feature<turf.Polygon>, num: number, split_reflex: boolean = false): turf.FeatureCollection<turf.Polygon> {
+	let coordArr = ensureCoordArr(poly);
+	if (coordArr.length !== 5) {throw new Error("Poly is not a Quad");}
+	let refChk = findAllReflexPt(poly);
+	let lnArr = linesByExplode(poly).features;
+	if (refChk.length !== 0) {
+		if (split_reflex === false) {// checks whether user allows division of polygon from where the reflex angle is (if it exists)
+			throw new Error("Quad contains a reflex angle");
+		} else {return quadReflexSplit(lnArr,coordArr,refChk[0].coordIndex);}// polygon split into two polygons from reflex point,split line is the last line // return three quads from a reflex quad.
+	}
+	let splitCnt: number = num - 1;// num is the target number of polygons. Number of times to split = num-1
+	return quads2longestSplit(lnArr,splitCnt);
+}
+
 /*
 
 ** util functions *********************************************************************************************************************************
@@ -404,9 +490,199 @@ function perpenDir(coord1: number[], coord2: number[], reverse) {
 function indexCheck(array: number[], max: number): number[] {// loops back array if index <0 || >max
 	for (let i=0; i<array.length; i++) {
 		if (array[i]<0) {array[i]+=max;}
-		if (array[i]>3) {array[1]-=max;}
+		if (array[i]>max-1) {array[i]-=max;}
 	}
 	return array;
+}
+
+function findAllReflexPt(poly: turf.Feature<turf.Polygon>): object[] {
+	let coordArr = ensureCoordArr(poly);
+	let arr = [];
+	for (let j = 0; j<coordArr.length; j++) {// split polygon at first vertex that is larger than 180deg, and Break
+		let i = j - 1;
+		let k = j + 1;
+		if (j === 0) {i = coordArr.length - 1;}
+		if (j === coordArr.length - 1) {k = 0;}
+		let vec1 = [coordArr[i][0] - coordArr[j][0], coordArr[i][1] - coordArr[j][1]];
+		let vec2 = [coordArr[k][0] - coordArr[j][0], coordArr[k][1] - coordArr[j][1]];
+		let det = find2DDeterminant(vec1,vec2);
+		if (det < 0) {// j is a reflex point
+			let retObj = {
+				coordIndex: j,
+				firstVec: vec1,
+				secVec: vec2
+			};
+			arr.push(retObj);
+		}
+	}
+	return arr;
+}
+
+/*
+** Reflex Quad: Reflex point to centroid, non-adjacent edges to centroid ** centroid not a good way as it can be outside the polygon? (-more specific. Midpoint between reflexpt and opposite pt will work)
+** Reflex Poly: VecAdd split (crude, but handles weird shaped n-polygons: does not deal with specific target nodes/edges; more generic)
+*/
+
+function reflexSplitHandler(poly: turf.Feature<turf.Polygon>, chkResult: object[]): turf.FeatureCollection {
+	let coordArr = ensureCoordArr(poly);// coordArr
+	let lnArr = linesByExplode(poly).features;// lnArr
+	if (lnArr.length === 4) {
+		return quadReflexSplit(lnArr,coordArr,chkResult[0].coordIndex);
+	} else {
+		return splitByVecAdd(lnArr,coordArr,chkResult);
+	}
+}
+
+function quadReflexSplit(lnArr:turf.Feature<turf.LineString>[], coordArr: number[][], reflIndex: number): turf.FeatureCollection<turf.Polygon> {// will have one and only one reflex angle: reflex point to centroid, and centroid to non adjacent edges to get three quads.
+	let oppPoint = coordArr[indexCheck([Math.ceil(reflIndex+coordArr.length/2)],coordArr.length)[0]];
+	let centroid = turf.midpoint(oppPoint,coordArr[reflIndex]);
+	let cenCoord = centroid.geometry.coordinates;
+	let adjPoints = indexCheck([reflIndex-1,reflIndex+1],coordArr.length);
+	let newPtArr = [];
+	adjPoints.forEach(function(pIndex) {
+		newPtArr.push(turf.nearestPointOnLine(turf.lineString([coordArr[pIndex],oppPoint]), cenCoord).geometry.coordinates); // nearestPointOnLine gave wrong result?!
+	});
+	let poly1 = turf.polygon([[cenCoord, newPtArr[0], coordArr[adjPoints[0]], coordArr[reflIndex], cenCoord]]);
+	let poly2 = turf.polygon([[cenCoord, coordArr[reflIndex], coordArr[adjPoints[1]], newPtArr[1], cenCoord]]);
+	let poly3 = turf.polygon([[cenCoord, newPtArr[0], oppPoint, newPtArr[1], cenCoord]]);
+	return turf.featureCollection([poly1,poly2,poly3]);
+}
+
+function splitByVecAdd(lnArr: turf.Feature<turf.LineString>[], coordArr: number[][], chkResult: object[]): turf.FeatureCollection<turf.Polygon> {// splits polygon into TWO using the FIRST reflex point
+	let vec1: number[] = chkResult[0].firstVec;
+	let vec2: number[] = chkResult[0].secVec;
+	let dirVec: number[] = [vec1[0]+vec2[0], vec1[1]+vec2[1]];
+	let dirVecMag = findMagnitude(dirVec);
+	let basis: number[] = [dirVec[0]/dirVecMag,dirVec[1]/dirVecMag];
+	let index = chkResult[0].coordIndex;
+	let pt: number[] = coordArr[index];
+	let maxDist = -Infinity;
+	let intersect: number[];
+	let rangeArr: number[][];
+	for (let i=0; i<coordArr.length; i++) {// find max dist to every other point
+		let dist = turf.distance(coordArr[index],coordArr[i]);
+		if (dist > maxDist) {maxDist = dist;}
+	}
+	let newCoord1 = [pt[0]+basis[0]*maxDist,pt[1]+basis[1]*maxDist];
+	let newCoord2 = [pt[0]+basis[0]*-maxDist,pt[1]+basis[1]*-maxDist]; // ensure new line will be long enough to intersect with lines
+	let newLn = turf.lineString([newCoord1,newCoord2]);
+	for (let i=0; i<lnArr.length; i++) {// check for intersection against all other lines
+		if (i === index || i === index-1) {continue;}// skip adjacent lines
+		let intChk = turf.lineIntersect(lnArr[i],newLn).features;
+		if (intChk.length === 1) {// exists an intersection
+			intersect = intChk[0].geometry.coordinates;
+			switch (index-i) {// ensure division will not result in triangle (unless polygon is a quad - use other method to handle reflex)
+				case 1:
+					i--; break;
+				case -1:
+					i++; break;
+			}
+			i = indexCheck([i],lnArr.length)[0];
+			rangeArr = rangeFromIndices(coordArr.length, index, i);
+			break; // now have two range of coordIndices to create polygons(not indcluding intersect - added next)
+		}
+	}
+	return turf.featureCollection(polygonsFromCArrArr(cArrFromRangeNInt(coordArr,rangeArr,intersect)));
+}
+
+function rangeFromIndices(coordArrLen: number, oriIndex: number, searchedInd: number): number[][] {
+	let rangeArr: number[][] = [[],[]];
+		// note here: lines and coords are numbered anticlockwise, hence the following
+	if(searchedInd<oriIndex) {
+		rangeArr[0] = byRange(searchedInd+1,oriIndex+1);
+		rangeArr[1] = byRange(oriIndex,coordArrLen-1);
+		let rng2Add = byRange(0,searchedInd+1);
+		rangeArr[1] = rangeArr[1].concat(rng2Add);
+	} else {// i>index, index is skipped. i will never == index
+		rangeArr[0] = byRange(searchedInd+1,coordArrLen-1);
+		let rng1Add = byRange(0,oriIndex+1);
+		rangeArr[0] = rangeArr[0].concat(rng1Add);
+		rangeArr[1] = byRange(oriIndex,searchedInd+1);
+	}
+	return rangeArr;
+}
+
+function cArrFromRangeNInt(coordArr: number[][], rangeArr: number[][], intersect: number[]) {
+	let newCArr: number [][][] = [];
+	rangeArr.forEach(function(rng) {
+		let arr: number[][] = [];
+		rng.forEach(function(ind) {
+			arr.push(coordArr[ind]);
+		});
+		arr.push(intersect); // add intersect coord to front and back
+		arr.unshift(intersect);
+		newCArr.push(arr);
+	});
+	return newCArr;
+}
+
+function polygonsFromCArrArr(cArrArr: number[][][]): turf.Feature<turf.Polygon>[] {
+	let polyArr: turf.Feature<turf.Polygon>[] = [];
+	cArrArr.forEach(function(cArr) {
+		polyArr.push(turf.polygon([cArr]));
+	});
+	return polyArr;
+}
+
+/*
+*	Splitting Quads *****************************************************************************************************************************************************
+*/
+function quads2longestSplit(lnArr: turf.Feature<turf.LineString>[], splitCnt: number): turf.FeatureCollection<turf.Polygon> {// input polygon is 100% a non-reflex quad
+	let lnLenObj: object = findLongestLine(lnArr);
+	let longIndex: number = lnLenObj.longestInd;
+	let longestLine: turf.Feature<turf.LineString> = lnArr[longIndex];	// find longest. Check total length of longest & opposite >= sum of two other length
+	let oppIndex: number = longIndex+2;
+	if (oppIndex>3) {oppIndex-=4;}
+	let otherIndices = [longIndex-1,longIndex+1];
+	indexCheck(otherIndices, lnArr.length); // loops back indices if index <0 || >max
+	let divideIndices = [longIndex,oppIndex];
+	let sum:number = -Infinity;
+	[divideIndices,otherIndices].forEach(function(indices) {
+		let checkSum = indices.reduce(function(total,next) {return total + lnLenObj.lenArr[next];});
+		if (sum>=checkSum) {divideIndices = indices;}
+	});// divideIndices should now hold the indices of the two lines we should cut
+	let newCoordArr = [];
+	let range = rangeFromNumberNStep(0,splitCnt+2,1/(splitCnt+1)); // splitCnt +2 : includes endpoints. 1/numOfPolygons == 1/(splitCnt+1)
+	divideIndices.forEach(function(index) {
+		let len: number = turf.length(lnArr[index]);
+		let arr: number[][] = [];
+		range.forEach(function(step) {
+			arr.push(turf.along(lnArr[index],step*len).geometry.coordinates);
+		});
+		newCoordArr.push(arr);
+		range.reverse();
+	});
+	let polyArr: turf.Feature<turf.Polygon>[] = [];
+	for (let i = 0; i<newCoordArr[0].length; i++) {
+		let coords: number[][] = [newCoordArr[0][i],newCoordArr[0][i+1],newCoordArr[1][i+1],newCoordArr[1][i],newCoordArr[0][i]];
+		polyArr.push(turf.polygon([coords]));
+	}
+	return turf.featureCollection(polyArr);
+}
+
+function rangeFromNumberNStep(min: number, num: number, step: number): number [] {
+	let arr = [];
+	for (let i = 0; i<num; i++) {
+		arr.push(i*step);
+	}
+	return arr;
+}
+
+function findLongestLine(lnArr: turf.Feature<turf.LineString>[]): object {
+	let lnLenObj = {
+		longestLen: -Infinity,
+		longestInd: null,
+		lenArr: []
+	};
+	for (let i=0; i<lnArr.length; i++) {
+		let len = turf.length(lnArr[i]);
+		lnLenObj.lenArr.push(len);
+		if (len > lnLenObj.longestLen) {
+			lnLenObj.longestLen = len;
+			lnLenObj.longestInd = i;
+		}
+	}
+	return lnLenObj;
 }
 
 /*
@@ -431,160 +707,23 @@ function findNewCoord(origin: number[], target: number[], rotation: number = 0):
 
 */
 
-// note! All functions should ignore check for reflex until a kink is detected in resulting divide!***************************************
-function kinkCheck(poly: turf.Feature<turf.Polygon>): boolean { // put resulting polygons from a division into this function
-	if (turf.kinks(poly).features.length !== 0) {return true;} // division using this check should revert if returns true
-}
-
-function quadsByRadial(poly: turf.Feature<turf.Polygon>, reflex: boolean = false): turf.FeatureCollection<turf.Polygon> {
-	let coordArr = ensureCoordArr(poly);
-	if (coordArr.length!==5) {throw new Error("Poly is not a Quad");}
-	coordArr.pop();// remove duplicate or looping back will give two same coords
-	let cen = turf.centroid(poly); // centroid will 100% be in polygon since this does not look at reflex cases
-	let polyArr: turf.Feature<turf.Polygon> [] = [];
-	for (let i = 0; i<coordArr.length; i++) {
-		let indices = [i-1,i,i+1];
-		let subCArr: number[][] = [coordArr[i]];
-		if (i === 0||i === coordArr.length-1) {indices = indexCheck(indices, coordArr.length);}// loop back cases
-		for (let j = 0; j<indices.length - 1; j++) {// should only run twice
-			let midPoint = turf.midpoint(coordArr[indices[j]],coordArr[indices[j+1]])
-			subCArr.push(midPoint.geometry.coordinates);
-		}
-		subCArr = coordsByShift(subCArr,1);
-		subCArr.unshift(cen.geometry.coordinates);
-		subCArr.push(cen.geometry.coordinates);
-		polyArr.push(turf.polygon([subCArr]));
-	}
-	return turf.featureCollection(polyArr);
-}
-
-/*
-** Reflex Quad: Reflex point to centroid, non-adjacent edges to centroid ** centroid not a good way as it can be outside the polygon? (-more specific. Midpoint between reflexpt and opposite pt will work)
-** Reflex Poly: VecAdd split (crude, but handles weird shaped n-polygons: does not deal with specific target nodes/edges; more generic)
-*/
-
-function filterReflex(fcoll: turf.FeatureCollection<turf.Polygon>): object { 
-// so there is no need to re-check every polygon for reflex. Functions can deal 100% with quads with no reflex - division functions will have a boolean to indicate which "case" it is dealing with.
-	let retObj = {
-		reflexPolys: [],
-		polys: []
-	}
-	fcoll.features.forEach(function(feat) {
-		let refResArr = findAllReflexPt(feat);
-		if (refResArr.length === 0) {
-			retObj.polys.push(feat);
-		} else {// has at least one reflex point
-			feat["reflexObjArr"] = refResArr; // store reflex information into feature so there is no need to recalculate later
-			retObj.reflexPolys.push(feat);
-		}
-	});
-	return retObj;
-}
-
-function findAllReflexPt(poly: turf.Feature<turf.Polygon>): object[] {
-	let coordArr = ensureCoordArr(poly);
-	let arr = [];
-	for (let j = 0; j<coordArr.length; j++) {// split polygon at first vertex that is larger than 180deg, and Break
-		let i = j - 1;
-		let k = j + 1;
-		if (j === 0) {i = coordArr.length - 1;}
-		if (j === coordArr.length - 1) {k = 0;}
-		let vec1 = [coordArr[i][0] - coordArr[j][0], coordArr[i][1] - coordArr[j][1]];
-		let vec2 = [coordArr[k][0] - coordArr[j][0], coordArr[k][1] - coordArr[j][1]];
-		let det = find2DDeterminant(vec1,vec2);
-		if (det > 0) {// j is a reflex point
-			let retObj = {
-				coordIndex: j,
-				firstVec: vec1,
-				secVec: vec2
-			};
-			arr.push(retObj);
-		}
-	}
-	return arr;
-}
-
-function splitByVecAdd(lnArr: turf.Feature<turf.LineString>[], coordArr: number[][], chkResult: object[]): turf.FeatureCollection<turf.Polygon> {// splits polygon into TWO using the FIRST reflex point
-	let vec1: number[] = chkResult[0].firstVec;
-	let vec2: number[] = chkResult[0].secVec;
-	let dirVec: number[] = [vec1[0]+vec2[0], vec1[1]+vec2[1]];
-	let dirVecMag = findMagnitude(dirVec);
-	let basis: number[] = [dirVec[0]/dirVecMag,dirVec[1]/dirVecMag];
-	let index = chkResult[0].coordIndex;
-	let pt: number[] = coordArr[index];
-	let maxDist = -Infinity;
-	let intersect: number[];
-	let rangeArr: number[][];
-	for (let i=0; i<coordArr.length; i++) {// find max dist to every other point
-		if (i === index) {continue;}
-		let dist = turf.distance(coordArr[index],coordArr[i]);
-		if (dist > maxDist) {maxDist = dist;}
-	}
-	let newCoord = [pt[0]+basis[0]*maxDist,pt[1]+basis[1]*maxDist]; // ensure new line will be long enough to intersect with lines
-	let newLn = turf.lineString([pt,newCoord]);
-	for (let i=0; i<lnArr.length; i++) {// check for intersection against all other lines
-		let intChk = turf.lineIntersect(lnArr[i],newLn).features;
-		if (intChk.length === 1) {// exists an intersection
-			intersect = intChk[0].geometry.coordinates;
-			switch (index-i) {// ensure division will not result in triangle (unless polygon is a quad - use other method to handle reflex)
-				case 1:
-					i--; break;
-				case -1:
-					i++; break;
-			}
-			i = indexCheck([i],lnArr.length)[0];
-			rangeArr = rangeFromIndices(lnArr.length, index, i);
-			break; // now have two range of coordIndices to create polygons(not indcluding intersect - added next)
-		}
-	}
-	return turf.featureCollection(polygonsFromCArrArr(cArrFromRangeNInt(coordArr,rangeArr,intersect)));
-}
-
-function rangeFromIndices(lnArrlen: number, oriIndex: number, searchedInd: number): number[][] {
-	let rangeArr: number[][];
-		// note here: lines and coords are numbered anticlockwise, hence the following
-	if(searchedInd<oriIndex) {
-		rangeArr[0] = byRange(searchedInd+1,oriIndex+1);
-		rangeArr[1] = byRange(oriIndex,lnArrlen-1);
-		let rng2Add = byRange(0,searchedInd);
-		rangeArr[1] = rangeArr[1].concat(rangeArr[1],rng2Add);
-	} else {// i>index, index is skipped. i will never == index
-		rangeArr[0] = byRange(searchedInd+1,lnArrlen-1);
-		let rng1Add = byRange(0,oriIndex+1);
-		rangeArr[0] = rangeArr[0].concat(rangeArr[0],rng1Add);
-		rangeArr[1] = byRange(oriIndex,searchedInd+1);
-	}
-	return rangeArr;
-}
-
-function cArrFromRangeNInt(coordArr: number[][], rangeArr: number[][], intersect: number[]) {
-	let newCArr: number [][][];
-	rangeArr.forEach(function(rng) {
-		let arr: number[][] = [];
-		rng.forEach(function(ind) {
-			arr.push(coordArr[ind]);
-		});
-		arr.push(intersect); // add intersect coord to front and back
-		arr.unshift(intersect);
-		newCArr.push(arr);
-	});
-	return newCArr;
-}
-
-function polygonsFromCArrArr(cArrArr: number[][][]): turf.Feature<turf.Polygon>[] {
-	let polyArr: turf.Feature<turf.Polygon>[] = [];
-	cArrArr.forEach(function(cArr) {
-		polyArr.push(turf.polygon([cArr]));
-	});
-	return polyArr;
-}
-
 /*
 	n-gon polygon split cases:
 	n % 2 == 0 : edge to edge split
 	n % 2 == 1 && n !== 3 : point to edge split
 	n == 3: radial split
 */
+
+function quadsFromPolygon (poly: turf.Feature<turf.Polygon>): turf.FeatureCollection {
+	let polyArr = checkAndSplit(poly).features;
+	polyArr.forEach(function(pGon){
+		let coordArr = ensureCoordArr(pGon);
+		let lnArr = linesByExplode(pGon).features;
+		if (lnArr.length ===3) {return quadsByRadial(pGon);}
+		if (lnArr.length %2 === 0) {return splitByFan(pGon);}
+		if (lnArr.length %2 === 1) {return splitByPoint2Edge(pGon);}
+	});
+}
 
 /*
 ** Edge to Point Split
@@ -604,89 +743,10 @@ function splitByFan() {
 // note: will result in triangles on two ends
 }
 
-function splitBy2Longest() {
+function splitBy2Longest() { //suitable for recursive split
 // find longest two lines
 // divide two lines according to number/distance
 
-}
-
-function quadsNoCheckSplit(lnArr: turf.Feature<turf.LineString>[], splitCnt: number, reflexSplit: boolean): object {// input polygon is 100% a non-reflex quad
-	let lnLenObj: object = findLongestLine(lnArr);
-	let longIndex: number = lnLenObj.longestInd;
-	let longestLine: turf.Feature<turf.LineString> = lnArr[longIndex];	// find longest. Check total length of longest & opposite >= sum of two other length
-	let oppIndex: number = longIndex+2;
-	if (oppIndex>3) {oppIndex-=4;}
-	let otherIndices = [longIndex-1,longIndex+1];
-	indexCheck(otherIndices, lnArr.length); // loops back indices if index <0 || >max
-	let divideIndices = [longIndex,oppIndex];
-	if (reflexSplit === false) { // for over-ride - if reflexSplit is true (means polygon was divided due to reflex) strictly divide the last line
-		let sum:number = -Infinity;
-		[divideIndices,otherIndices].forEach(function(indices) {
-			let checkSum = indices.reduce(function(total,next) {return total + lnLenObj.lenArr[next];});
-			if (sum>=checkSum) {divideIndices = indices;}
-		});// divideIndices should now hold the indices of the two lines we should cut
-	}	
-
-}
-
-function findLongestLine(lnArr: turf.Feature<turf.LineString>[]): object {
-	let lnLenObj = {
-		longestLen: -Infinity,
-		longestInd: null,
-		lenArr: []
-	};
-	for (let i=0; i<lnArr.length; i++) {
-		let len = turf.length(lnArr[i]);
-		lnLenObj.lenArr.push(len);
-		if (len > lnLenObj.longestLen) {
-			lnLenObj.longestLen = len;
-			lnLenObj.longestInd = i;
-		}
-	}
-	return lnLenObj;
-}
-
-function quadReflexSplit(reflPoly:turf.Feature<turf.Polygon>, lnArr:turf.Feature<turf.LineString>[], coordArr: number[][], reflIndex: number): turf.FeatureCollection<turf.Polygon> {//will have one and only one reflex angle: reflex point to centroid, and centroid to non adjacent edges to get three quads.
-	let centroid = turf.centroid(reflPoly);
-	let cenCoord = centroid.geometry.coordinates;
-	let adjIndices = indexCheck([reflIndex-1,reflIndex+1],lnArr.length);
-	let nonAdjLnInd = indexCheck([reflIndex-2,reflIndex+1],lnArr.length);// anti-clockwise numbering. 
-	//find mid-point of adjLines and insert into coordArr
-	nonAdjLnInd.forEach(function(ind){
-		let midPoint = turf.along(lnArr[ind],0.5*turf.length(lnArr[ind]));
-		coordArr.
-	});
-}
-
-
-function quadsSplitByNumber(poly: turf.Feature<turf.Polygon>, num: number, split_reflex: boolean = false): turf.FeatureCollection<turf.Polygon> {
-	let coordArr = ensureCoordArr(poly);
-	if (coordArr.length !== 5) {throw new Error("Poly is not a Quad");}
-	let refChk = findAllReflexPt(poly);
-	let polyArr: turf.Feature<turf.Polygon>[] = [poly];
-	let lnArr = linesByExplode(poly).features;
-	if (refChk.length !== 0) {
-		if (split_reflex === false) {// checks whether user allows division of polygon from where the reflex angle is (if it exists)
-			throw new Error("Quad contains a reflex angle");
-		}
-		polyArr = splitByVecAdd(lnArr,coordArr,refChk).features;// polygon split into two polygons from reflex point,split line is the last line
-		if (num === 2) {return turf.featureCollection(polyArr);}// target number reached
-	}
-	for (let i=0; i<polyArr.length; i++) {
-		coordArr = ensureCoordArr(polyArr[i]);
-		let splitCnt: number = num - 1;// num is the target number of polygons. Number of times to split = num-1
-		let reflexSplit: boolean = false;
-		if (refChk.length !== 0) {// polygon was already split into two, we need to compensate for that: split parallel to split line & ensure area of each poly approx same
-			let currArea = turf.area(polyArr[1]);
-			let idealArea = turf.area(poly)/num;
-			splitCnt = Math.floor(currArea/idealArea);
-			splitCnt--; // check proportional area to determine how many times should this polygon (of possible 2), should split
-			reflexSplit = true;// poly which will split should use last line index, without need to check for longest line (so cut will be parallel)
-		}
-		// split functions
-		if (splitCnt <= 0) {continue;}// area of polygon is less than or equal to ideal size, no split required.
-		quadsNoCheckSplit(lnArr, splitCnt, reflexSplit);// note: a QUAD with reflex, will always result in a triangle after split. *************************************************************
-	}
 }
 
 function quadsSplitByDistance() {
