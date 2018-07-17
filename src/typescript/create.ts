@@ -450,6 +450,7 @@ export function polygonsByReflexSplit(poly: turf.Feature<turf.Polygon>): turf.Fe
 	// 	toCheck = next;
 	// }
 	// return turf.featureCollection(finalFArr);
+	}
 }
 
 /**
@@ -804,7 +805,6 @@ function quadsFromPolygon (poly: turf.Feature<turf.Polygon>): turf.FeatureCollec
 */
 
 function splitByEdge2Point() {} // used to divide odd-poly into quads - not needed for dividing quads
-
 
 /*
 ** Edge to Edge splits

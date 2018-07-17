@@ -49,37 +49,36 @@ export function extend(line: turf.Feature<turf.LineString>, distance: number, re
 	return turf.lineString(coordArr);
 }
 
-/**
- * Loft FeatureCollection of lines and returns a FeatureCollection of Polygons. Curves will be rebuilt based on the maximum number of coordinates of either extreme curve
- * @param lines FeatureCollection of lines
- * @returns line
- */
-export function loft(lines: turf.FeatureCollection<turf.LineString>): turf.FeatureCollection<turf.Polygon> {
-	let feats = lines.features;
-	if (feats.length < 2) {throw new Error("Insufficient lines to loft");} // check for sufficient lines
-	let extremes = [feats[0],feats[feats.length-1]];
-	let extremesLenArr: number[] = [];
-	extremes.forEach(function(ln) {
-		extremesLenArr.push(ensureCoordArr(ln).length);
-	}); // find number of coords of extreme lines
-	let rebuildNo: number = Math.min(extremesLenArr[0],extremesLenArr[1]);
-	let polygonArr: turf.Feature<turf.Polygon>[] = [];
-	for (let i=0; i<feats.length-2; i++) {
-		let line1 = rebuild(feats[i],rebuildNo);
-		let line2 = rebuild(feats[i+1],rebuildNo);
-		let lnPair = [line1,line2];
-		let coordsPair = [];
-		lnPair.forEach(function(ln) {
-			coordsPair.push(ensureCoordArr(ln));
-		});
-		for (let j=0; j<rebuildNo-2) {
-			let polyCArr = [coordsPair[0][j],coordsPair[1][j],coordsPair[1][j+1],coordsPair[0][j+1]];
-			polygonArr.push(turf.polygon([polyCArr]));
-		}
-	}
-	return {features: polygonArr};
-	
-}
+// /**
+//  * Loft FeatureCollection of lines and returns a FeatureCollection of Polygons. Curves will be rebuilt based on the maximum number of coordinates of either extreme curve
+//  * @param lines FeatureCollection of lines
+//  * @returns line
+//  */
+// export function loft(lines: turf.FeatureCollection<turf.LineString>): turf.FeatureCollection<turf.Polygon> {
+// 	let feats = lines.features;
+// 	if (feats.length < 2) {throw new Error("Insufficient lines to loft");} // check for sufficient lines
+// 	let extremes = [feats[0],feats[feats.length-1]];
+// 	let extremesLenArr: number[] = [];
+// 	extremes.forEach(function(ln) {
+// 		extremesLenArr.push(ensureCoordArr(ln).length);
+// 	}); // find number of coords of extreme lines
+// 	let rebuildNo: number = Math.min(extremesLenArr[0],extremesLenArr[1]);
+// 	let polygonArr: turf.Feature<turf.Polygon>[] = [];
+// 	for (let i=0; i<feats.length-2; i++) {
+// 		let line1 = rebuild(feats[i],rebuildNo);
+// 		let line2 = rebuild(feats[i+1],rebuildNo);
+// 		let lnPair = [line1,line2];
+// 		let coordsPair = [];
+// 		lnPair.forEach(function(ln) {
+// 			coordsPair.push(ensureCoordArr(ln));
+// 		;});
+// 		for (let j=0; j<rebuildNo-2) {
+// 			let polyCArr = [coordsPair[0][j],coordsPair[1][j],coordsPair[1][j+1],coordsPair[0][j+1]];
+// 			polygonArr.push(turf.polygon([polyCArr]));
+// 		}
+// 	}
+// 	return {features: polygonArr};
+// }
 
 /**
  * Rebuild line based on number of vertices
