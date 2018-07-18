@@ -12,7 +12,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/_export.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/_export.ts",
 			"sources": [
 				{
 					"fileName": "_export.ts",
@@ -29,7 +29,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/calc.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/calc.ts",
 			"comment": {
 				"shortText": "Functions dealing with calculations done on geojson files."
 			},
@@ -133,7 +133,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/create.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/create.ts",
 			"comment": {
 				"shortText": "Functions working with geojson."
 			},
@@ -3452,7 +3452,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/io.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/io.ts",
 			"comment": {
 				"shortText": "Turf HELPER functions.\nhttp://turfjs.org/docs/"
 			},
@@ -3731,7 +3731,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 107,
 									"character": 8
 								}
@@ -4017,7 +4017,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 237,
 									"character": 12
 								}
@@ -4058,7 +4058,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 102,
 									"character": 8
 								}
@@ -4959,7 +4959,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/libs/filesys/file.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/libs/filesys/file.ts",
 			"children": [
 				{
 					"id": 191,
@@ -5094,7 +5094,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/modify.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/modify.ts",
 			"comment": {
 				"shortText": "Functions working with coordinates in geojson files."
 			},
@@ -5184,7 +5184,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/cesium.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/cesium.ts",
 			"children": [
 				{
 					"id": 290,
@@ -5460,7 +5460,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 107,
 									"character": 8
 								}
@@ -5758,7 +5758,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 237,
 									"character": 12
 								}
@@ -5799,7 +5799,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 102,
 									"character": 8
 								}
@@ -6636,7 +6636,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/coords.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/coords.ts",
 			"comment": {
 				"shortText": "Functions working with coordinates in geojson files."
 			},
@@ -6736,7 +6736,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/crs.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/crs.ts",
 			"children": [
 				{
 					"id": 378,
@@ -7308,7 +7308,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/fcoll.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/fcoll.ts",
 			"comment": {
 				"shortText": "Functions for working with geojson feature collections."
 			},
@@ -8076,7 +8076,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/line.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/line.ts",
 			"comment": {
 				"shortText": "Functions working with line features."
 			},
@@ -8609,7 +8609,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/parse.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/parse.ts",
 			"comment": {
 				"shortText": "Functions for parsing zipped shape files.\nhttps://github.com/calvinmetcalf/shapefile-js"
 			},
@@ -8689,7 +8689,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/prop.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/prop.ts",
 			"comment": {
 				"shortText": "Functions for working with Feature properties."
 			},
@@ -9180,7 +9180,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/test_data.ts",
+			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/test_data.ts",
 			"children": [
 				{
 					"id": 496,
