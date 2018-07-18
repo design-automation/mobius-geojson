@@ -6,7 +6,8 @@
 /**
  *
  */
- import * as turf from "@turf/turf";
+import * as turf from "@turf/turf";
+import * as file from "./libs/filesys/file";
 
  /**
  * Save the FeatureCollection as a geojson file.
@@ -15,8 +16,8 @@
  * @param filename The name of the geojson file.
  * @returns True if successful.
  */
-export function saveFColl(fcoll: turf.FeatureCollection, filename: string): boolean {
-    return file.save(JSON.stringify(featureColl), filename);
+export function saveFColl(fColl: turf.FeatureCollection, filename: string): boolean {
+    return file.save(JSON.stringify(fColl), filename);
 }
 
 /*
@@ -34,7 +35,7 @@ interface CesiumExtrudeProp {
     line: boolean;
 }
 
-interface CesiumColourProp {    
+interface CesiumColourProp {
     name: string;
     min: number;
     max: number;

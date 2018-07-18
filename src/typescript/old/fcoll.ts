@@ -7,7 +7,7 @@
  */
 
 import * as turf from "@turf/turf";
-import * as file from "./libs/filesys/file";
+import * as file from "./../libs/filesys/file";
 
 /**
  * Get all features from the FeatureCollection.

@@ -18,5 +18,5 @@ import * as turf from "@turf/turf";
  		if (!feat.properties.hasOwnProperty(name)) {throw new Error("Feature does not contain properties");}
  		delete feat.properties[name];
  	});
- 	return void;
+ 	return;
  }

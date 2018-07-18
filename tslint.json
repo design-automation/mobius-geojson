@@ -14,7 +14,6 @@
         "indent": [true, "spaces", 4],
         "no-trailing-whitespace": true,
         "no-irregular-whitespace": true,
-        "no-unused-variable": true,
         "quotemark": "double",
         "eofline": true,
         "class-name": true,
