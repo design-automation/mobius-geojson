@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CesiumFeatureCollection | mobius-geojson</title>
+	<title>CesiumColourProp | mobius-geojson</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,40 +54,24 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_cesium_.html">&quot;cesium&quot;</a>
+					<a href="../modules/_io_.html">&quot;io&quot;</a>
 				</li>
 				<li>
-					<a href="_cesium_.cesiumfeaturecollection.html">CesiumFeatureCollection</a>
+					<a href="_io_.cesiumcolourprop.html">CesiumColourProp</a>
 				</li>
 			</ul>
-			<h1>Interface CesiumFeatureCollection&lt;G, P&gt;</h1>
+			<h1>Interface CesiumColourProp</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>G</h4>
-					</li>
-					<li>
-						<h4>P</h4>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">FeatureCollection</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">CesiumFeatureCollection</span>
-							</li>
-						</ul>
+						<span class="target">CesiumColourProp</span>
 					</li>
 				</ul>
 			</section>
@@ -98,10 +82,10 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_cesium_.cesiumfeaturecollection.html#bbox" class="tsd-kind-icon">bbox</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_cesium_.cesiumfeaturecollection.html#cesium" class="tsd-kind-icon">cesium</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_cesium_.cesiumfeaturecollection.html#features" class="tsd-kind-icon">features</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_cesium_.cesiumfeaturecollection.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_io_.cesiumcolourprop.html#invert" class="tsd-kind-icon">invert</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_io_.cesiumcolourprop.html#max" class="tsd-kind-icon">max</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_io_.cesiumcolourprop.html#min" class="tsd-kind-icon">min</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_io_.cesiumcolourprop.html#name" class="tsd-kind-icon">name</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,92 +93,45 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-					<a name="bbox" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> bbox</h3>
-					<div class="tsd-signature tsd-kind-icon">bbox<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BBox</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="invert" class="tsd-anchor"></a>
+					<h3>invert</h3>
+					<div class="tsd-signature tsd-kind-icon">invert<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from GeoJSONObject.bbox</p>
 						<ul>
-							<li>Defined in D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts:107</li>
+							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/io.ts#L42">io.ts:42</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Bounding box of the coordinate range of the object&#39;s Geometries, Features, or Feature Collections.
-							<a href="https://tools.ietf.org/html/rfc7946#section-5">https://tools.ietf.org/html/rfc7946#section-5</a></p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="cesium" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> cesium</h3>
-					<div class="tsd-signature tsd-kind-icon">cesium<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="max" class="tsd-anchor"></a>
+					<h3>max</h3>
+					<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/ff5581c/src/typescript/cesium.ts#L32">cesium.ts:32</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> colour<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span></h5>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter">
-										<h5>attribs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_cesium_.cesiumcolourprop.html" class="tsd-signature-type">CesiumColourProp</a><span class="tsd-signature-symbol">&gt;</span></h5>
-									</li>
-									<li class="tsd-parameter">
-										<h5>descr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-									</li>
-								</ul>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> extrude<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span></h5>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter">
-										<h5>attribs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_cesium_.cesiumextrudeprop.html" class="tsd-signature-type">CesiumExtrudeProp</a><span class="tsd-signature-symbol">&gt;</span></h5>
-									</li>
-									<li class="tsd-parameter">
-										<h5>descr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
-									</li>
-								</ul>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> filters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_cesium_.cesiumfilter.html" class="tsd-signature-type">CesiumFilter</a><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> select<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-					<a name="features" class="tsd-anchor"></a>
-					<h3>features</h3>
-					<div class="tsd-signature tsd-kind-icon">features<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">G</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from FeatureCollection.features</p>
-						<ul>
-							<li>Defined in D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts:237</li>
+							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/io.ts#L41">io.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="min" class="tsd-anchor"></a>
+					<h3>min</h3>
+					<div class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from GeoJSONObject.type</p>
 						<ul>
-							<li>Defined in D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts:102</li>
+							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/io.ts#L40">io.ts:40</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Specifies the type of GeoJSON object.</p>
-						</div>
-					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/io.ts#L39">io.ts:39</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -207,81 +144,102 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/__export_.html">"_<wbr>export"</a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_calc_.html">"calc"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_create_.html">"create"</a>
+					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_cesium_.html">"cesium"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_crs_.html">"crs"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_fcoll_.html">"fcoll"</a>
+						<a href="../modules/_io_.html">"io"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_libs_filesys_file_.html">"libs/filesys/file"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_parse_.html">"parse"</a>
+						<a href="../modules/_modify_.html">"modify"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_prop_.html">"prop"</a>
+						<a href="../modules/_old_cesium_.html">"old/cesium"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_test_data_.html">"test_<wbr>data"</a>
+						<a href="../modules/_old_coords_.html">"old/coords"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_old_crs_.html">"old/crs"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_old_fcoll_.html">"old/fcoll"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_old_line_.html">"old/line"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_old_parse_.html">"old/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_old_prop_.html">"old/prop"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_old_test_data_.html">"old/test_<wbr>data"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_cesium_.cesiumcolourprop.html" class="tsd-kind-icon">Cesium<wbr>Colour<wbr>Prop</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_cesium_.cesiumextrudeprop.html" class="tsd-kind-icon">Cesium<wbr>Extrude<wbr>Prop</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="_cesium_.cesiumfeaturecollection.html" class="tsd-kind-icon">Cesium<wbr>Feature<wbr>Collection</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_io_.cesiumcolourprop.html" class="tsd-kind-icon">Cesium<wbr>Colour<wbr>Prop</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="_cesium_.cesiumfeaturecollection.html#bbox" class="tsd-kind-icon">bbox</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_io_.cesiumcolourprop.html#invert" class="tsd-kind-icon">invert</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_cesium_.cesiumfeaturecollection.html#cesium" class="tsd-kind-icon">cesium</a>
+								<a href="_io_.cesiumcolourprop.html#max" class="tsd-kind-icon">max</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="_cesium_.cesiumfeaturecollection.html#features" class="tsd-kind-icon">features</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_io_.cesiumcolourprop.html#min" class="tsd-kind-icon">min</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="_cesium_.cesiumfeaturecollection.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_io_.cesiumcolourprop.html#name" class="tsd-kind-icon">name</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_cesium_.cesiumfilter.html" class="tsd-kind-icon">Cesium<wbr>Filter</a>
+						<a href="_io_.cesiumextrudeprop.html" class="tsd-kind-icon">Cesium<wbr>Extrude<wbr>Prop</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="_io_.cesiumfeaturecollection.html" class="tsd-kind-icon">Cesium<wbr>Feature<wbr>Collection</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_io_.cesiumfilter.html" class="tsd-kind-icon">Cesium<wbr>Filter</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_cesium_.html#addcolour" class="tsd-kind-icon">add<wbr>Colour</a>
+						<a href="../modules/_io_.html#addcolour" class="tsd-kind-icon">add<wbr>Colour</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_cesium_.html#addcolourentry" class="tsd-kind-icon">add<wbr>Colour<wbr>Entry</a>
+						<a href="../modules/_io_.html#addcolourentry" class="tsd-kind-icon">add<wbr>Colour<wbr>Entry</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_cesium_.html#addextrude" class="tsd-kind-icon">add<wbr>Extrude</a>
+						<a href="../modules/_io_.html#addextrude" class="tsd-kind-icon">add<wbr>Extrude</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_cesium_.html#addextrudeentry" class="tsd-kind-icon">add<wbr>Extrude<wbr>Entry</a>
+						<a href="../modules/_io_.html#addextrudeentry" class="tsd-kind-icon">add<wbr>Extrude<wbr>Entry</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_cesium_.html#addfiltercat" class="tsd-kind-icon">add<wbr>Filter<wbr>Cat</a>
+						<a href="../modules/_io_.html#addfiltercat" class="tsd-kind-icon">add<wbr>Filter<wbr>Cat</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_cesium_.html#addfilternum" class="tsd-kind-icon">add<wbr>Filter<wbr>Num</a>
+						<a href="../modules/_io_.html#addfilternum" class="tsd-kind-icon">add<wbr>Filter<wbr>Num</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_cesium_.html#addpropdisplay" class="tsd-kind-icon">add<wbr>Prop<wbr>Display</a>
+						<a href="../modules/_io_.html#addpropdisplay" class="tsd-kind-icon">add<wbr>Prop<wbr>Display</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_io_.html#savefcoll" class="tsd-kind-icon">saveFColl</a>
 					</li>
 				</ul>
 			</nav>

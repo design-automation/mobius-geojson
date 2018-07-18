@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;parse&quot; | mobius-geojson</title>
+	<title>&quot;calc&quot; | mobius-geojson</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_parse_.html">&quot;parse&quot;</a>
+					<a href="_calc_.html">&quot;calc&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;parse&quot;</h1>
+			<h1>External module &quot;calc&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -67,8 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Functions for parsing zipped shape files.
-						<a href="https://github.com/calvinmetcalf/shapefile-js">https://github.com/calvinmetcalf/shapefile-js</a></p>
+						<p>Functions dealing with calculations done on geojson files.</p>
 					</div>
 				</div>
 			</section>
@@ -79,7 +78,7 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_parse_.html#shp" class="tsd-kind-icon">shp</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_calc_.html#anglesinternal" class="tsd-kind-icon">angles<wbr>Internal</a></li>
 							</ul>
 						</section>
 					</div>
@@ -88,35 +87,40 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="shp" class="tsd-anchor"></a>
-					<h3>shp</h3>
+					<a name="anglesinternal" class="tsd-anchor"></a>
+					<h3>angles<wbr>Internal</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">shp<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">angles<wbr>Internal<span class="tsd-signature-symbol">(</span>feature<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">LineString</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Polygon</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/ff5581c/src/typescript/parse.ts#L19">parse.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/calc.ts#L19">calc.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Parse a shapefile
-									<a href="https://github.com/calvinmetcalf/shapefile-js">https://github.com/calvinmetcalf/shapefile-js</a></p>
+									<p>Calculates all internal angles within a feature</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><p>var feat = feature.features[0];
+										var angle = anglesInternal(feat);</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>data: <span class="tsd-signature-type">any</span></h5>
+									<h5>feature: <span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">LineString</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Polygon</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Shapfile data.</p>
+										<p>Accepts Line or Polygon</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-							<p>Parsed data.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>An array of internal angles in degrees</p>
 						</li>
 					</ul>
 				</section>
@@ -131,33 +135,51 @@
 					<li class=" tsd-kind-external-module">
 						<a href="__export_.html">"_<wbr>export"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_cesium_.html">"cesium"</a>
+					<li class="current tsd-kind-external-module">
+						<a href="_calc_.html">"calc"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_crs_.html">"crs"</a>
+						<a href="_create_.html">"create"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_fcoll_.html">"fcoll"</a>
+						<a href="_io_.html">"io"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_libs_filesys_file_.html">"libs/filesys/file"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="_parse_.html">"parse"</a>
+					<li class=" tsd-kind-external-module">
+						<a href="_modify_.html">"modify"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_prop_.html">"prop"</a>
+						<a href="_old_cesium_.html">"old/cesium"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_test_data_.html">"test_<wbr>data"</a>
+						<a href="_old_coords_.html">"old/coords"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_crs_.html">"old/crs"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_fcoll_.html">"old/fcoll"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_line_.html">"old/line"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_parse_.html">"old/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_prop_.html">"old/prop"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_test_data_.html">"old/test_<wbr>data"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_parse_.html#shp" class="tsd-kind-icon">shp</a>
+						<a href="_calc_.html#anglesinternal" class="tsd-kind-icon">angles<wbr>Internal</a>
 					</li>
 				</ul>
 			</nav>

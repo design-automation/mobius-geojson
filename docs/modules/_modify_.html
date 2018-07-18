@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;test_data&quot; | mobius-geojson</title>
+	<title>&quot;modify&quot; | mobius-geojson</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,16 +54,23 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_test_data_.html">&quot;test_data&quot;</a>
+					<a href="_modify_.html">&quot;modify&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;test_data&quot;</h1>
+			<h1>External module &quot;modify&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Functions working with coordinates in geojson files.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -71,8 +78,7 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_test_data_.html#testdata1" class="tsd-kind-icon">test<wbr>Data1</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_test_data_.html#testdatachina" class="tsd-kind-icon">test<wbr>Data<wbr>China</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_modify_.html#featuresremprop" class="tsd-kind-icon">features<wbr>Rem<wbr>Prop</a></li>
 							</ul>
 						</section>
 					</div>
@@ -81,36 +87,36 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="testdata1" class="tsd-anchor"></a>
-					<h3>test<wbr>Data1</h3>
+					<a name="featuresremprop" class="tsd-anchor"></a>
+					<h3>features<wbr>Rem<wbr>Prop</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">test<wbr>Data1<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FeatureCollection</span></li>
+						<li class="tsd-signature tsd-kind-icon">features<wbr>Rem<wbr>Prop<span class="tsd-signature-symbol">(</span>fColl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FeatureCollection</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/ff5581c/src/typescript/test_data.ts#L6">test_data.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/modify.ts#L16">modify.ts:16</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">FeatureCollection</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="testdatachina" class="tsd-anchor"></a>
-					<h3>test<wbr>Data<wbr>China</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">test<wbr>Data<wbr>China<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FeatureCollection</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/ff5581c/src/typescript/test_data.ts#L79">test_data.ts:79</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">FeatureCollection</span></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes Property from all Features within a FeatureCollectiom</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fColl: <span class="tsd-signature-type">FeatureCollection</span></h5>
+								</li>
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Name of property to remove</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -126,35 +132,50 @@
 						<a href="__export_.html">"_<wbr>export"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_cesium_.html">"cesium"</a>
+						<a href="_calc_.html">"calc"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_crs_.html">"crs"</a>
+						<a href="_create_.html">"create"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_fcoll_.html">"fcoll"</a>
+						<a href="_io_.html">"io"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_libs_filesys_file_.html">"libs/filesys/file"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_parse_.html">"parse"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_prop_.html">"prop"</a>
-					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_test_data_.html">"test_<wbr>data"</a>
+						<a href="_modify_.html">"modify"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_cesium_.html">"old/cesium"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_coords_.html">"old/coords"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_crs_.html">"old/crs"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_fcoll_.html">"old/fcoll"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_line_.html">"old/line"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_parse_.html">"old/parse"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_prop_.html">"old/prop"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_old_test_data_.html">"old/test_<wbr>data"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_test_data_.html#testdata1" class="tsd-kind-icon">test<wbr>Data1</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_test_data_.html#testdatachina" class="tsd-kind-icon">test<wbr>Data<wbr>China</a>
+						<a href="_modify_.html#featuresremprop" class="tsd-kind-icon">features<wbr>Rem<wbr>Prop</a>
 					</li>
 				</ul>
 			</nav>
