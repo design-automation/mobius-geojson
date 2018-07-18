@@ -14,8 +14,7 @@ import * as turf from "@turf/turf";
 
 /**
  * Merge features into a single FeatureCollection
- * @param features1 Accepts Single Eeature or FeatureCollection
- * @param features2 Accepts Single Feature or FeatureCollection
+ * @param features Accepts single Feature or an array of Features or FeatureCollections
  * @returns Merged FeatureCollection
  * @example
  * var firstPlot = turf.flatten(firstFile.file);// fcoll input
@@ -23,12 +22,14 @@ import * as turf from "@turf/turf";
  * var secondPlot = turf.flatten(secondFile.file);// fcoll input
  * var secondFeat = secondPlot.features[0];// single feature input
  *
- * var mergedFiles = featuresByMerge(firstPlot,secondFeat);
+ * var mergedFiles = fColl([firstPlot,secondFeat]);
  */
-export function featuresByMerge(features1: turf.Feature|turf.FeatureCollection,
-                                features2: turf.Feature|turf.FeatureCollection): turf.FeatureCollection {
+export function fColl(features: Array<turf.Feature|turf.FeatureCollection>|turf.Feature): turf.FeatureCollection {
+    if (!Array.isArray(features)) {
+        features = [features];
+    }
     let arr: turf.Feature[] = [];
-    [features1,features2].forEach((inpt) => {
+    features.forEach((inpt) => {
         if (inpt.type === "FeatureCollection") {
             inpt = inpt as turf.FeatureCollection;
             arr = arr.concat(inpt.features);
@@ -101,6 +102,7 @@ export function polygonByOriginCoords(origin: number[], array1: number[][], arra
         outArr.push(findNewCoord(origin,c));
     });
     coordArr.push(outArr);
+    if (!array2) {array2 = [];}
     array2.forEach((hole) => {
         const holeCoordArr = [];
         hole.forEach((c) => {
