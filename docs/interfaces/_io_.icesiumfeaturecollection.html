@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ReflexAngle | mobius-geojson</title>
+	<title>ICesiumFeatureCollection | mobius-geojson</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,24 +54,40 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_create_.html">&quot;create&quot;</a>
+					<a href="../modules/_io_.html">&quot;io&quot;</a>
 				</li>
 				<li>
-					<a href="_create_.reflexangle.html">ReflexAngle</a>
+					<a href="_io_.icesiumfeaturecollection.html">ICesiumFeatureCollection</a>
 				</li>
 			</ul>
-			<h1>Interface ReflexAngle</h1>
+			<h1>Interface ICesiumFeatureCollection&lt;G, P&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>G</h4>
+					</li>
+					<li>
+						<h4>P</h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ReflexAngle</span>
+						<span class="tsd-signature-type">FeatureCollection</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ICesiumFeatureCollection</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -82,9 +98,10 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_create_.reflexangle.html#coordindex" class="tsd-kind-icon">coord<wbr>Index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_create_.reflexangle.html#firstvec" class="tsd-kind-icon">first<wbr>Vec</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_create_.reflexangle.html#secvec" class="tsd-kind-icon">sec<wbr>Vec</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_io_.icesiumfeaturecollection.html#bbox" class="tsd-kind-icon">bbox</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_io_.icesiumfeaturecollection.html#cesium" class="tsd-kind-icon">cesium</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_io_.icesiumfeaturecollection.html#features" class="tsd-kind-icon">features</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="_io_.icesiumfeaturecollection.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,35 +109,92 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+					<a name="bbox" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> bbox</h3>
+					<div class="tsd-signature tsd-kind-icon">bbox<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BBox</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from GeoJSONObject.bbox</p>
+						<ul>
+							<li>Defined in D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts:107</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Bounding box of the coordinate range of the object&#39;s Geometries, Features, or Feature Collections.
+							<a href="https://tools.ietf.org/html/rfc7946#section-5">https://tools.ietf.org/html/rfc7946#section-5</a></p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="coordindex" class="tsd-anchor"></a>
-					<h3>coord<wbr>Index</h3>
-					<div class="tsd-signature tsd-kind-icon">coord<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="cesium" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> cesium</h3>
+					<div class="tsd-signature tsd-kind-icon">cesium<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/create.ts#L608">create.ts:608</a></li>
+							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/143fde2/src/typescript/io.ts#L53">io.ts:53</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> colour<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>attribs<span class="tsd-signature-symbol">: </span><a href="_io_.icesiumcolourprop.html" class="tsd-signature-type">ICesiumColourProp</a><span class="tsd-signature-symbol">[]</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>descr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> extrude<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>attribs<span class="tsd-signature-symbol">: </span><a href="_io_.icesiumextrudeprop.html" class="tsd-signature-type">ICesiumExtrudeProp</a><span class="tsd-signature-symbol">[]</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>descr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> filters<span class="tsd-signature-symbol">?: </span><a href="_io_.icesiumfilter.html" class="tsd-signature-type">ICesiumFilter</a><span class="tsd-signature-symbol">[]</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> select<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+					<a name="features" class="tsd-anchor"></a>
+					<h3>features</h3>
+					<div class="tsd-signature tsd-kind-icon">features<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Feature</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">G</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from FeatureCollection.features</p>
+						<ul>
+							<li>Defined in D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts:237</li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="firstvec" class="tsd-anchor"></a>
-					<h3>first<wbr>Vec</h3>
-					<div class="tsd-signature tsd-kind-icon">first<wbr>Vec<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from GeoJSONObject.type</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/create.ts#L609">create.ts:609</a></li>
+							<li>Defined in D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts:102</li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="secvec" class="tsd-anchor"></a>
-					<h3>sec<wbr>Vec</h3>
-					<div class="tsd-signature tsd-kind-icon">sec<wbr>Vec<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/create.ts#L610">create.ts:610</a></li>
-						</ul>
-					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Specifies the type of GeoJSON object.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -136,10 +210,10 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_calc_.html">"calc"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_create_.html">"create"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_io_.html">"io"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -176,24 +250,60 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_io_.icesiumcolourprop.html" class="tsd-kind-icon">ICesium<wbr>Colour<wbr>Prop</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_io_.icesiumextrudeprop.html" class="tsd-kind-icon">ICesium<wbr>Extrude<wbr>Prop</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_create_.reflexangle.html" class="tsd-kind-icon">Reflex<wbr>Angle</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="_io_.icesiumfeaturecollection.html" class="tsd-kind-icon">ICesium<wbr>Feature<wbr>Collection</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_create_.reflexangle.html#coordindex" class="tsd-kind-icon">coord<wbr>Index</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="_io_.icesiumfeaturecollection.html#bbox" class="tsd-kind-icon">bbox</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_create_.reflexangle.html#firstvec" class="tsd-kind-icon">first<wbr>Vec</a>
+								<a href="_io_.icesiumfeaturecollection.html#cesium" class="tsd-kind-icon">cesium</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_create_.reflexangle.html#secvec" class="tsd-kind-icon">sec<wbr>Vec</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="_io_.icesiumfeaturecollection.html#features" class="tsd-kind-icon">features</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="_io_.icesiumfeaturecollection.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_io_.icesiumfilter.html" class="tsd-kind-icon">ICesium<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_io_.html#addcolour" class="tsd-kind-icon">add<wbr>Colour</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_io_.html#addcolourentry" class="tsd-kind-icon">add<wbr>Colour<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_io_.html#addextrude" class="tsd-kind-icon">add<wbr>Extrude</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_io_.html#addextrudeentry" class="tsd-kind-icon">add<wbr>Extrude<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_io_.html#addfiltercat" class="tsd-kind-icon">add<wbr>Filter<wbr>Cat</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_io_.html#addfilternum" class="tsd-kind-icon">add<wbr>Filter<wbr>Num</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_io_.html#addpropdisplay" class="tsd-kind-icon">add<wbr>Prop<wbr>Display</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="../modules/_io_.html#savefcoll" class="tsd-kind-icon">saveFColl</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

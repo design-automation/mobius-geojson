@@ -12,7 +12,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/_export.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/_export.ts",
 			"sources": [
 				{
 					"fileName": "_export.ts",
@@ -29,7 +29,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/calc.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/calc.ts",
 			"comment": {
 				"shortText": "Functions dealing with calculations done on geojson files."
 			},
@@ -133,14 +133,14 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/create.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/create.ts",
 			"comment": {
 				"shortText": "Functions working with geojson."
 			},
 			"children": [
 				{
 					"id": 10,
-					"name": "LongestLine",
+					"name": "ILongestLine",
 					"kind": 256,
 					"kindString": "Interface",
 					"flags": {},
@@ -154,7 +154,7 @@
 							"sources": [
 								{
 									"fileName": "create.ts",
-									"line": 789,
+									"line": 822,
 									"character": 10
 								}
 							],
@@ -175,7 +175,7 @@
 							"sources": [
 								{
 									"fileName": "create.ts",
-									"line": 788,
+									"line": 821,
 									"character": 14
 								}
 							],
@@ -193,7 +193,7 @@
 							"sources": [
 								{
 									"fileName": "create.ts",
-									"line": 787,
+									"line": 820,
 									"character": 14
 								}
 							],
@@ -217,14 +217,14 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 786,
-							"character": 21
+							"line": 819,
+							"character": 22
 						}
 					]
 				},
 				{
 					"id": 6,
-					"name": "ReflexAngle",
+					"name": "IReflexAngle",
 					"kind": 256,
 					"kindString": "Interface",
 					"flags": {},
@@ -238,7 +238,7 @@
 							"sources": [
 								{
 									"fileName": "create.ts",
-									"line": 608,
+									"line": 626,
 									"character": 14
 								}
 							],
@@ -256,7 +256,7 @@
 							"sources": [
 								{
 									"fileName": "create.ts",
-									"line": 609,
+									"line": 627,
 									"character": 12
 								}
 							],
@@ -283,7 +283,7 @@
 							"sources": [
 								{
 									"fileName": "create.ts",
-									"line": 610,
+									"line": 628,
 									"character": 10
 								}
 							],
@@ -316,8 +316,8 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 607,
-							"character": 21
+							"line": 625,
+							"character": 22
 						}
 					]
 				},
@@ -431,7 +431,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 539,
+							"line": 557,
 							"character": 17
 						}
 					]
@@ -485,7 +485,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 827,
+							"line": 859,
 							"character": 16
 						}
 					]
@@ -571,7 +571,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 720,
+							"line": 746,
 							"character": 26
 						}
 					]
@@ -714,7 +714,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 520,
+							"line": 538,
 							"character": 23
 						}
 					]
@@ -858,7 +858,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 587,
+							"line": 605,
 							"character": 26
 						}
 					]
@@ -896,22 +896,19 @@
 								}
 							],
 							"type": {
-								"type": "reference",
-								"name": "Array",
-								"typeArguments": [
-									{
-										"type": "reference",
-										"name": "ReflexAngle",
-										"id": 6
-									}
-								]
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "IReflexAngle",
+									"id": 6
+								}
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 613,
+							"line": 631,
 							"character": 24
 						}
 					]
@@ -968,7 +965,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 563,
+							"line": 581,
 							"character": 24
 						}
 					]
@@ -1025,7 +1022,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 570,
+							"line": 588,
 							"character": 23
 						}
 					]
@@ -1051,23 +1048,26 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
-										"type": "array",
-										"elementType": {
-											"type": "reference",
-											"name": "Feature",
-											"typeArguments": [
-												{
-													"type": "reference",
-													"name": "LineString"
-												}
-											]
-										}
+										"type": "reference",
+										"name": "Array",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Feature",
+												"typeArguments": [
+													{
+														"type": "reference",
+														"name": "LineString"
+													}
+												]
+											}
+										]
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
-								"name": "LongestLine",
+								"name": "ILongestLine",
 								"id": 10
 							}
 						}
@@ -1075,7 +1075,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 792,
+							"line": 825,
 							"character": 24
 						}
 					]
@@ -1118,7 +1118,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 579,
+							"line": 597,
 							"character": 22
 						}
 					]
@@ -1190,7 +1190,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 813,
+							"line": 846,
 							"character": 21
 						}
 					]
@@ -1233,7 +1233,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 547,
+							"line": 565,
 							"character": 21
 						}
 					]
@@ -1276,7 +1276,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 526,
+							"line": 544,
 							"character": 20
 						}
 					]
@@ -1333,7 +1333,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 599,
+							"line": 617,
 							"character": 19
 						}
 					]
@@ -1410,7 +1410,8 @@
 									"type": {
 										"type": "intrinsic",
 										"name": "boolean"
-									}
+									},
+									"defaultValue": "false"
 								}
 							],
 							"type": {
@@ -1951,7 +1952,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 591,
+							"line": 609,
 							"character": 18
 						}
 					]
@@ -2058,7 +2059,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nvar poly = polygonByCoords([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);\nvar extendedPoly = polygonByExtend(poly, 1, 500, false);\n"
+										"text": "\nvar poly = polygonByCoords(\n   [[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]\n);\nvar extendedPoly = polygonByExtend(poly, 1, 500, false);\n"
 									}
 								]
 							},
@@ -2549,7 +2550,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 328,
+							"line": 327,
 							"character": 30
 						}
 					]
@@ -2575,7 +2576,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nvar poly = polygonByCoords([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.513642,35.463765],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);\nvar polygonsByReflexSplit(poly);\n"
+										"text": "\nvar poly = polygonByCoords(\n[[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.513642,35.463765],[-97.508269, 35.463245],\n[-97.522259, 35.4691]]]\n);\nvar polygonsByReflexSplit(poly);\n"
 									}
 								]
 							},
@@ -2616,7 +2617,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 461,
+							"line": 472,
 							"character": 37
 						}
 					]
@@ -2642,7 +2643,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nvar poly = polygonByCoords([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);\nvar point1 = pointByCoords([-97.513675,35.4635]);\nvar point2 = pointByCoords([-97.525674, 35.4534]);\nvar pointColl = turf.featureCollection([point1,point2]);\nvar voronoiPoly = polygonsByVoronoi(pointColl,poly);\n"
+										"text": "\nvar poly = polygonByCoords(\n[[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]\n);\nvar point1 = pointByCoords([-97.513675,35.4635]);\nvar point2 = pointByCoords([-97.525674, 35.4534]);\nvar pointColl = turf.featureCollection([point1,point2]);\nvar voronoiPoly = polygonsByVoronoi(pointColl,poly);\n"
 									}
 								]
 							},
@@ -2703,7 +2704,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 404,
+							"line": 408,
 							"character": 33
 						}
 					]
@@ -2744,24 +2745,27 @@
 								}
 							],
 							"type": {
-								"type": "array",
-								"elementType": {
-									"type": "reference",
-									"name": "Feature",
-									"typeArguments": [
-										{
-											"type": "reference",
-											"name": "Polygon"
-										}
-									]
-								}
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "reference",
+										"name": "Feature",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Polygon"
+											}
+										]
+									}
+								]
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 734,
+							"line": 760,
 							"character": 28
 						}
 					]
@@ -2787,17 +2791,20 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
-										"type": "array",
-										"elementType": {
-											"type": "reference",
-											"name": "Feature",
-											"typeArguments": [
-												{
-													"type": "reference",
-													"name": "LineString"
-												}
-											]
-										}
+										"type": "reference",
+										"name": "Array",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Feature",
+												"typeArguments": [
+													{
+														"type": "reference",
+														"name": "LineString"
+													}
+												]
+											}
+										]
 									}
 								},
 								{
@@ -2844,7 +2851,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 651,
+							"line": 670,
 							"character": 24
 						}
 					]
@@ -2870,17 +2877,20 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
-										"type": "array",
-										"elementType": {
-											"type": "reference",
-											"name": "Feature",
-											"typeArguments": [
-												{
-													"type": "reference",
-													"name": "LineString"
-												}
-											]
-										}
+										"type": "reference",
+										"name": "Array",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Feature",
+												"typeArguments": [
+													{
+														"type": "reference",
+														"name": "LineString"
+													}
+												]
+											}
+										]
 									}
 								},
 								{
@@ -2910,7 +2920,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 745,
+							"line": 771,
 							"character": 27
 						}
 					]
@@ -2936,7 +2946,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nvar poly = polygonByCoords([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.513642,35.463765],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);\nvar quadByNumberSplit(poly, 4, false);\n"
+										"text": "\nvar poly = polygonByCoords(\n[[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.513642,35.463765],[-97.508269, 35.463245],\n[-97.522259, 35.4691]]]\n);\nvar quadByNumberSplit(poly, 4, false);\n"
 									}
 								]
 							},
@@ -2982,7 +2992,7 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"comment": {
-										"text": "Throws an error if set to false and quad has a reflex point. Reflex quad will be split into three, regardless of number if set to True."
+										"text": "Throws an error if set to false and quad has a reflex point.\nReflex quad will be split into three, regardless of number if set to True."
 									},
 									"type": {
 										"type": "intrinsic",
@@ -3006,7 +3016,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 500,
+							"line": 515,
 							"character": 34
 						}
 					]
@@ -3032,7 +3042,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nvar poly = turf.polygon([[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]);\nvar quadsByRadialSplit(poly);\n"
+										"text": "\nvar poly = turf.polygon(\n[[[-97.522259, 35.4691],[-97.502754, 35.463455],[-97.508269, 35.463245],[-97.522259, 35.4691]]]\n);\nvar quadsByRadialSplit(poly);\n"
 									}
 								]
 							},
@@ -3073,7 +3083,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 432,
+							"line": 440,
 							"character": 34
 						}
 					]
@@ -3141,7 +3151,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 703,
+							"line": 729,
 							"character": 25
 						}
 					]
@@ -3206,7 +3216,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 778,
+							"line": 811,
 							"character": 29
 						}
 					]
@@ -3249,15 +3259,12 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
-										"type": "reference",
-										"name": "Array",
-										"typeArguments": [
-											{
-												"type": "reference",
-												"name": "ReflexAngle",
-												"id": 6
-											}
-										]
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "IReflexAngle",
+											"id": 6
+										}
 									}
 								}
 							],
@@ -3276,7 +3283,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 641,
+							"line": 659,
 							"character": 27
 						}
 					]
@@ -3302,17 +3309,20 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
-										"type": "array",
-										"elementType": {
-											"type": "reference",
-											"name": "Feature",
-											"typeArguments": [
-												{
-													"type": "reference",
-													"name": "LineString"
-												}
-											]
-										}
+										"type": "reference",
+										"name": "Array",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Feature",
+												"typeArguments": [
+													{
+														"type": "reference",
+														"name": "LineString"
+													}
+												]
+											}
+										]
 									}
 								},
 								{
@@ -3339,15 +3349,12 @@
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
-										"type": "reference",
-										"name": "Array",
-										"typeArguments": [
-											{
-												"type": "reference",
-												"name": "ReflexAngle",
-												"id": 6
-											}
-										]
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "IReflexAngle",
+											"id": 6
+										}
 									}
 								}
 							],
@@ -3366,7 +3373,7 @@
 					"sources": [
 						{
 							"fileName": "create.ts",
-							"line": 666,
+							"line": 689,
 							"character": 22
 						}
 					]
@@ -3445,14 +3452,14 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/io.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/io.ts",
 			"comment": {
 				"shortText": "Turf HELPER functions.\nhttp://turfjs.org/docs/"
 			},
 			"children": [
 				{
 					"id": 203,
-					"name": "CesiumColourProp",
+					"name": "ICesiumColourProp",
 					"kind": 256,
 					"kindString": "Interface",
 					"flags": {},
@@ -3546,13 +3553,13 @@
 						{
 							"fileName": "io.ts",
 							"line": 38,
-							"character": 26
+							"character": 27
 						}
 					]
 				},
 				{
 					"id": 196,
-					"name": "CesiumExtrudeProp",
+					"name": "ICesiumExtrudeProp",
 					"kind": 256,
 					"kindString": "Interface",
 					"flags": {},
@@ -3684,13 +3691,13 @@
 						{
 							"fileName": "io.ts",
 							"line": 29,
-							"character": 27
+							"character": 28
 						}
 					]
 				},
 				{
 					"id": 213,
-					"name": "CesiumFeatureCollection",
+					"name": "ICesiumFeatureCollection",
 					"kind": 256,
 					"kindString": "Interface",
 					"flags": {},
@@ -3724,7 +3731,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 107,
 									"character": 8
 								}
@@ -3749,7 +3756,7 @@
 							"sources": [
 								{
 									"fileName": "io.ts",
-									"line": 54,
+									"line": 53,
 									"character": 10
 								}
 							],
@@ -3773,7 +3780,7 @@
 											"sources": [
 												{
 													"fileName": "io.ts",
-													"line": 60,
+													"line": 59,
 													"character": 14
 												}
 											],
@@ -3795,20 +3802,17 @@
 															"sources": [
 																{
 																	"fileName": "io.ts",
-																	"line": 62,
+																	"line": 61,
 																	"character": 19
 																}
 															],
 															"type": {
-																"type": "reference",
-																"name": "Array",
-																"typeArguments": [
-																	{
-																		"type": "reference",
-																		"name": "CesiumColourProp",
-																		"id": 203
-																	}
-																]
+																"type": "array",
+																"elementType": {
+																	"type": "reference",
+																	"name": "ICesiumColourProp",
+																	"id": 203
+																}
 															}
 														},
 														{
@@ -3820,7 +3824,7 @@
 															"sources": [
 																{
 																	"fileName": "io.ts",
-																	"line": 61,
+																	"line": 60,
 																	"character": 17
 																}
 															],
@@ -3843,7 +3847,7 @@
 													"sources": [
 														{
 															"fileName": "io.ts",
-															"line": 60,
+															"line": 59,
 															"character": 16
 														}
 													]
@@ -3861,7 +3865,7 @@
 											"sources": [
 												{
 													"fileName": "io.ts",
-													"line": 56,
+													"line": 55,
 													"character": 15
 												}
 											],
@@ -3883,20 +3887,17 @@
 															"sources": [
 																{
 																	"fileName": "io.ts",
-																	"line": 58,
+																	"line": 57,
 																	"character": 19
 																}
 															],
 															"type": {
-																"type": "reference",
-																"name": "Array",
-																"typeArguments": [
-																	{
-																		"type": "reference",
-																		"name": "CesiumExtrudeProp",
-																		"id": 196
-																	}
-																]
+																"type": "array",
+																"elementType": {
+																	"type": "reference",
+																	"name": "ICesiumExtrudeProp",
+																	"id": 196
+																}
 															}
 														},
 														{
@@ -3908,7 +3909,7 @@
 															"sources": [
 																{
 																	"fileName": "io.ts",
-																	"line": 57,
+																	"line": 56,
 																	"character": 17
 																}
 															],
@@ -3931,7 +3932,7 @@
 													"sources": [
 														{
 															"fileName": "io.ts",
-															"line": 56,
+															"line": 55,
 															"character": 17
 														}
 													]
@@ -3949,20 +3950,17 @@
 											"sources": [
 												{
 													"fileName": "io.ts",
-													"line": 64,
+													"line": 63,
 													"character": 15
 												}
 											],
 											"type": {
-												"type": "reference",
-												"name": "Array",
-												"typeArguments": [
-													{
-														"type": "reference",
-														"name": "CesiumFilter",
-														"id": 208
-													}
-												]
+												"type": "array",
+												"elementType": {
+													"type": "reference",
+													"name": "ICesiumFilter",
+													"id": 208
+												}
 											}
 										},
 										{
@@ -3976,19 +3974,16 @@
 											"sources": [
 												{
 													"fileName": "io.ts",
-													"line": 55,
+													"line": 54,
 													"character": 14
 												}
 											],
 											"type": {
-												"type": "reference",
-												"name": "Array",
-												"typeArguments": [
-													{
-														"type": "intrinsic",
-														"name": "string"
-													}
-												]
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "string"
+												}
 											}
 										}
 									],
@@ -4007,7 +4002,7 @@
 									"sources": [
 										{
 											"fileName": "io.ts",
-											"line": 54,
+											"line": 53,
 											"character": 12
 										}
 									]
@@ -4022,7 +4017,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 237,
 									"character": 12
 								}
@@ -4063,7 +4058,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 102,
 									"character": 8
 								}
@@ -4093,8 +4088,8 @@
 					"sources": [
 						{
 							"fileName": "io.ts",
-							"line": 53,
-							"character": 33
+							"line": 52,
+							"character": 34
 						}
 					],
 					"extendedTypes": [
@@ -4106,7 +4101,7 @@
 				},
 				{
 					"id": 208,
-					"name": "CesiumFilter",
+					"name": "ICesiumFilter",
 					"kind": 256,
 					"kindString": "Interface",
 					"flags": {},
@@ -4120,7 +4115,7 @@
 							"sources": [
 								{
 									"fileName": "io.ts",
-									"line": 47,
+									"line": 46,
 									"character": 9
 								}
 							],
@@ -4138,7 +4133,7 @@
 							"sources": [
 								{
 									"fileName": "io.ts",
-									"line": 48,
+									"line": 47,
 									"character": 8
 								}
 							],
@@ -4156,7 +4151,7 @@
 							"sources": [
 								{
 									"fileName": "io.ts",
-									"line": 49,
+									"line": 48,
 									"character": 12
 								}
 							],
@@ -4174,7 +4169,7 @@
 							"sources": [
 								{
 									"fileName": "io.ts",
-									"line": 50,
+									"line": 49,
 									"character": 9
 								}
 							],
@@ -4208,8 +4203,8 @@
 					"sources": [
 						{
 							"fileName": "io.ts",
-							"line": 46,
-							"character": 22
+							"line": 45,
+							"character": 23
 						}
 					]
 				},
@@ -4244,7 +4239,7 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "CesiumFeatureCollection",
+										"name": "ICesiumFeatureCollection",
 										"id": 213
 									}
 								},
@@ -4265,7 +4260,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "CesiumFeatureCollection",
+								"name": "ICesiumFeatureCollection",
 								"id": 213
 							}
 						}
@@ -4273,7 +4268,7 @@
 					"sources": [
 						{
 							"fileName": "io.ts",
-							"line": 133,
+							"line": 132,
 							"character": 25
 						}
 					]
@@ -4309,7 +4304,7 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "CesiumFeatureCollection",
+										"name": "ICesiumFeatureCollection",
 										"id": 213
 									}
 								},
@@ -4372,7 +4367,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "CesiumFeatureCollection",
+								"name": "ICesiumFeatureCollection",
 								"id": 213
 							}
 						}
@@ -4380,7 +4375,7 @@
 					"sources": [
 						{
 							"fileName": "io.ts",
-							"line": 151,
+							"line": 150,
 							"character": 30
 						}
 					]
@@ -4416,7 +4411,7 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "CesiumFeatureCollection",
+										"name": "ICesiumFeatureCollection",
 										"id": 213
 									}
 								},
@@ -4437,7 +4432,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "CesiumFeatureCollection",
+								"name": "ICesiumFeatureCollection",
 								"id": 213
 							}
 						}
@@ -4445,7 +4440,7 @@
 					"sources": [
 						{
 							"fileName": "io.ts",
-							"line": 92,
+							"line": 91,
 							"character": 26
 						}
 					]
@@ -4481,7 +4476,7 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "CesiumFeatureCollection",
+										"name": "ICesiumFeatureCollection",
 										"id": 213
 									}
 								},
@@ -4572,7 +4567,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "CesiumFeatureCollection",
+								"name": "ICesiumFeatureCollection",
 								"id": 213
 							}
 						}
@@ -4580,7 +4575,7 @@
 					"sources": [
 						{
 							"fileName": "io.ts",
-							"line": 112,
+							"line": 111,
 							"character": 31
 						}
 					]
@@ -4616,7 +4611,7 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "CesiumFeatureCollection",
+										"name": "ICesiumFeatureCollection",
 										"id": 213
 									}
 								},
@@ -4676,7 +4671,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "CesiumFeatureCollection",
+								"name": "ICesiumFeatureCollection",
 								"id": 213
 							}
 						}
@@ -4684,7 +4679,7 @@
 					"sources": [
 						{
 							"fileName": "io.ts",
-							"line": 173,
+							"line": 172,
 							"character": 28
 						}
 					]
@@ -4720,7 +4715,7 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "CesiumFeatureCollection",
+										"name": "ICesiumFeatureCollection",
 										"id": 213
 									}
 								},
@@ -4780,7 +4775,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "CesiumFeatureCollection",
+								"name": "ICesiumFeatureCollection",
 								"id": 213
 							}
 						}
@@ -4788,7 +4783,7 @@
 					"sources": [
 						{
 							"fileName": "io.ts",
-							"line": 196,
+							"line": 195,
 							"character": 28
 						}
 					]
@@ -4824,7 +4819,7 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "CesiumFeatureCollection",
+										"name": "ICesiumFeatureCollection",
 										"id": 213
 									}
 								},
@@ -4845,7 +4840,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "CesiumFeatureCollection",
+								"name": "ICesiumFeatureCollection",
 								"id": 213
 							}
 						}
@@ -4853,7 +4848,7 @@
 					"sources": [
 						{
 							"fileName": "io.ts",
-							"line": 74,
+							"line": 73,
 							"character": 30
 						}
 					]
@@ -4884,6 +4879,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "The collection to save."
+									},
 									"type": {
 										"type": "reference",
 										"name": "FeatureCollection"
@@ -4961,7 +4959,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/libs/filesys/file.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/libs/filesys/file.ts",
 			"children": [
 				{
 					"id": 191,
@@ -5096,7 +5094,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/modify.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/modify.ts",
 			"comment": {
 				"shortText": "Functions working with coordinates in geojson files."
 			},
@@ -5156,7 +5154,7 @@
 						{
 							"fileName": "modify.ts",
 							"line": 16,
-							"character": 32
+							"character": 31
 						}
 					]
 				}
@@ -5186,7 +5184,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/cesium.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/cesium.ts",
 			"children": [
 				{
 					"id": 290,
@@ -5462,7 +5460,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 107,
 									"character": 8
 								}
@@ -5760,7 +5758,7 @@
 							"flags": {},
 							"sources": [
 								{
-									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 237,
 									"character": 12
 								}
@@ -5801,7 +5799,7 @@
 							},
 							"sources": [
 								{
-									"fileName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
+									"fileName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/node_modules/@turf/helpers/lib/geojson.d.ts",
 									"line": 102,
 									"character": 8
 								}
@@ -6638,7 +6636,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/coords.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/coords.ts",
 			"comment": {
 				"shortText": "Functions working with coordinates in geojson files."
 			},
@@ -6738,7 +6736,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/crs.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/crs.ts",
 			"children": [
 				{
 					"id": 378,
@@ -7310,7 +7308,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/fcoll.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/fcoll.ts",
 			"comment": {
 				"shortText": "Functions for working with geojson feature collections."
 			},
@@ -8078,7 +8076,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/line.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/line.ts",
 			"comment": {
 				"shortText": "Functions working with line features."
 			},
@@ -8611,7 +8609,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/parse.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/parse.ts",
 			"comment": {
 				"shortText": "Functions for parsing zipped shape files.\nhttps://github.com/calvinmetcalf/shapefile-js"
 			},
@@ -8691,7 +8689,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/prop.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/prop.ts",
 			"comment": {
 				"shortText": "Functions for working with Feature properties."
 			},
@@ -9182,7 +9180,7 @@
 			"flags": {
 				"isExported": true
 			},
-			"originalName": "D:/Dropbox/Files/Software/GitHub/design-automation/mobius-geojson/src/typescript/old/test_data.ts",
+			"originalName": "D:/StudentResearch/Mobius/mobius_functions/mobius-geojson/src/typescript/old/test_data.ts",
 			"children": [
 				{
 					"id": 496,

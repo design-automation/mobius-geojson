@@ -23,14 +23,14 @@ export function anglesInternal(feature: turf.Feature<turf.LineString|turf.Polygo
     let coordArr: any = feature.geometry.coordinates;
     while (coordArr.length === 1) {coordArr = coordArr[0];}
 
-    let bearingArr: number[];
+    const bearingArr: number[] = [];
     for(let i = 0; i <= coordArr.length - 2 ; i++) {
         let bearing: number = turf.bearing(coordArr[i], coordArr[i+1]);
         bearing = turf.bearingToAzimuth(bearing);
         bearingArr.push(bearing);
     }
 
-    let angleArr: number[];
+    const angleArr: number[] = [];
     for(let i = 0; i <= bearingArr.length - 1; i++) {
         let b2: number = i + 1;
         if (b2 === bearingArr.length && lnChk === false) {b2 = 0;}

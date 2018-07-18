@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CesiumFilter | mobius-geojson</title>
+	<title>IReflexAngle | mobius-geojson</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_io_.html">&quot;io&quot;</a>
+					<a href="../modules/_create_.html">&quot;create&quot;</a>
 				</li>
 				<li>
-					<a href="_io_.cesiumfilter.html">CesiumFilter</a>
+					<a href="_create_.ireflexangle.html">IReflexAngle</a>
 				</li>
 			</ul>
-			<h1>Interface CesiumFilter</h1>
+			<h1>Interface IReflexAngle</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CesiumFilter</span>
+						<span class="target">IReflexAngle</span>
 					</li>
 				</ul>
 			</section>
@@ -82,10 +82,9 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_io_.cesiumfilter.html#descr" class="tsd-kind-icon">descr</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_io_.cesiumfilter.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_io_.cesiumfilter.html#relation" class="tsd-kind-icon">relation</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_io_.cesiumfilter.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_create_.ireflexangle.html#coordindex" class="tsd-kind-icon">coord<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_create_.ireflexangle.html#firstvec" class="tsd-kind-icon">first<wbr>Vec</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_create_.ireflexangle.html#secvec" class="tsd-kind-icon">sec<wbr>Vec</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,42 +93,32 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="descr" class="tsd-anchor"></a>
-					<h3>descr</h3>
-					<div class="tsd-signature tsd-kind-icon">descr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="coordindex" class="tsd-anchor"></a>
+					<h3>coord<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">coord<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/io.ts#L47">io.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/143fde2/src/typescript/create.ts#L626">create.ts:626</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="firstvec" class="tsd-anchor"></a>
+					<h3>first<wbr>Vec</h3>
+					<div class="tsd-signature tsd-kind-icon">first<wbr>Vec<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/io.ts#L48">io.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/143fde2/src/typescript/create.ts#L627">create.ts:627</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="relation" class="tsd-anchor"></a>
-					<h3>relation</h3>
-					<div class="tsd-signature tsd-kind-icon">relation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="secvec" class="tsd-anchor"></a>
+					<h3>sec<wbr>Vec</h3>
+					<div class="tsd-signature tsd-kind-icon">sec<wbr>Vec<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/io.ts#L49">io.ts:49</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>value</h3>
-					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/7254574/src/typescript/io.ts#L50">io.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/design-automation/mobius-geojson/blob/143fde2/src/typescript/create.ts#L628">create.ts:628</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -147,10 +136,10 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_calc_.html">"calc"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_create_.html">"create"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_io_.html">"io"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -187,60 +176,24 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_io_.cesiumcolourprop.html" class="tsd-kind-icon">Cesium<wbr>Colour<wbr>Prop</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_io_.cesiumextrudeprop.html" class="tsd-kind-icon">Cesium<wbr>Extrude<wbr>Prop</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="_io_.cesiumfeaturecollection.html" class="tsd-kind-icon">Cesium<wbr>Feature<wbr>Collection</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_io_.cesiumfilter.html" class="tsd-kind-icon">Cesium<wbr>Filter</a>
+						<a href="_create_.ireflexangle.html" class="tsd-kind-icon">IReflex<wbr>Angle</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_io_.cesiumfilter.html#descr" class="tsd-kind-icon">descr</a>
+								<a href="_create_.ireflexangle.html#coordindex" class="tsd-kind-icon">coord<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_io_.cesiumfilter.html#name" class="tsd-kind-icon">name</a>
+								<a href="_create_.ireflexangle.html#firstvec" class="tsd-kind-icon">first<wbr>Vec</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_io_.cesiumfilter.html#relation" class="tsd-kind-icon">relation</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_io_.cesiumfilter.html#value" class="tsd-kind-icon">value</a>
+								<a href="_create_.ireflexangle.html#secvec" class="tsd-kind-icon">sec<wbr>Vec</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_io_.html#addcolour" class="tsd-kind-icon">add<wbr>Colour</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_io_.html#addcolourentry" class="tsd-kind-icon">add<wbr>Colour<wbr>Entry</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_io_.html#addextrude" class="tsd-kind-icon">add<wbr>Extrude</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_io_.html#addextrudeentry" class="tsd-kind-icon">add<wbr>Extrude<wbr>Entry</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_io_.html#addfiltercat" class="tsd-kind-icon">add<wbr>Filter<wbr>Cat</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_io_.html#addfilternum" class="tsd-kind-icon">add<wbr>Filter<wbr>Num</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_io_.html#addpropdisplay" class="tsd-kind-icon">add<wbr>Prop<wbr>Display</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_io_.html#savefcoll" class="tsd-kind-icon">saveFColl</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

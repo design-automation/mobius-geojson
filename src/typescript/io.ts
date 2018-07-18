@@ -12,7 +12,7 @@ import * as file from "./libs/filesys/file";
 /**
  * Save the FeatureCollection as a geojson file.
  *
- * @param featureColl The collection to save.
+ * @param fColl The collection to save.
  * @param filename The name of the geojson file.
  * @returns True if successful.
  */
