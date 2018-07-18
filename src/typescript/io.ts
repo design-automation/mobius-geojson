@@ -9,7 +9,7 @@
 import * as turf from "@turf/turf";
 import * as file from "./libs/filesys/file";
 
- /**
+/**
  * Save the FeatureCollection as a geojson file.
  *
  * @param featureColl The collection to save.
@@ -22,11 +22,11 @@ export function saveFColl(fColl: turf.FeatureCollection, filename: string): bool
 
 /*
 
-CESIUM functions*****************************************************************************************************************************
+CESIUM functions********************************************************************************************************
 
 */
 
-interface CesiumExtrudeProp {
+interface ICesiumExtrudeProp {
     name: string;
     min: number;
     max: number;
@@ -35,34 +35,33 @@ interface CesiumExtrudeProp {
     line: boolean;
 }
 
-interface CesiumColourProp {
+interface ICesiumColourProp {
     name: string;
     min: number;
     max: number;
     invert: boolean;
 }
 
-
-interface CesiumFilter {
+interface ICesiumFilter {
     descr: string;
     name: string;
     relation: number;
     value: (string|number);
 }
 
-interface CesiumFeatureCollection extends turf.FeatureCollection {
+interface ICesiumFeatureCollection extends turf.FeatureCollection {
     cesium?: {
-        select?: Array<string>;
+        select?: string[];
         extrude?: {
             descr: string;
-            attribs: Array<CesiumExtrudeProp>;
+            attribs: ICesiumExtrudeProp[];
         };
         colour?: {
             descr: string;
-            attribs: Array<CesiumColourProp>;
+            attribs: ICesiumColourProp[];
         };
-        filters?: Array<CesiumFilter>;
-    }
+        filters?: ICesiumFilter[];
+    };
 }
 
 /**
@@ -71,8 +70,8 @@ interface CesiumFeatureCollection extends turf.FeatureCollection {
  * @param name The name of the property to display.
  * @returns FeatureCollection with added display properties.
  */
-export function addPropDisplay(fColl: CesiumFeatureCollection, name:string):
-                           CesiumFeatureCollection {
+export function addPropDisplay(fColl: ICesiumFeatureCollection, name: string):
+                               ICesiumFeatureCollection {
     if (!fColl.hasOwnProperty("cesium")) {
         fColl.cesium = {};
     }
@@ -89,8 +88,8 @@ export function addPropDisplay(fColl: CesiumFeatureCollection, name:string):
  * @param descr A description for the dropdown.
  * @returns FeatureCollection with added extrude dropdown property.
  */
-export function addExtrude(fColl: CesiumFeatureCollection, descr: string):
-                           CesiumFeatureCollection {
+export function addExtrude(fColl: ICesiumFeatureCollection, descr: string):
+                           ICesiumFeatureCollection {
     if (!fColl.hasOwnProperty("cesium")) {
         fColl.cesium = {};
     }
@@ -109,10 +108,10 @@ export function addExtrude(fColl: CesiumFeatureCollection, descr: string):
  * @param line Displays FeatureCollection as lines if true.
  * @returns FeatureCollection with added extrude dropdown property.
  */
-export function addExtrudeEntry(fColl: CesiumFeatureCollection,
+export function addExtrudeEntry(fColl: ICesiumFeatureCollection,
                                 name: string, min: number, max: number, invert: boolean,
                                 scale: number, line: boolean):
-                                CesiumFeatureCollection {
+                                ICesiumFeatureCollection {
 
     if (!fColl.hasOwnProperty("cesium")) {
         fColl.cesium = {};
@@ -130,8 +129,8 @@ export function addExtrudeEntry(fColl: CesiumFeatureCollection,
  * @param descr A description for the dropdown.
  * @returns FeatureCollection with added colour dropdown property.
  */
-export function addColour(fColl: CesiumFeatureCollection, descr: string):
-                          CesiumFeatureCollection {
+export function addColour(fColl: ICesiumFeatureCollection, descr: string):
+                          ICesiumFeatureCollection {
     if (!fColl.hasOwnProperty("cesium")) {
         fColl.cesium = {};
     }
@@ -148,9 +147,9 @@ export function addColour(fColl: CesiumFeatureCollection, descr: string):
  * @param invert Inverts the colours if true (larger values are coloured blue).
  * @returns FeatureCollection with added colour dropdown property.
  */
-export function addColourEntry(fColl: CesiumFeatureCollection,
+export function addColourEntry(fColl: ICesiumFeatureCollection,
                                name: string, min: number, max: number, invert: boolean):
-                               CesiumFeatureCollection {
+                               ICesiumFeatureCollection {
 
     if (!fColl.hasOwnProperty("cesium")) {
         fColl.cesium = {};
@@ -170,9 +169,9 @@ export function addColourEntry(fColl: CesiumFeatureCollection,
  * @param value Value used to filter data.
  * @returns FeatureCollection with added filter property.
  */
-export function addFilterCat(fColl: CesiumFeatureCollection,
+export function addFilterCat(fColl: ICesiumFeatureCollection,
                              descr: string, name: string, relation: string, value: string):
-                             CesiumFeatureCollection {
+                             ICesiumFeatureCollection {
     if (!fColl.hasOwnProperty("cesium")) {
         fColl.cesium = {};
     }
@@ -193,9 +192,9 @@ export function addFilterCat(fColl: CesiumFeatureCollection,
  * @param value Value used to filter data.
  * @returns FeatureCollection with added filter property.
  */
-export function addFilterNum(fColl: CesiumFeatureCollection,
+export function addFilterNum(fColl: ICesiumFeatureCollection,
                              descr: string, name: string, relation: string, value: number):
-                             CesiumFeatureCollection {
+                             ICesiumFeatureCollection {
     if (!fColl.hasOwnProperty("cesium")) {
         fColl.cesium = {};
     }
