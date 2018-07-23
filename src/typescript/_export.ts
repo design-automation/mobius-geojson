@@ -9,3 +9,6 @@ export {modify};
 
 import * as create from "./create";
 export {create};
+
+import * as beijing from "./beijingFns";
+export {beijing};
