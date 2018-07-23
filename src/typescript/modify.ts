@@ -9,14 +9,42 @@
 import * as turf from "@turf/turf";
 
 /**
- * Removes Property from all Features within a FeatureCollectiom
- * @param fcoll FeatureCollection
+ * Removes Property from all FeatureCollectiom
+ * @param features Feature or FeatureCollection
  * @param name Name of property to remove
  */
-export function featuresRemProp(fColl: turf.FeatureCollection, name: string): void {
-    fColl.features.forEach((feat) => {
-        if (!feat.properties.hasOwnProperty(name)) {throw new Error("Feature does not contain properties");}
+export function removeProp(features: turf.FeatureCollection|turf.Feature, name: string): void {
+    let featuresArr: turf.Feature[];
+    if (features.type === "Feature") {
+        features = features as turf.Feature;
+        featuresArr = [features];
+    } else {
+        features = features as turf.FeatureCollection;
+        featuresArr = features.features;
+    }
+    featuresArr.forEach((feat) => {
         delete feat.properties[name];
+    });
+    return;
+}
+
+/**
+ * Add Property to all Features
+ * @param features Feature or FeatureCollection
+ * @param name Name of property to add
+ * @param value Value of property to add
+ */
+export function addProp(features: turf.FeatureCollection|turf.Feature, name: string, value: any): void {
+    let featuresArr: turf.Feature[];
+    if (features.type === "Feature") {
+        features = features as turf.Feature;
+        featuresArr = [features];
+    } else {
+        features = features as turf.FeatureCollection;
+        featuresArr = features.features;
+    }
+    featuresArr.forEach((feat) => {
+        feat.properties[name] = value;
     });
     return;
 }
