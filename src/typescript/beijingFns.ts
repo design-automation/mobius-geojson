@@ -3,146 +3,30 @@
  */
 
 // EXPORTED FUNCTIONS:
-// [V] gridPoly(poly, size, mask, properties)
-
-// [V] featureFeatureInjection(srcfColl, tarfColl, property, rename)
-
 // [V] csvFCollInjection(csvFile, fColl, propertyName,searchColumn,header, csvColumns)
 //     propertyName: name of property within each feature collection. Check csv search column against value of property
 //     to find row -> extract data from each column in array of csvColumns and inject with header name of each column
 //     (needs to know which row header names are on)
 
-// Extras: GeoHash Dictionary and GeoHash Encode
+// [V] gridPoly(poly, size, mask, properties)
+// https://next.plnkr.co/edit/K1yHeNQXF7ntOdE8
+
+// [V] featureFeatureInjection(srcfColl, tarfColl, property, rename)
+// https://next.plnkr.co/edit/uZQPue1vLtPmm6vr
+
+// [V] Extras: GeoHash Dictionary and GeoHash Encode
+// https://next.plnkr.co/edit/3pMCwuCLPLTvCg5g
 
 // Other Previously implemented functions (turf/geojson):
-// [ ] contains/crosses/disjoint/equal/pointinPolygon/within
-// [ ] setProperty(feature, name, value)
-// [ ] buffer(feature, distance)
-// [ ] lineString(coords) - will need coord manipulation functions too: minimally center of polygon
-// [ ] byRange(min, max)
+// [V] GEOJSON getPropNames
+// [V] GEOJSON setProperty
+// [V] TURF contains/disjoint/equal/pointinPolygon/within
+// [V] TURF buffer
+// [V] TURF lineString - will need coord manipulation functions too: minimally center of polygon
+// [V] ARRAY byRange
 
 import * as turf from "@turf/turf";
 import * as pp from "papaparse";
-
-/**
- * Grids Polygon
- * @param poly Accepts Single Polygon Feature
- * @param size Dimension of each square gird, in meters
- * @param polyProp Array of property names to extract and inject into each cell
- * @param mask Function will only return cells that fall within mask
- * @param masProp Array of property names to extract and inject into each cell
- * @returns Merged FeatureCollection
- */
-export function gridPoly(poly: turf.Feature<turf.Polygon>, size: number = 500, polyProp: string[],
-                         mask?: turf.FeatureCollection <turf.Point|turf.Polygon>, maskProp: string[] = []):
-turf.FeatureCollection<turf.Polygon> {
-    if (poly === undefined) {throw new Error("poly is undefined");}
-    if (maskProp.length !== 0 && mask !== undefined) {throw new Error("mask is undefined");}
-    const toPassProp = {};
-    polyProp.forEach((prop) => {
-        if (!poly.properties.hasOwnProperty(prop)) {
-            throw new Error("poly does not contain property");
-        } else {
-            toPassProp[prop] = poly.properties[prop];
-        }
-    });
-    const gridfColl = turf.squareGrid(turf.bbox(poly), size/1000, {mask: poly, properties: toPassProp});
-    if (mask === undefined) {return gridfColl;}
-    // poly into grid, with injected properties
-    const arr: Array<turf.Feature<turf.Polygon>> = [];
-    gridfColl.features.forEach((cell) => {
-        let cent: turf.Feature<turf.Point> = turf.center(cell);
-        let pGon: turf.Feature<turf.Polygon> = cell;
-        mask.features.forEach((maskFeat) => {
-            switch (maskFeat.geometry.type) {
-                case "Polygon":
-                    maskFeat = maskFeat as turf.Feature<turf.Polygon>;
-                    pGon = maskFeat;
-                    break;
-                case "Point":
-                    cent = maskFeat;
-                    break;
-            }
-            if (turf.booleanPointInPolygon(cent,pGon)) {
-                maskProp.forEach((propName) => { // set mask properties to cell
-                    cell.properties[propName] = maskFeat.properties[name];
-                });
-                arr.push(cell);
-            }
-        });
-    });
-    return turf.featureCollection(arr); // return grids masked to features
-}
-
-/**
- * Returns an array of all the property names for this feature.
- *
- * @param feature The feature data.
- * @returns An array of property names
- */
-export function getPropNames(feature: turf.Feature): string[] {
-    if (!feature.hasOwnProperty("properties")) {return [];}
-    return Object.keys(feature.properties);
-}
-
-/**
- * Injects properties from source FeatureCollection into target FeatureCollection if target falls within the source.
- *
- * @param srcfColl Source FeatureCollection
- * @param tarfColl Target FeatureCollection
- * @param srcProp Array of property names to extract and inject into each cell
- * @param rename Array of names to rename injected properties (1:1 to srcProp) - soure names will be used if undefined
- */
-export function featFeatInjection(srcfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
-                                  tarfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
-                                  srcProp: string[], rename: string[]): void {
-    if ((typeof(rename) !== undefined) && (srcProp.length !== rename.length)) {
-        throw new Error ("srcProp and rename arrays are not equal in length");
-    }
-    const srcGHashDict: IGeoHashDict = geoHashDictionary(srcfColl); // default precision 5
-    const tarGHashDict: IGeoHashDict = geoHashDictionary(srcfColl);
-    tarfColl.features.forEach((tarFeat) => {
-        let geoHash = tarFeat.properties.geoHash;
-        if (geoHash.length !== srcGHashDict.precision) { // prep GeoHash for search
-            geoHash = geoHash.slice(0,srcGHashDict.precision+1);
-        }
-        const srcFeatArrInd: number[] = srcGHashDict[geoHash];
-        let injected: boolean = false;
-        if (srcFeatArrInd !== undefined) { // === undefined: no source near target (throw error or not?)
-            for (let i=0; i<srcFeatArrInd.length;i++) {
-                const ind = srcFeatArrInd[i];
-                if (tarFeat.geometry.type === "Polygon") {
-                    const srcFeat = turf.center(srcfColl.features[ind]);
-                    if(turf.booleanPointInPolygon(srcFeat, tarFeat) === true) {
-                        propertyInjection(srcFeat,tarFeat,srcProp,rename);
-                        injected = true;
-                        break;
-                    }
-                } else { // Line|Point
-                    const srcFeat = srcfColl.features[ind];
-                    if(turf.booleanEqual(srcFeat, tarFeat) === true) {
-                        propertyInjection(srcFeat,tarFeat,srcProp,rename);
-                        injected = true;
-                        break;
-                    }
-                }
-            }
-        }
-        if (injected === false) {propertyInjection(undefined,tarFeat,srcProp,rename);}
-    });
-}
-
-function propertyInjection(srcFeat: turf.Feature<turf.LineString|turf.Polygon|turf.Point>,
-                           tarFeat: turf.Feature<turf.LineString|turf.Polygon|turf.Point>,
-                           srcProp: string[], rename: string[]): void {
-    for (let i=0; i<srcProp.length; i++) {
-        if (srcFeat === undefined) {
-            tarFeat.properties[rename[i]] = 0;
-        } else {
-            tarFeat.properties[rename[i]] = srcFeat.properties[srcProp[i]];
-        }
-    }
-}
 
 /**
  * Injects properties from source FeatureCollection into target FeatureCollection if target falls within the source.
@@ -169,11 +53,111 @@ export function csvFCollInjection(csvFile: string, fColl: turf.FeatureCollection
                 break; // go on to next feat
             }
         }
-        csvColumns.forEach((i) => { // set 0 to feat with same header name
+        csvColumns.forEach((i) => { // failed to find - set 0 to feat with same header name
             feat.properties[head[i]] = 0;
         });
     });
     return;
+}
+
+/**
+ * Grids Polygon
+ * @param poly Accepts Single Polygon Feature
+ * @param size Dimension of each square gird, in meters
+ * @param polyProp Array of property names to extract and inject into each cell
+ * @param mask Function will only return cells that fall within mask
+ * @param masProp Array of property names to extract and inject into each cell
+ * @returns Merged FeatureCollection
+ */
+export function gridPoly(poly: turf.Feature<turf.Polygon>, size: number = 500, polyProp: string[],
+                         mask?: turf.FeatureCollection <turf.Point|turf.Polygon>, maskProp: string[] = []):
+turf.FeatureCollection<turf.Polygon> {
+    if (poly === undefined) {throw new Error("poly is undefined");}
+    if (maskProp.length !== 0 && mask === undefined) {throw new Error("mask is undefined");}
+    const toPassProp = {};
+    polyProp.forEach((prop) => {
+        if (!poly.properties.hasOwnProperty(prop)) {
+            throw new Error("poly does not contain property");
+        } else {
+            toPassProp[prop] = poly.properties[prop];
+        }
+    });
+    const gridfColl = turf.squareGrid(turf.bbox(poly), size/1000, {mask: poly, properties: toPassProp});
+    if (mask === undefined) {return gridfColl;}
+    // poly into grid, with injected properties
+    const arr: Array<turf.Feature<turf.Polygon>> = [];
+    gridfColl.features.forEach((cell) => {
+        mask.features.forEach((maskFeat) => {
+            const olap = turf.booleanOverlap(cell,maskFeat);
+            const contain = turf.booleanContains(maskFeat,cell);
+            const within = turf.booleanWithin(cell,maskFeat);
+            if (olap||contain||within) {
+                maskProp.forEach((propName) => { // set mask properties to cell
+                    cell.properties[propName] = maskFeat.properties[propName];
+                });
+                arr.push(cell);
+            }
+        });
+    });
+    return turf.featureCollection(arr); // return grids masked to features
+}
+
+/**
+ * Injects properties from source FeatureCollection into target FeatureCollection if target falls within the source.
+ *
+ * @param srcfColl Source FeatureCollection
+ * @param tarfColl Target FeatureCollection
+ * @param srcProp Array of property names to extract and inject into each cell
+ * @param rename Array of names to rename injected properties (1:1 to srcProp) - soure names will be used if undefined
+ */
+export function featFeatInjection(srcfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
+                                  tarfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
+                                  srcProp: string[], rename: string[] = []): void {
+    if (srcfColl === undefined) {throw new Error("srcfColl is undefined");}
+    if (tarfColl === undefined) {throw new Error("tarfColl is undefined");}
+    if (srcProp === undefined) {throw new Error("srcProp is undefined");}
+    if ((rename !== undefined) && (srcProp.length !== rename.length)) {
+        throw new Error ("srcProp and rename arrays are not equal in length");
+    }
+    const srcGHashDict: IGeoHashDict = geoHashDictionary(srcfColl); // default precision 8
+    const tarGHashDict: IGeoHashDict = geoHashDictionary(tarfColl);
+    tarfColl.features.forEach((tarFeat) => {
+        let geoHash = tarFeat.properties.geoHash;
+        if (geoHash.length !== srcGHashDict.precision) { // prep GeoHash for search
+            geoHash = geoHash.slice(0,srcGHashDict.precision+1);
+        }
+        const srcFeatArrInd: number[] = srcGHashDict[geoHash];
+        let injected: boolean = false;
+        if (srcFeatArrInd !== undefined) { // === undefined: no source near target - inject 0
+            for (let i=0; i<srcFeatArrInd.length;i++) {
+                const ind = srcFeatArrInd[i];
+                const srcFeat = srcfColl.features[ind];
+                const contain = turf.booleanContains(tarFeat,srcFeat);
+                const within = turf.booleanWithin(srcFeat,tarFeat);
+                if (contain||within) { // src is small enough to fit within tar - inject
+                    propertyInjection(srcFeat,tarFeat,srcProp,rename);
+                    injected = true;
+                    break;
+                }
+                if (tarFeat.geometry.type === "Polygon") {
+                    const srcFea = turf.pointOnFeature(srcfColl.features[ind]); // Gives a point that's 100% in feat
+                    if(turf.booleanPointInPolygon(srcFea, tarFeat) === true) {
+                        propertyInjection(srcFea,tarFeat,srcProp,rename);
+                        injected = true;
+                        break;
+                    }
+                } else { // Line|Point - high chance of failing. Should they be blocked from function completely?
+                    const srcFea = srcfColl.features[ind];
+                    if(turf.booleanEqual(srcFea, tarFeat) === true) {
+                        propertyInjection(srcFea,tarFeat,srcProp,rename);
+                        injected = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (injected === false) {propertyInjection(undefined,tarFeat,srcProp,rename);}
+    });
 }
 
 /*
@@ -199,7 +183,7 @@ interface IGeoHashDict {
  * @return GeoHash dictionary with array of featureIndex as values
  */
 export function geoHashDictionary(fColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
-                                  precision: number = 5): IGeoHashDict { //
+                                  precision: number = 8): IGeoHashDict { //
     const dict: IGeoHashDict = {precision};
     const fCollFeats = fColl.features;
     for (let i = 0; i<fCollFeats.length; i++) {
@@ -232,7 +216,7 @@ export function geoHashDictionary(fColl: turf.FeatureCollection<turf.Point|turf.
  * @param precision Max number of letters in encoded GeoHash
  * @return Object containing GeoHash and Precision values
  */
-export function geoHashEncode(feature: turf.Feature<turf.LineString|turf.Polygon|turf.Point>, precision: number = 5):
+export function geoHashEncode(feature: turf.Feature<turf.LineString|turf.Polygon|turf.Point>, precision: number = 8):
 IGeoHashObj {
     let coordArr: number[][];
     const geomType = feature.geometry.type;
@@ -282,7 +266,7 @@ IGeoHashObj {
     if (geoHashArr.length>1) { // Line|Polygon: change precision value for subsequent loops & change geoHassRes
         for (let j = 0; j<geoHashRes.length; j++) { // check from RTL
             const firstRes = geoHashArr[0].slice(0,geoHashRes.length+1-j);
-            const secRes = geoHashArr[0].slice(0,geoHashRes.length+1-j);
+            const secRes = geoHashArr[1].slice(0,geoHashRes.length+1-j);
             if (firstRes === secRes) {
                 geoHashRes = firstRes;
                 break;
@@ -296,6 +280,247 @@ IGeoHashObj {
 
 /**
  *
+ * ARRAY - CREATE functions ********************************************************************************************
+ *
+ */
+
+/**
+ * Creates a new array of integer numbers between two bounds.
+ * Lower bound is inclusive and upper bound is exclusive.
+ *
+ * @param min Lower bound integer.
+ * @param max Upper bound integer.
+ * @returns New array.
+ * @example array = Array.range(0,5)
+ *
+ * Expected value of array is [0,1,2,3,4].
+ */
+export function byRange(min: number, max: number): number[] {
+    if (min === undefined) {throw new Error("Invalid arg: min must be defined.");}
+    if (max === undefined) {throw new Error("Invalid arg: max must be defined.");}
+    const len: number = max - min;
+    if (len <= 0) {return [];}
+    return Array.apply(0, new Array(len)).map((v, i) => i + min);
+}
+
+/**
+ *
+ * GEOJSON - PROP functions ********************************************************************************************
+ *
+ */
+
+/**
+ * Returns an array of all the property names for this feature.
+ *
+ * @param feature The feature data.
+ * @returns An array of property names
+ */
+export function getPropNames(feature: turf.Feature): string[] {
+    if (!feature.hasOwnProperty("properties")) {return [];}
+    return Object.keys(feature.properties);
+}
+
+/**
+ * Sets the property value for the property with the specified name.
+ * If the property does not exist, it is created.
+ *
+ * @param feature The feature data.
+ * @param name The name of the property, a string.
+ * @param value The value of the property, any value.
+ * @returns The name of the property. (This may differ from input name if input name is not valid.)
+ */
+export function setProperty(feature: turf.Feature, name: string, value: (string|number)): string {
+    if (!feature.hasOwnProperty("properties")) {feature.properties = {};}
+    const regexp = /^[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*$/;
+    if (!regexp.test(name)) { name = "_" + name;}
+    feature.properties[name] = value;
+    return name;
+}
+
+/**
+ *
+ * TURF - CALC functions ***********************************************************************************************
+ *
+ */
+
+/**
+ * Returns True if the second geometry is completely contained by the first geometry.
+ * The interiors of both geometries must intersect and, the interior and boundary of the secondary (geometry b)
+ * must not intersect the exterior of the primary (geometry a).
+ * (Opposite result of within.)
+ *
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
+ * @returns {boolean} true/false
+ * @example
+ * var line = geo.create.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+ * var point = geo.create.point([1, 2]);
+ *
+ * geo.compare.contains(line, point);
+ * //=true
+ */
+export function isContained(feature1: turf.Feature, feature2: turf.Feature): boolean {
+    return turf.booleanContains(feature1, feature2);
+}
+
+/**
+ * Returns true if the intersection of the two geometries is an empty set.
+ *
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
+ * @returns {boolean} true/false
+ * @example
+ * var point = geo.create.point([2, 2]);
+ * var line = geo.create.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+ *
+ * geo.compare.disjoint(line, point);
+ * //=true
+ */
+export function isDisjoint(feature1: turf.Feature, feature2: turf.Feature): boolean {
+    return turf.booleanDisjoint(feature1, feature2);
+}
+
+/**
+ * Determine whether two geometries of the same type have identical X,Y coordinate values.
+ * See http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relations.htm
+ *
+ * @param {Geometry|Feature} feature1 GeoJSON input
+ * @param {Geometry|Feature} feature2 GeoJSON input
+ * @returns {boolean} true if the objects are equal, false otherwise
+ * @example
+ * var pt1 = geo.create.point([0, 0]);
+ * var pt2 = geo.create.point([0, 0]);
+ * var pt3 = geo.create.point([1, 1]);
+ *
+ * geo.compare.equal(pt1, pt2);
+ * //= true
+ * geo.compare.equal(pt2, pt3);
+ * //= false
+ */
+export function isEqual(feature1: turf.Feature, feature2: turf.Feature): boolean {
+    return turf.booleanEqual(feature1, feature2);
+}
+
+/**
+ * Takes a Point and a Polygon or MultiPolygon and determines if the point resides inside the polygon. The polygon can
+ * be convex or concave. The function accounts for holes.
+ *
+ * @param {Coord} point input point
+ * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
+ * @param {Object} options Optional parameters
+ * (ignoreBoundary: True if polygon boundary should be ignored when determining
+ * if the point is inside the polygon otherwise false.)
+ * @param {boolean} ignoreBoundary
+ * True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false.
+ * @returns {boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
+ * @example
+ * var pt = geo.create.point([-77, 44]);
+ * var poly = geo.create.polygon([[
+ *   [-81, 41],
+ *   [-81, 47],
+ *   [-72, 47],
+ *   [-72, 41],
+ *   [-81, 41]
+ * ]]);
+ *
+ * geo.compare.pointInPolygon(pt, poly);
+ * //= true
+ */
+export function isPointInPolygon(point: turf.Point, polygon: turf.Polygon, ignoreBoundary: boolean): boolean {
+    return turf.booleanPointInPolygon(point, polygon, {ignoreBoundary});
+}
+
+/**
+ * Returns true if the first geometry is completely within the second geometry.
+ * The interiors of both geometries must intersect and, the interior and boundary of the primary (geometry a)
+ * must not intersect the exterior of the secondary (geometry b).
+ * (Opposite result of the contains.)
+ *
+ * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
+ * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
+ * @returns {boolean} true/false
+ * @example
+ * var line = geo.create.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
+ * var point = geo.create.point([1, 2]);
+ *
+ * geo.compare.within(point, line);
+ * //=true
+ */
+export function isWithin(feature1: turf.Feature, feature2: turf.Feature): boolean {
+    return turf.booleanWithin(feature1, feature2);
+}
+/**
+ *
+ * TURF - CREATE Functions *********************************************************************************************
+ *
+ */
+
+/**
+ * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
+ *
+ * When using a negative radius, the resulting geometry may be invalid if
+ * it's too small compared to the radius magnitude. If the input is a
+ * FeatureCollection, only valid members will be returned in the output
+ * FeatureCollection - i.e., the output collection may have fewer members than
+ * the input, or even be empty.
+ *
+ * @param {FeatureCollection|Geometry|Feature<any>} features input to be buffered
+ * @param {number} radius distance to draw the buffer (in meters, negative values are allowed)
+ * @param {Object} options Optional parameters
+ * (units: "miles", "nauticalmiles", "degrees", "radians", "inches", "yards", "meters", "kilometers",
+ * steps: number of steps)
+ * @param {number} steps number of steps
+ * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
+ * @example
+ * var point = geo.create.point([-90.548630, 14.616599]);
+ * var buffered = geo.feature.buffer(point, 500, {units: 'miles'});
+ */
+export function polygonByBuffer(features: turf.GeometryObject|turf.Feature,radius: number,steps: number): turf.Feature {
+    return turf.buffer(features,radius/1000,{steps});
+}
+
+/**
+ * Creates a LineString Feature from an Array of Positions.
+ *
+ * @param {Array<Array<number>>} coords an array of Positions
+ * @param {Object} properties Optional object of key-value pairs to add as properties
+ * @param {Object} options Optional Parameters
+ * (bbox: Bounding Box Array [west, south, east, north] associated with the Feature,
+ * id: Identifier associated with the Feature)
+ * @returns {Feature<LineString>} LineString Feature
+ * @example
+ * var linestring1 = geo.create.lineString([[-24, 63], [-23, 60], [-25, 65], [-20, 69]], {name: 'line 1'});
+ * var linestring2 = geo.create.lineString([[-14, 43], [-13, 40], [-15, 45], [-10, 49]], {name: 'line 2'});
+ *
+ * //=linestring1
+ * //=linestring2
+ */
+export function lineByCoords(coords: number[][]): turf.Feature<turf.LineString> {
+    return turf.lineString(coords);
+}
+
+/**
+ * Takes a Feature or FeatureCollection and returns the absolute center point of all features.
+ *
+ * @param {GeoJSON} features GeoJSON to be centered
+ * @param {Object} options Optional parameters
+ * (properties: an Object that is used as the Feature's properties)
+ * @returns {Feature<Point>} a Point feature at the absolute center point of all input features
+ * @example
+ * var features = geo.create.featureCollection([
+ *   geo.create.point( [-97.522259, 35.4691]),
+ *   geo.create.point( [-97.502754, 35.463455]),
+ *   geo.create.point( [-97.508269, 35.463245])
+ * ]);
+ *
+ * var center = geo.calc.center(features);
+ */
+export function pointByCenter(features: turf.AllGeoJSON, options: {properties: object}): turf.Feature<turf.Point> {
+    return turf.center(features, options);
+}
+
+/**
+ *
  * Util Function *******************************************************************************************************
  *
  */
@@ -304,42 +529,6 @@ function ensureCoordArr(feature: turf.Feature<turf.LineString|turf.Point|turf.Po
     let coordArr: any = feature.geometry.coordinates;
     while (coordArr.length === 1) {coordArr = coordArr[0];}
     return coordArr;
-}
-
-/**
- * Parse a csv file.
- *
- * If the delimeter is undefined, then the delimiting character will be
- * auto-detected from a list of common delimeters, including "," and tab.
- *
- * Returns a parse result object.
- * The parse result object always contains 1) a data array, 2) an errors array, and 3) a meta object.
- * The data array is an array of rows from teh csv.
- * The errors array is an array of errors generated during the process of parsing the csv.
- * The meta object contains extra information about the parse, such as delimiter used,
- * the newline sequence, whether the process was aborted, etc.
- *
- * The rows in the data array will contain strings.
- * If numeric data is required, strings will need to be converted to numbers
- * using a string conversion function.
- *
- * See [https://www.papaparse.com/docs](https://www.papaparse.com/docs).
- *
- * @param str The text from the csv file, as a string.
- * @param delimeter The delimeter used in the csv file.
- * @example
- * result = io.csv.parse(my_data)
- * parse_data = result.data
- * errors = result.errors
- * meta = result.meta
- *
- * first_row = parsed_data[0]
- * second_row = parsed.data[1]
- */
-function csvParse(str: string, delimiter: string): pp.ParseResult {
-    if (str === undefined) {throw new Error("Invalid arg: str must be defined.");}
-    if (delimiter === undefined) {return pp.parse(str);}
-    return pp.parse(str, {delimiter});
 }
 
 function binToDec(str: string): number[] {
@@ -367,4 +556,23 @@ function decToBase32(arr: number[]): string {// takes in array of decimal number
         retStr += base32.charAt(num);
     });
     return retStr;
+}
+
+function propertyInjection(srcFeat: turf.Feature<turf.LineString|turf.Polygon|turf.Point>,
+                           tarFeat: turf.Feature<turf.LineString|turf.Polygon|turf.Point>,
+                           srcProp: string[], rename: string[]): void {
+    if (rename.length === 0) {rename = srcProp;}
+    for (let i=0; i<srcProp.length; i++) {
+        if (srcFeat === undefined) {
+            tarFeat.properties[rename[i]] = 0;
+        } else {
+            tarFeat.properties[rename[i]] = srcFeat.properties[srcProp[i]];
+        }
+    }
+}
+
+function csvParse(str: string, delimiter: string): pp.ParseResult {
+    if (str === undefined) {throw new Error("Invalid arg: str must be defined.");}
+    if (delimiter === undefined) {return pp.parse(str);}
+    return pp.parse(str, {delimiter});
 }
