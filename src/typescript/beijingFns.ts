@@ -140,8 +140,9 @@ export function featFeatInjection(srcfColl: turf.FeatureCollection<turf.Point|tu
                     break;
                 }
                 if (tarFeat.geometry.type === "Polygon") {
+                    const tarFeat_poly = tarFeat as turf.Feature<turf.Polygon>; //TODO - what is going on here?
                     const srcFea = turf.pointOnFeature(srcfColl.features[ind]); // Gives a point that's 100% in feat
-                    if(turf.booleanPointInPolygon(srcFea, tarFeat) === true) {
+                    if(turf.booleanPointInPolygon(srcFea, tarFeat_poly) === true) {
                         propertyInjection(srcFea,tarFeat,srcProp,rename);
                         injected = true;
                         break;
