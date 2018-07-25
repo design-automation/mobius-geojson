@@ -14,8 +14,16 @@
 // [V] featureFeatureInjection(srcfColl, tarfColl, property, rename)
 // https://next.plnkr.co/edit/uZQPue1vLtPmm6vr
 
-// [V] Extras: GeoHash Dictionary and GeoHash Encode
+// [V] distanceInjection: distance to each other feature - save as an object key & distance (specific use case)
+
+// [V] areaInjection: Calculate and inject Area of each feature into fColl (specific use case)
+
+// [V] Mathematical Calculations on Attribs & Injection - calculations and counting of instances (general use case)
+
+// [ ] Extras: GeoHash Dictionary and GeoHash Encode - Needs refactor for large polygons that may land on >1 geoHash
 // https://next.plnkr.co/edit/3pMCwuCLPLTvCg5g
+
+// [V] Extras: nameInjection (custom naming of each feature)
 
 // Other Previously implemented functions (turf/geojson):
 // [V] GEOJSON getPropNames
@@ -27,6 +35,7 @@
 
 import * as turf from "@turf/turf";
 import * as pp from "papaparse";
+import * as math from "mathjs";
 
 /**
  * Injects properties from source FeatureCollection into target FeatureCollection if target falls within the source.
@@ -61,6 +70,112 @@ export function csvFCollInjection(csvFile: string, fColl: turf.FeatureCollection
 }
 
 /**
+ * Calculates and injects area of each Polygon Feature within Feature Collection: Feature.properties.area
+ *
+ * @param polys FeatureCollection of Polygons
+ */
+export function areaInjection(polys: turf.FeatureCollection<turf.Polygon>): void {
+     polys.features.forEach((polyFeat) => {
+         polyFeat.properties.area = turf.area(polyFeat);
+     });
+     return;
+}
+
+/**
+ * Injects specified name into each Feature within Feature Collection: Feature.properties.featName
+ *
+ * @param fColl FeatureCollection
+ * @param featName string with a number concat to its end will be injected into each Feature
+ * @param startNum Defaults 0: number which will be concat to featName
+ */
+export function nameInjection(fColl: turf.FeatureCollection, featName: string, startNum: number = 0): void {
+     let i = startNum;
+     fColl.features.forEach((feat) => {
+         feat.properties.featName = featName + i.toString;
+         i++;
+     });
+     return;
+}
+
+/**
+ * Calculates and injects distance of target to feature: Feature.properties.distance.key
+ * Array of all distance values accessible from Feature.properties.distance.allDist
+ * CenterPoints will be used for non-point Features.
+ *
+ * @param fColl1 FeatureCollection
+ * @param nameProp1 property which will be used as key to tag distance on features in fColl2: Defaults 'featName'
+ * @param fColl2 FeatureCollection
+ * @param nameProp2 property which will be used as key to tag distance on features in fColl1: Defaults 'featName'
+ * @param condition Increments if condition is met; sets to (condition)key. largerThan|smallerThan|equals
+ */
+export function distanceInjection(fColl1: turf.FeatureCollection<turf.Polygon|turf.Point|turf.LineString>,
+                                  nameProp1: string = "featName",
+                                  fColl2: turf.FeatureCollection<turf.Polygon|turf.Point|turf.LineString>,
+                                  nameProp2: string = "featName", condition: string): void {
+    fColl1.features.forEach((feat1) => {
+        const allD: number[] = [];
+        fColl2.features.forEach((feat2) => {
+            const coords: number[][] = typeToSingleCoord(feat1,feat2);
+            const dist: number = turf.distance(coords[0],coords[1]);
+            if (feat1.properties[nameProp1] === undefined||feat2.properties[nameProp2] === undefined) {
+                throw new Error ("Feature does not contain specified name property");
+            }
+            if (condition !== undefined) {
+                const conditionChk = math.compile(dist.toString + condition).eval();
+                if (conditionChk) {
+                    const cleaned: number = parseFloat(removeSymbols(condition));
+                    let newPropName: string;
+                    switch (condition.slice(0,1)) {
+                        case ">":
+                            newPropName = "largerThan"+cleaned;
+                            break;
+                        case "<":
+                            newPropName = "smallerThan"+cleaned;
+                            break;
+                        case "=":
+                            newPropName = "equals"+cleaned;
+                            break;
+                    }
+/*
+ ** TBC *********************************^^^^^^^^^^^^^^^^^^*************************************************************
+ */
+                }
+            }
+            allD.push(dist);
+            if (feat2.properties.distance.allDist === undefined) {
+                feat2.properties.distance.allDist = [dist];
+            } else {
+                feat2.properties.distance.allDist = feat2.properties.distance.allDist.concat([dist]);
+            }
+            feat1.properties.distance[feat2.properties[nameProp1]] = dist;
+            feat2.properties.distance[feat1.properties[nameProp2]] = dist;
+        });
+        feat1.properties.distance.allDist = allD;
+        feat1.properties.distance.minDist = math.min(allD);
+        feat1.properties.distance.maxDist = math.max(allD);
+        feat1.properties.distance.meanDist = math.mean(allD);
+    });
+    return;
+}
+
+/**
+ * Uses set attributes to calculate and inject a numerical result based on user-defined expression.
+ *
+ * @param fColl FeatureCollection
+ * @param newAttribName result of expression will be set as a property in each feature, with newAttribName as key
+ * @param varDef Define variables used in expression by equating to child of 'properties' in feature
+ * @param expression
+ */
+export function attribMath(fColl: turf.FeatureCollection, newAttribName: string, varDef: string,
+                           expression: string): void {
+// use mathjs eval for expressions handling: but requires replacement of attributes in expression first
+    fColl.features.forEach((feat) => {
+        feat.properties[newAttribName] = mathJSResult(feat,varDef,expression);
+    });
+    return;
+}
+
+/**
  * Grids Polygon
  * @param poly Accepts Single Polygon Feature
  * @param size Dimension of each square gird, in meters
@@ -69,7 +184,7 @@ export function csvFCollInjection(csvFile: string, fColl: turf.FeatureCollection
  * @param masProp Array of property names to extract and inject into each cell
  * @returns Merged FeatureCollection
  */
-export function gridPoly(poly: turf.Feature<turf.Polygon>, size: number = 500, polyProp: string[],
+export function gridPoly(poly: turf.Feature<turf.Polygon>, size: number = 500, polyProp: string[] = [],
                          mask?: turf.FeatureCollection <turf.Point|turf.Polygon>, maskProp: string[] = []):
 turf.FeatureCollection<turf.Polygon> {
     if (poly === undefined) {throw new Error("poly is undefined");}
@@ -140,8 +255,8 @@ export function featFeatInjection(srcfColl: turf.FeatureCollection<turf.Point|tu
                     break;
                 }
                 if (tarFeat.geometry.type === "Polygon") {
-                    const tarFeat_poly = tarFeat as turf.Feature<turf.Polygon>; //TODO - what is going on here?
                     const srcFea = turf.pointOnFeature(srcfColl.features[ind]); // Gives a point that's 100% in feat
+                    const tarFeat_poly = tarFeat as turf.Feature<turf.Polygon>;
                     if(turf.booleanPointInPolygon(srcFea, tarFeat_poly) === true) {
                         propertyInjection(srcFea,tarFeat,srcProp,rename);
                         injected = true;
@@ -159,6 +274,7 @@ export function featFeatInjection(srcfColl: turf.FeatureCollection<turf.Point|tu
         }
         if (injected === false) {propertyInjection(undefined,tarFeat,srcProp,rename);}
     });
+    return;
 }
 
 /*
@@ -265,9 +381,9 @@ IGeoHashObj {
         geoHashArr.push(geoHashRes);
     });
     if (geoHashArr.length>1) { // Line|Polygon: change precision value for subsequent loops & change geoHassRes
-        for (let j = 0; j<geoHashRes.length; j++) { // check from RTL
-            const firstRes = geoHashArr[0].slice(0,geoHashRes.length+1-j);
-            const secRes = geoHashArr[1].slice(0,geoHashRes.length+1-j);
+        for (let j = 0; j<geoHashRes.length; j++) { // check from RTL // do not reduce precision: keep all Hash
+            const firstRes = geoHashArr[0].slice(0,geoHashRes.length-j);
+            const secRes = geoHashArr[1].slice(0,geoHashRes.length-j);
             if (firstRes === secRes) {
                 geoHashRes = firstRes;
                 break;
@@ -570,10 +686,81 @@ function propertyInjection(srcFeat: turf.Feature<turf.LineString|turf.Polygon|tu
             tarFeat.properties[rename[i]] = srcFeat.properties[srcProp[i]];
         }
     }
+    return;
 }
 
 function csvParse(str: string, delimiter: string): pp.ParseResult {
     if (str === undefined) {throw new Error("Invalid arg: str must be defined.");}
     if (delimiter === undefined) {return pp.parse(str);}
     return pp.parse(str, {delimiter});
+}
+
+function typeToSingleCoord(feat1: turf.Feature<turf.LineString|turf.Point|turf.Polygon>,
+                           feat2: turf.Feature<turf.LineString|turf.Point|turf.Polygon>): number[][] {
+     const retArr = [];
+     [feat1,feat2].forEach((feat) => {
+         switch (feat.geometry.type) {
+             case "Point":
+                 retArr.push(feat.geometry.coordinates);
+                 break;
+             case "Polygon":
+                 retArr.push(turf.center(feat).geometry.coordinates);
+                 break;
+             case "LineString":
+                 retArr.push(turf.center(turf.bboxPolygon(turf.bbox(feat))).geometry.coordinates);
+                 break;
+         }
+     });
+     return retArr;
+}
+
+/*
+* MathJS Prep Functions **********************************************************************************************
+* mathjs takes in variable definitions separated by semi-colons before expression.
+* this will parse and return a concated string that can be appended to front of expression before passing into mathjs
+* https://codepen.io/derekpung/pen/EpXvpd?editors=0010
+*/
+
+function mathJSResult(feat: turf.Feature, varDef: string, expression: string): number|boolean {
+    const mathjsPrep = variableDef(feat, varDef);
+    expression = mathjsPrep + expression; // append variable definitions to front
+    return math.compile(expression).eval();
+ }
+
+function variableDef(feat: turf.Feature, str: string): string {
+    str = str.replace(/\s/g,"+").split("+").join(""); // removes white space
+    const arr = removeEmpty(str.split(";")); // split into separate variable definitions
+    let retStr: string = "";
+    arr.forEach((defStr) => { // each definition string needs to split at "="
+        const defArr = removeEmpty(defStr.split("=")); // should only have two parts
+        if (defArr.length !== 2) {throw new Error("varDef is invalid");}
+        const retValue = recursiveChild(removeEmpty(defArr[1].split(".")),feat,undefined);// extracts value from feature
+        retStr = retStr.concat(defArr[0] + "=" + retValue.toString + ";");
+    });
+    return retStr;
+}
+
+function removeSymbols(str: string): string {
+    return removeEmpty(str.replace(/\<|\>|\=/g, "+").split("+"))[0];
+}
+
+function removeEmpty(arr: string[]): string[] {
+    return arr.filter((item) => item.length>0);
+}
+
+function recursiveChild(arr: string[], feat: turf.Feature, nxt: any): number {
+    let retObj;
+    if (nxt === undefined) {
+        retObj = feat.properties[arr[0]]; // retrieval starts from properties
+    } else {
+        retObj = nxt[arr[0]];
+    }
+    arr.shift();
+    if (retObj === undefined) {throw new Error("Invalid child definition");}
+    if (arr.length !== 0) {
+        return recursiveChild(arr,feat,retObj);
+    } else {
+        if (typeof retObj !== "number") {throw new Error("target value is not a number");}
+        return retObj;
+    }
 }

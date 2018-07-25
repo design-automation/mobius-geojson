@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@turf/turf": "^5.1.6",
+        "mathjs": "^5.0.4",
         "papaparse": "^4.5.0"
     },
     "devDependencies": {
