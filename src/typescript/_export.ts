@@ -12,3 +12,6 @@
 
 import * as beijing from "./beijingFns";
 export {beijing};
+
+import * as beijingFeat from "./beijingFeatFns";
+export {beijingFeat};

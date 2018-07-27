@@ -38,7 +38,7 @@ import * as pp from "papaparse";
 import * as math from "mathjs";
 
 /**
- * Injects properties from source FeatureCollection into target FeatureCollection if target falls within the source.
+ * Injects properties from source csv into target Feature
  * Each injected data will be accessible in: (Feature).properties.(injName).(csvHeaderRowName - based on headerRow)
  * Array of All HeaderRow names can be accessed from: (Feature).properties.(injName)
  * .allKeys
@@ -59,6 +59,7 @@ export function csvFCollInjection(csvFile: string, fColl: turf.FeatureCollection
     const skipArr: number[] = [];
     fColl.features.forEach((feat) => {
         for (let r =0; r < csvData.length; r++) {
+            if (skipArr.indexOf(r) !== -1) {continue;} // row was already injected
             if (csvData[r][searchColumn] === feat.properties[property]) { // found row to extract data
                 skipArr.push(r);
                 csvColumns.forEach((i) => {
@@ -123,6 +124,7 @@ export function nameInjection(fColl: turf.FeatureCollection, featName: string, s
  * @param nameProp1 property which will be used as key to tag distance on features in fColl2: Defaults 'featName'
  * @param fColl2 FeatureCollection
  * @param nameProp2 property which will be used as key to tag distance on features in fColl1: Defaults 'featName'
+ * @param injName Name for injection
  * @param condition Increments and injects featName and count if condition is met
  */
 export function distanceInjection(fColl1: turf.FeatureCollection<turf.Polygon|turf.Point|turf.LineString>,
@@ -188,29 +190,45 @@ export function distanceInjection(fColl1: turf.FeatureCollection<turf.Polygon|tu
 }
 
 /**
- * Uses set attributes to calculate and inject a numerical result based on user-defined expression.
+ * Uses set attributes to calculate and inject a numerical|boolean result based on user-defined expression.
+ * User may filter out features that returns a boolean result in the expression
  *
  * @param fColl FeatureCollection
- * @param propName result of expression will be set in location, with newAttribName as key
+ * @param propName Array<string> result of expression will be set in location, with newAttribName as key
  * Allows child definition with "."
- * More than one name (1:1 to number of solutions) may be defined by user
+ * More than one name (1:1 to number of solutions) may be defined by user in the array
  * @param varDef Define variables used in expression by equating to child of 'properties' in feature
- * @param expression
+ * @param expression: expressions should be separated with semi-colons (;) and solutions to be returned should be in
+ * square brackets "[]". Multiple solutions should be separated by semi-colons.
+ * (white space is optional)
+ * e.g "var1 = var1/1000; [var1/var2;var1+var2]" NOTE: Semi-colon serves as a separator in the solution brackets
+ * @param filter ""|"true"|"false": returns a FeatureCollection if expression returns a boolean: extract none|true|false
+ * @return FeatureCollection
  */
-export function attribMath(fColl: turf.FeatureCollection, propName: string[], varDef: string,
-                           expression: string): void {
+export function attribMath(fColl: turf.FeatureCollection, propName: string[] = [], varDef: string,
+                           expression: string, filter: string = ""): turf.FeatureCollection {
 // use mathjs eval for expressions handling: but requires replacement of attributes in expression first
-    if (removeEmpty(expression.replace(/\s/g,"+").split("+").join("").split(";")).length !== propName.length) {
+    if (solnLength(expression)!== propName.length) {
         throw new Error("Number of propNames defined !== Number of Solutions");
     }
+    const retFeatArr: turf.Feature[] = [];
     fColl.features.forEach((feat) => {
         let res = mathJSResult(feat,varDef,expression);
         if (res !== Array) {res = [res];}
         for (let i=0; i<propName.length; i++) {
             checkNInject(feat, propName[i], res[i],false);
+            if (typeof res[i] === "boolean") {
+                if (res[i] === true && filter === "true") {
+                    retFeatArr.push(feat);
+                } else if (res[i] === false && filter === "false") {
+                    retFeatArr.push(feat);
+                }
+            }
         }
     });
-    return;
+    if (filter === "") {
+        return fColl;
+    } else {return turf.featureCollection(retFeatArr);}
 }
 
 /**
@@ -264,10 +282,10 @@ turf.FeatureCollection<turf.Polygon> {
  * @param srcProp Array of property names to extract and inject into each cell
  * @param rename Array of names to rename injected properties (1:1 to srcProp) - soure names will be used if undefined
  */
-export function featFeatInjection(injName: string,
-                                  srcfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
-                                  tarfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
-                                  srcProp: string[] = [], rename: string[] = []): void {
+export function fCollfCollInjection(injName: string,
+                                    srcfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
+                                    tarfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
+                                    srcProp: string[] = [], rename: string[] = []): void {
     if (injName === undefined) {throw new Error("injName is undefined");}
     if (srcfColl === undefined) {throw new Error("srcfColl is undefined");}
     if (tarfColl === undefined) {throw new Error("tarfColl is undefined");}
@@ -822,6 +840,17 @@ function findKey(obj, value): string {
 * https://codepen.io/derekpung/pen/EpXvpd?editors=0010
 */
 
+function solnLength(exp) {
+    const step1 = exp.replace(/\s/g,"@").split("@").join("");
+    const check = removeEmpty(step1.split("[")).length;
+    const step2 = removeEmpty(step1.replace(/\[|\]/g, "@").split("@"));
+    let final: string;
+    if (check === 1) {
+        final = step2[0];
+    } else {final = step2[1];}
+    return removeEmpty(final.split(";")).length;
+}
+
 function mathJSResult(feat: turf.Feature, varDef: string, expression: string) {
     const mathjsPrep = variableDef(feat, varDef);
     expression = mathjsPrep + expression; // append variable definitions to front
@@ -829,7 +858,7 @@ function mathJSResult(feat: turf.Feature, varDef: string, expression: string) {
  }
 
 function variableDef(feat: turf.Feature, str: string): string {
-    str = str.replace(/\s/g,"+").split("+").join(""); // removes white space
+    str = str.replace(/\s/g,"@").split("@").join(""); // removes white space
     const arr = removeEmpty(str.split(";")); // split into separate variable definitions
     let retStr: string = "";
     arr.forEach((defStr) => { // each definition string needs to split at "="
@@ -843,7 +872,7 @@ function variableDef(feat: turf.Feature, str: string): string {
 }
 
 function removeSymbols(str: string): string {
-    return removeEmpty(str.replace(/\<|\>|\=/g, "+").split("+"))[0];
+    return removeEmpty(str.replace(/\<|\>|\=/g, "@").split("@"))[0];
 }
 
 function removeEmpty(arr: string[]): string[] {
@@ -867,6 +896,6 @@ function recursiveChild(arr: string[], feat: turf.Feature, nxt: any): any { // r
 }
 
 function findChildValue(str: string, feat: turf.Feature): any {
-    const cleanedStr = str.replace(/\s/g,"+").split("+").join(""); // removes white space
+    const cleanedStr = str.replace(/\s/g,"@").split("@").join(""); // removes white space
     return recursiveChild(removeEmpty(cleanedStr.split(".")),feat,undefined);
 }
