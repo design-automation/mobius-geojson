@@ -246,23 +246,6 @@ export function getPropNames(feature: turf.Feature): string[] {
 }
 
 /**
- * Sets the property value for the property with the specified name.
- * If the property does not exist, it is created.
- *
- * @param feature The feature data.
- * @param name The name of the property, a string.
- * @param value The value of the property, any value.
- * @returns The name of the property. (This may differ from input name if input name is not valid.)
- */
-export function setProperty(feature: turf.Feature, name: string, value: (string|number)): string {
-    if (!feature.hasOwnProperty("properties")) {feature.properties = {};}
-    const regexp = /^[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*$/;
-    if (!regexp.test(name)) { name = "_" + name;}
-    feature.properties[name] = value;
-    return name;
-}
-
-/**
  *
  * TURF - CALC functions ***********************************************************************************************
  *
@@ -374,6 +357,49 @@ export function isPointInPolygon(point: turf.Point, polygon: turf.Polygon, ignor
 export function isWithin(feature1: turf.Feature, feature2: turf.Feature): boolean {
     return turf.booleanWithin(feature1, feature2);
 }
+
+/**
+ *
+ * TURF - CALC Functions ***********************************************************************************************
+ *
+ */
+
+/**
+ * Takes one or more features and returns their area in square meters.
+ *
+ * @param {GeoJSON} features input GeoJSON feature(s)
+ * @returns {number} area in square meters
+ * @example
+ * var polygon = geo.create.polygon([[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]);
+ *
+ * var area = geo.calc.area(polygon);
+ */
+export function areaPolygon(features: turf.AllGeoJSON): number {
+    return turf.area(features);
+}
+
+/**
+ * Calculates the distance between two points in degrees, radians,
+ * miles, or kilometers. This uses the
+ * [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula)
+ * to account for global curvature.
+ *
+ * @param {Coord} point1 origin point
+ * @param {Coord} point2 destination point
+ * @param {Object} options Optional parameters
+ * (units: "miles", "kilometers", "degrees", or "radians")
+ * @returns {number} distance between the two points
+ * @example
+ * var from = geo.create.point([-75.343, 39.984]);
+ * var to = geo.create.point([-75.534, 39.123]);
+ * var options = {units: 'miles'};
+ *
+ * var distance = geo.calc.distance(from, to, options);
+ */
+export function distancePointToPoint(point1: turf.Point, point2: turf.Point/*, options: {units: turf.Units}*/): number {
+    return (turf.distance(point1, point2/*, options*/))*1000;
+}
+
 /**
  *
  * TURF - CREATE Functions *********************************************************************************************
@@ -519,6 +545,7 @@ function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, in
     let retObj;
     if (arr.length > 1) {
         if (nxt === undefined) {
+            if (!feat.hasOwnProperty("properties")) {feat.properties = {};}
             retObj = feat.properties[arr[0]]; // retrieval starts from properties
         } else {
             retObj = nxt[arr[0]];
