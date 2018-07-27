@@ -46,19 +46,25 @@ export function csvFeatInjection(csvFile: string, feat: turf.Feature, property: 
 }
 
 /**
- * Injects specified name into each Feature within Feature Collection: Feature.properties.featName
+ * Gets Value of Property
  *
- * @param fColl FeatureCollection
- * @param featName string with a number concat to its end will be injected into each Feature
- * @param startNum Defaults 0: number which will be concat to featName
+ * @param feat Feature
+ * @param propName Child from (Feature).properties.(propName): Nested Child may be indicated with "."
  */
-export function nameInjection(fColl: turf.FeatureCollection, featName: string, startNum: number = 0): void {
-     let i = startNum;
-     fColl.features.forEach((feat) => {
-         feat.properties.featName = featName + i.toString;
-         i++;
-     });
-     return;
+export function getPropValue(feat: turf.Feature, propName: string): any {
+    return findChildValue(propName,feat);
+}
+
+/**
+ * Sets Value of Property
+ *
+ * @param feat Feature
+ * @param propName Child from (Feature).properties.(propName): Nested Child may be indicated with "."
+ * @param injValue Value to be injected
+ */
+export function setPropValue(feat: turf.Feature, propName: string, injValue: any): void {
+    checkNInject(feat,propName,injValue,false);
+    return;
 }
 
 /**
