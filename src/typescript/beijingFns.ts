@@ -20,11 +20,6 @@
 
 // [V] Mathematical Calculations on Attribs & Injection - calculations and counting of instances (general use case)
 
-// [ ] unwrap nested properties? (all injections are nested in a property)
-
-// [ ] Polygon center to center line (specific view case - relationship view based on avail property)
-//     requires fColl-fColl conditional!
-
 // [V] Extras: GeoHash Dictionary and GeoHash Encode - Needs refactor for large polygons that may land on >1 geoHash
 // https://next.plnkr.co/edit/3pMCwuCLPLTvCg5g
 
