@@ -28,6 +28,7 @@
         "papaparse": "^4.5.0"
     },
     "devDependencies": {
+        "@angular/cli": "^7.1.2",
         "@types/jasmine": "^2.8.8",
         "@types/node": "^9.6.23",
         "babel-cli": "^6.26.0",

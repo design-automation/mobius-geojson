@@ -538,14 +538,14 @@ function checkNInject(feat: turf.Feature, propName: string,
                       injValue, injArr: boolean): void {
     findChildInject(removeEmpty(propName.split(".")),feat,undefined,injValue, injArr);
     return;
-}
+} // Checked and fixed. Working as of: 11/12/2018
 
 function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, injArr: boolean): void {
-// recursively find target child and injects value
+    // recursively find target child and injects value
     let retObj;
     if (arr.length > 1) {
         if (nxt === undefined) {
-            if (!feat.hasOwnProperty("properties")) {feat.properties = {};}
+            feat.properties[arr[0]] = {}; // create feat.properties.(arr[0])
             retObj = feat.properties[arr[0]]; // retrieval starts from properties
         } else {
             retObj = nxt[arr[0]];
@@ -556,30 +556,26 @@ function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, in
     } else { // child injection
         switch (injArr) {
             case true: // inject into an array
-                if (retObj[arr[0]] === undefined) {
-                    retObj[arr[0]] = [injVal];
+                if (nxt[arr[0]] === undefined) {
+                    nxt[arr[0]] = [injVal];
                 } else {
-                    retObj[arr[0]] = retObj[arr[0]].concat([injVal]);
+                    nxt[arr[0]] = nxt[arr[0]].concat([injVal]);
                 }
                 break;
             case false: // simple injection (allows override)
-                retObj[arr[0]] = injVal;
+                nxt[arr[0]] = injVal;
         }
     }
-}
+} // error in concat. TBC
 
 function minMaxMean(feat: turf.Feature, injName: string): void {
     const injObj = feat.properties[injName];
     injObj.minValue = math.min(injObj.allValues); // calc minDist and inject
     injObj.maxValue = math.max(injObj.allValues); // calc maxDist and inject
     injObj.meanValue = math.mean(injObj.allValues); // calc meanDist and inject
-    injObj.minKey = findKey(injObj,injObj.minDist); // logs key with minDist
-    injObj.maxKey = findKey(injObj,injObj.maxDist); // logs key with maxDist
-}
-
-function findKey(obj, value): string {
-    return Object.keys(obj).find((key) => obj[key] === value);
-}
+    injObj.minKey = injObj.allKeys[injObj.allValues.indexOf(injObj.minDist)]; // logs key with minDist
+    injObj.maxKey = injObj.allKeys[injObj.allValues.indexOf(injObj.maxDist)]; // logs key with maxDist
+} // Checked and fixed. Working as of: 11/12/2018
 
 /*
 * MathJS Prep Functions **********************************************************************************************

@@ -36,6 +36,7 @@
 import * as turf from "@turf/turf";
 import * as pp from "papaparse";
 import * as math from "mathjs";
+import { fColl } from "./create";
 
 /**
  * Injects properties from source csv into target Feature
@@ -99,11 +100,11 @@ export function areaInjection(polys: turf.FeatureCollection<turf.Polygon>): void
 export function nameInjection(fColl: turf.FeatureCollection, featName: string, startNum: number = 0): void {
      let i = startNum;
      fColl.features.forEach((feat) => {
-         feat.properties.featName = featName + i.toString;
+         feat.properties.featName = featName + i;
          i++;
      });
      return;
-}
+} // Last Checked & Fixed: 11/12/2018 working
 
 /**
  * Calculates and injects distance of target to feature: Feature.properties.(injName).(featName)
@@ -127,42 +128,46 @@ export function nameInjection(fColl: turf.FeatureCollection, featName: string, s
  * @param injName Name for injection
  * @param condition Increments and injects featName and count if condition is met
  */
+
 export function distanceInjection(fColl1: turf.FeatureCollection<turf.Polygon|turf.Point|turf.LineString>,
                                   nameProp1: string = "featName",
                                   fColl2: turf.FeatureCollection<turf.Polygon|turf.Point|turf.LineString>,
                                   nameProp2: string = "featName", injName: string, condition: string = ""): void {
+    injPropertyName(fColl1,injName);
+    injPropertyName(fColl2,injName);
     fColl1.features.forEach((feat1) => {
         const allK: string[] = [];
         const allVal: number[] = [];
         fColl2.features.forEach((feat2) => {
             const coords: number[][] = typeToSingleCoord(feat1,feat2);
-            const dist: number = turf.distance(coords[0],coords[1]);
+            const dist: number = turf.distance(coords[0],coords[1]) * 1000;
             if (feat1.properties[nameProp1] === undefined||feat2.properties[nameProp2] === undefined) {
                 throw new Error ("Feature does not contain specified name property");
             }
             if (condition.length !== 0) { // !default empty string
-                const conditionChk = math.compile(dist.toString + condition).eval();
+                const conditionChk = math.eval(dist + condition);
+                const cleaned: number = parseFloat(removeSymbols(condition));
+                let newPropName: string;
+                switch (condition.slice(0,1)) {
+                    case ">":
+                        newPropName = "largerThan"+cleaned;
+                        break;
+                    case "<":
+                        newPropName = "smallerThan"+cleaned;
+                        break;
+                    case "=":
+                        newPropName = "equals"+cleaned;
+                        break;
+                }
+                feat1.properties[injName].condName = newPropName;
+                // for easy retrieval in calculating count
+
                 if (typeof conditionChk !== "boolean") {throw new Error ("Invalid Condition");}
                 if (conditionChk) {
-                    const cleaned: number = parseFloat(removeSymbols(condition));
-                    let newPropName: string;
-                    switch (condition.slice(0,1)) {
-                        case ">":
-                            newPropName = "largerThan"+cleaned;
-                            break;
-                        case "<":
-                            newPropName = "smallerThan"+cleaned;
-                            break;
-                        case "=":
-                            newPropName = "equals"+cleaned;
-                            break;
-                    }
                     checkNInject(feat1,injName+"."+newPropName,feat2.properties[nameProp2],true);
                     // injects feat2's nameID into an array in feat1
                     checkNInject(feat2,injName+"."+newPropName,feat1.properties[nameProp1],true);
                     // injects feat1's nameID into an array in feat2
-                    feat1.properties[injName].condName = newPropName;
-                    // for easy retrieval in calculating count
                 }
             }
             allVal.push(dist); // push dist into arr which will be added to feat1
@@ -177,13 +182,23 @@ export function distanceInjection(fColl1: turf.FeatureCollection<turf.Polygon|tu
         feat1.properties[injName].allKeys = allK;
         minMaxMean(feat1,injName); // sets min max mean to each feat1
         const feat1condName = feat1.properties[injName].condName;
-        feat1.properties[injName][feat1condName + "Cnt"] = feat1.properties[injName][feat1condName].length;
+        if (feat1.properties[injName][feat1condName] === undefined) {
+            feat1.properties[injName][feat1condName + "Cnt"] = 0;
+            (feat1.properties[injName][feat1condName] = []);
+        } else {
+            feat1.properties[injName][feat1condName + "Cnt"] = feat1.properties[injName][feat1condName].length;
+        }
         // conditionCount to feat1
     });
     fColl2.features.forEach((feat2) => {
         minMaxMean(feat2,injName);  // sets min max mean to each feat2
         const feat2condName = feat2.properties[injName].condName;
-        feat2.properties[injName][feat2condName + "Cnt"] = feat2.properties[injName][feat2condName].length;
+        if (feat2.properties[injName][feat2condName] === undefined) {
+            feat2.properties[injName][feat2condName + "Cnt"] = 0;
+            feat2.properties[injName][feat2condName] = [];
+        } else {
+            feat2.properties[injName][feat2condName + "Cnt"] = feat2.properties[injName][feat2condName].length;
+        }
         // conditionCount to feat2
     });
     return;
@@ -550,13 +565,14 @@ function checkNInject(feat: turf.Feature, propName: string,
                       injValue, injArr: boolean): void {
     findChildInject(removeEmpty(propName.split(".")),feat,undefined,injValue, injArr);
     return;
-}
+} // Checked and fixed. Working as of: 11/12/2018
 
 function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, injArr: boolean): void {
 // recursively find target child and injects value
     let retObj;
     if (arr.length > 1) {
         if (nxt === undefined) {
+            feat.properties[arr[0]] = {}; // create feat.properties.(arr[0])
             retObj = feat.properties[arr[0]]; // retrieval starts from properties
         } else {
             retObj = nxt[arr[0]];
@@ -567,33 +583,29 @@ function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, in
     } else { // child injection
         switch (injArr) {
             case true: // inject into an array
-                if (retObj[arr[0]] === undefined) {
-                    retObj[arr[0]] = [injVal];
+                if (nxt[arr[0]] === undefined) {
+                    nxt[arr[0]] = [injVal];
                 } else {
-                    retObj[arr[0]] = retObj[arr[0]].concat([injVal]);
+                    nxt[arr[0]] = nxt[arr[0]].concat([injVal]);
                 }
                 break;
             case false: // simple injection (allows override)
-                retObj[arr[0]] = injVal;
+                nxt[arr[0]] = injVal;
         }
     }
-}
+} // error in concat. TBC
 
 function minMaxMean(feat: turf.Feature, injName: string): void {
     const injObj = feat.properties[injName];
     injObj.minValue = math.min(injObj.allValues); // calc minDist and inject
     injObj.maxValue = math.max(injObj.allValues); // calc maxDist and inject
     injObj.meanValue = math.mean(injObj.allValues); // calc meanDist and inject
-    injObj.minKey = findKey(injObj,injObj.minDist); // logs key with minDist
-    injObj.maxKey = findKey(injObj,injObj.maxDist); // logs key with maxDist
-}
-
-function findKey(obj, value): string {
-    return Object.keys(obj).find((key) => obj[key] === value);
-}
+    injObj.minKey = injObj.allKeys[injObj.allValues.indexOf(injObj.minDist)]; // logs key with minDist
+    injObj.maxKey = injObj.allKeys[injObj.allValues.indexOf(injObj.maxDist)]; // logs key with maxDist
+} // Checked and fixed. Working as of: 11/12/2018
 
 /*
-* MathJS Prep Functions **********************************************************************************************
+* MathJS Prep Functions ************************************************************************************************
 * mathjs takes in variable definitions separated by semi-colons before expression.
 * this will parse and return a concated string that can be appended to front of expression before passing into mathjs
 * https://codepen.io/derekpung/pen/EpXvpd?editors=0010
@@ -657,4 +669,11 @@ function recursiveChild(arr: string[], feat: turf.Feature, nxt: any): any { // r
 function findChildValue(str: string, feat: turf.Feature): any {
     const cleanedStr = str.replace(/\s/g,"@").split("@").join(""); // removes white space
     return recursiveChild(removeEmpty(cleanedStr.split(".")),feat,undefined);
+}
+
+function injPropertyName(fColl: turf.FeatureCollection<turf.Polygon|turf.Point|turf.LineString>, injName: string): void{
+    fColl.features.forEach((feat) => {
+        feat.properties[injName] = {};
+    });
+    return;
 }
