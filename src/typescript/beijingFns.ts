@@ -595,6 +595,84 @@ function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, in
     }
 } // error in concat. TBC
 
+// recursive child creation
+// create child method
+// Access child and set value
+
+function injectChildren(arr,feat) {
+    try {
+        recursiveChild(arr,feat,undefined)
+    } catch(err) {
+        createChild(arr); 
+        // to touch up/fix this part 12-12-2018
+        // https://codepen.io/derekpung/pen/bOdvMa?editors=0010
+    }
+}
+
+function createChild(arr,nxt = undefined) {
+    let retObj = undefined;
+    if (nxt == undefined) {
+        retObj = {};
+    } else {
+        retObj = nxt;
+    }
+    let newRetObj = {};
+    newRetObj[arr[arr.length-1]] = retObj;
+    arr.pop();
+    if (arr.length > 0) {
+        return createChild(arr,newRetObj);
+    } else {
+        return newRetObj;
+    }
+}
+
+// function recursiveChildCreate(arr: string[], feat: turf.Feature, nxt: any): any { // recursively find child value
+//     let retObj;
+//     if (nxt === undefined) {
+//         retObj = feat.properties[arr[0]]; // retrieval starts from properties
+//     } else {
+//         retObj = nxt[arr[0]];
+//     }
+//     arr.shift();
+//     if (retObj === undefined) {
+        
+//     }
+//     if (arr.length !== 0) {
+//         return recursiveChild(arr,feat,retObj);
+//     } else {
+//         return retObj;
+//     }
+// }
+
+// function findChildInject2(arr: string[], feat: turf.Feature, nxt: any, injVal, injArr: boolean): void {
+// // recursively find target child and injects value
+//     let retObj;
+//     if (arr.length > 1) {
+//         if (nxt === undefined) {
+//             feat.properties[arr[0]] = {}; // create feat.properties.(arr[0])
+//             retObj = feat.properties[arr[0]]; // retrieval starts from properties
+//         } else {
+//             retObj = nxt[arr[0]];
+//         }
+//         arr.shift();
+//         if (retObj === undefined) {throw new Error("Invalid child definition");}
+//         return findChildInject2(arr,feat,retObj,injVal,injArr);
+//     } else { // child injection
+//         switch (injArr) {
+//             case true: // inject into an array
+//                 if (nxt[arr[0]] === undefined) {
+//                     nxt[arr[0]] = [injVal];
+//                 } else {
+//                     nxt[arr[0]] = nxt[arr[0]].concat([injVal]);
+//                 }
+//                 break;
+//             case false: // simple injection (allows override)
+//                 nxt[arr[0]] = injVal;
+//         }
+//     }
+// }
+    
+
 function minMaxMean(feat: turf.Feature, injName: string): void {
     const injObj = feat.properties[injName];
     injObj.minValue = math.min(injObj.allValues); // calc minDist and inject
