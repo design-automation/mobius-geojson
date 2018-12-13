@@ -569,6 +569,7 @@ function checkNInject(feat: turf.Feature, propName: string,
 
 function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, injArr: boolean): void {
 // recursively find target child and injects value
+// https://codepen.io/derekpung/pen/bOdvMa?editors=0010
     let retObj;
     if (arr.length > 1) {
         if (nxt === undefined) {
@@ -595,7 +596,7 @@ function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, in
     }
 } // Checked and fixed. Working as of: 13/12/2018
 
-function injectChildren(arr,feat) {
+function injectChildren(arr: string[],feat: turf.Feature): void {
     let res = recursiveChild_Create(arr, feat, undefined, undefined);
     const parent_saved = res[0].slice();
     const child_saved = res[1].slice();
@@ -615,9 +616,10 @@ function injectChildren(arr,feat) {
     } catch(err) {
         feat.properties[parent_saved] = createChild(child_saved);
     }
-}
+    return;
+}// Added 13/12/2018 - working
 
-function createChild(arr,nxt = undefined) {
+function createChild(arr: string[],nxt = undefined) {
     let retObj = undefined;
     if (nxt == undefined) {
         retObj = {};
@@ -632,9 +634,9 @@ function createChild(arr,nxt = undefined) {
     } else {
         return newRetObj;
     }
-}
+}// Added 13/12/2018 - working
 
-function recursiveChild_Create(arr, feat, nxt, rem_arr) {
+function recursiveChild_Create(arr: string[], feat: turf.Feature, nxt, rem_arr: string[]) {
     let retObj;
     let retArr;
     
@@ -663,7 +665,7 @@ function recursiveChild_Create(arr, feat, nxt, rem_arr) {
     } else {
         throw new Error("All children exists")
     }
-} 
+} // Added 13/12/2018 - working
     
 
 function minMaxMean(feat: turf.Feature, injName: string): void {

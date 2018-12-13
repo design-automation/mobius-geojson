@@ -542,31 +542,103 @@ function checkNInject(feat: turf.Feature, propName: string,
 
 function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, injArr: boolean): void {
     // recursively find target child and injects value
-    let retObj;
-    if (arr.length > 1) {
+    // https://codepen.io/derekpung/pen/bOdvMa?editors=0010
+        let retObj;
+        if (arr.length > 1) {
+            if (nxt === undefined) {
+                injectChildren(arr.slice(), feat); // Inject children required into specified path
+                retObj = feat.properties[arr[0]]; // retrieval starts from properties
+            } else {
+                retObj = nxt[arr[0]];
+            }
+            arr.shift();
+            if (retObj === undefined) {throw new Error("Invalid child definition");}
+            return findChildInject(arr,feat,retObj,injVal,injArr);
+        } else { // child injection
+            switch (injArr) {
+                case true: // inject into an array
+                    if (nxt[arr[0]] === undefined) {
+                        nxt[arr[0]] = [injVal];
+                    } else {
+                        nxt[arr[0]] = nxt[arr[0]].concat([injVal]);
+                    }
+                    break;
+                case false: // simple injection (allows override)
+                    nxt[arr[0]] = injVal;
+            }
+        }
+    } // Checked and fixed. Working as of: 13/12/2018
+    
+    function injectChildren(arr: string[],feat: turf.Feature): void {
+        let res = recursiveChild_Create(arr, feat, undefined, undefined);
+        const parent_saved = res[0].slice();
+        const child_saved = res[1].slice();
+    
+        try {
+            let res1_firstChild = res[1][0];
+            res[1].shift()
+            if (typeof recursiveChild(res[0],feat,undefined) === "object") {
+                res[0] = parent_saved.slice();
+                recursiveChild(res[0],feat,undefined)[res1_firstChild] = createChild(res[1]);
+            } else {
+                res[0] = parent_saved.slice();
+                res[1] = child_saved.slice();
+                res1_firstChild = res[0].pop();
+                recursiveChild(res[0],feat,undefined)[res1_firstChild] = createChild(res[1]);
+            }
+        } catch(err) {
+            feat.properties[parent_saved] = createChild(child_saved);
+        }
+        return;
+    }// Added 13/12/2018 - working
+    
+    function createChild(arr: string[],nxt = undefined) {
+        let retObj = undefined;
+        if (nxt == undefined) {
+            retObj = {};
+        } else {
+            retObj = nxt;
+        }
+        let newRetObj = {};
+        newRetObj[arr[arr.length-1]] = retObj;
+        arr.pop();
+        if (arr.length > 0) {
+            return createChild(arr,newRetObj);
+        } else {
+            return newRetObj;
+        }
+    }// Added 13/12/2018 - working
+    
+    function recursiveChild_Create(arr: string[], feat: turf.Feature, nxt, rem_arr: string[]) {
+        let retObj;
+        let retArr;
+        
         if (nxt === undefined) {
-            feat.properties[arr[0]] = {}; // create feat.properties.(arr[0])
             retObj = feat.properties[arr[0]]; // retrieval starts from properties
         } else {
             retObj = nxt[arr[0]];
         }
-        arr.shift();
-        if (retObj === undefined) {throw new Error("Invalid child definition");}
-        return findChildInject(arr,feat,retObj,injVal,injArr);
-    } else { // child injection
-        switch (injArr) {
-            case true: // inject into an array
-                if (nxt[arr[0]] === undefined) {
-                    nxt[arr[0]] = [injVal];
-                } else {
-                    nxt[arr[0]] = nxt[arr[0]].concat([injVal]);
-                }
-                break;
-            case false: // simple injection (allows override)
-                nxt[arr[0]] = injVal;
+        
+        if (rem_arr === undefined) {
+            retArr = [];
+        } else {
+            retArr = rem_arr;
         }
-    }
-} // error in concat. TBC
+            retArr.push(arr[0]);
+            arr.shift();
+        if (retObj === undefined) {
+            if (retArr.length > 1) {
+                arr.unshift(retArr[retArr.length-1])
+                retArr.pop();
+            }
+            return [retArr,arr];
+        }
+        if (arr.length !== 0) {
+            return recursiveChild_Create(arr,feat,retObj,retArr);
+        } else {
+            throw new Error("All children exists")
+        }
+    } // Added 13/12/2018 - working
 
 function minMaxMean(feat: turf.Feature, injName: string): void {
     const injObj = feat.properties[injName];
