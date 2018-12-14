@@ -53,6 +53,7 @@ import { fColl } from "./create";
  * @param headerRow Row index number
  * @param csvColumns Array of Column indices to extract
  */
+// tslint:disable-next-line:no-shadowed-variable
 export function csvFCollInjection(csvFile: string, fColl: turf.FeatureCollection, property: string, injName: string,
                                   searchColumn: number, headerRow: number, csvColumns: number[]): void {
     const csvData: string[][] = csvParse(csvFile,",").data;
@@ -88,7 +89,7 @@ export function areaInjection(polys: turf.FeatureCollection<turf.Polygon>): void
          polyFeat.properties.area = turf.area(polyFeat);
      });
      return;
-}
+} // Last Checked & Fixed: 13/12/2018 working
 
 /**
  * Injects specified name into each Feature within Feature Collection: Feature.properties.featName
@@ -97,6 +98,7 @@ export function areaInjection(polys: turf.FeatureCollection<turf.Polygon>): void
  * @param featName string with a number concat to its end will be injected into each Feature
  * @param startNum Defaults 0: number which will be concat to featName
  */
+// tslint:disable-next-line:no-shadowed-variable
 export function nameInjection(fColl: turf.FeatureCollection, featName: string, startNum: number = 0): void {
      let i = startNum;
      fColl.features.forEach((feat) => {
@@ -202,7 +204,7 @@ export function distanceInjection(fColl1: turf.FeatureCollection<turf.Polygon|tu
         // conditionCount to feat2
     });
     return;
-}
+} // Last Checked & Fixed: 13/12/2018 working
 
 /**
  * Uses set attributes to calculate and inject a numerical|boolean result based on user-defined expression.
@@ -220,6 +222,7 @@ export function distanceInjection(fColl1: turf.FeatureCollection<turf.Polygon|tu
  * @param filter ""|"true"|"false": returns a FeatureCollection if expression returns a boolean: extract none|true|false
  * @return FeatureCollection
  */
+// tslint:disable-next-line:no-shadowed-variable
 export function attribMath(fColl: turf.FeatureCollection, propName: string[] = [], varDef: string,
                            expression: string, filter: string = ""): turf.FeatureCollection {
 // use mathjs eval for expressions handling: but requires replacement of attributes in expression first
@@ -302,58 +305,104 @@ export function fCollfCollInjection(injName: string,
                                     tarfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
                                     srcProp: string[] = [], rename: string[] = []): void {
     if (injName === undefined) {throw new Error("injName is undefined");}
+    injectChildren_fColl([injName],tarfColl);
     if (srcfColl === undefined) {throw new Error("srcfColl is undefined");}
     if (tarfColl === undefined) {throw new Error("tarfColl is undefined");}
     if (srcProp === undefined) {throw new Error("srcProp is undefined");}
     if ((rename !== undefined) && (srcProp.length !== rename.length)) {
         throw new Error ("srcProp and rename arrays are not equal in length");
     }
-    const srcGHashDict: IGeoHashDict = geoHashDictionary(srcfColl); // default precision 8
-    const tarGHashDict: IGeoHashDict = geoHashDictionary(tarfColl);
+
     tarfColl.features.forEach((tarFeat) => {
-        let geoHash = tarFeat.properties.geoHash;
-        // if (geoHash.length !== srcGHashDict.precision) { // prep GeoHash for search
-        //     geoHash = geoHash.slice(0,srcGHashDict.precision+1);
-        // }
-        geoHash = geoHash.slice(0,tarFeat.properties.geoHashPrecision+1);
-        // this will search src dictionary based on target's own size - larger/less precise geoHash it encapsulate,
-        // the more it needs to search
-        const srcFeatArrInd: number[] = srcGHashDict[geoHash];
-        // find srcGHash dictionary for array of srcFeat indices that share the same GeoHash
-        let injected: boolean = false;
-        if (srcFeatArrInd !== undefined) { // === undefined: no source near target - inject 0
-            for (let i=0; i<srcFeatArrInd.length;i++) {
-                const ind = srcFeatArrInd[i];
-                const srcFeat = srcfColl.features[ind];
-                const contain = turf.booleanContains(tarFeat,srcFeat);
-                const within = turf.booleanWithin(srcFeat,tarFeat);
-                if (contain||within) { // src is small enough to fit within tar - inject
-                    propertyInjection(srcFeat,tarFeat,srcProp,injName,rename);
-                    injected = true;
-                    break;
-                }
-                if (tarFeat.geometry.type === "Polygon") {
-                    const srcFea = turf.pointOnFeature(srcfColl.features[ind]); // Gives a point that's 100% in feat
-                    const tarFeat_poly = tarFeat as turf.Feature<turf.Polygon>;
-                    if(turf.booleanPointInPolygon(srcFea, tarFeat_poly) === true) {
-                        propertyInjection(srcFea,tarFeat,srcProp,injName,rename);
-                        injected = true;
-                        break;
-                    }
-                } else { // Line|Point - high chance of failing. Should they be blocked from function completely?
-                    const srcFea = srcfColl.features[ind];
-                    if(turf.booleanEqual(srcFea, tarFeat) === true) {
-                        propertyInjection(srcFea,tarFeat,srcProp,injName,rename);
-                        injected = true;
-                        break;
-                    }
-                }
+        let injected = false;
+        // tslint:disable-next-line:prefer-for-of
+        for (let i=0; i<srcfColl.features.length; i++) {
+            const srcFeat = srcfColl.features[i];
+            const contain = turf.booleanContains(tarFeat,turf.center(srcFeat));
+            const within = turf.booleanWithin(turf.center(srcFeat),tarFeat);
+            if (contain||within) {
+                propertyInjection(srcFeat,tarFeat,srcProp,injName,rename);
+                injected = true;
+                break;
             }
         }
-        if (injected === false) {propertyInjection(undefined,tarFeat,srcProp,injName,rename);}
+        if (injected === false) {
+            propertyInjection(undefined,tarFeat,srcProp,injName,rename);
+        }
     });
     return;
-}
+} // geohash dictionary buggy. Removed and replaced with full search. Will be slow for big fColls.
+// Last Checked & Fixed: 13/12/2018 working
+
+// /**
+//  * Injects properties from source FeatureCollection into target FeatureCollection if target falls within the source.
+//  *
+//  * @param injName Name for injection
+//  * @param srcfColl Source FeatureCollection
+//  * @param tarfColl Target FeatureCollection
+//  * @param srcProp Array of property names to extract and inject into each cell
+//  * @param rename Array of names to rename injected properties (1:1 to srcProp) - soure names will be used if
+// undefined
+//  */
+// export function fCollfCollInjection(injName: string,
+//                                     srcfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
+//                                     tarfColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
+//                                     srcProp: string[] = [], rename: string[] = []): void {
+//     if (injName === undefined) {throw new Error("injName is undefined");}
+//     injectChildren_fColl([injName],tarfColl);
+//     if (srcfColl === undefined) {throw new Error("srcfColl is undefined");}
+//     if (tarfColl === undefined) {throw new Error("tarfColl is undefined");}
+//     if (srcProp === undefined) {throw new Error("srcProp is undefined");}
+//     if ((rename !== undefined) && (srcProp.length !== rename.length)) {
+//         throw new Error ("srcProp and rename arrays are not equal in length");
+//     }
+
+//     const srcGHashDict: IGeoHashDict = geoHashDictionary(srcfColl); // default precision 8
+//     const tarGHashDict: IGeoHashDict = geoHashDictionary(tarfColl);
+//     tarfColl.features.forEach((tarFeat) => {
+//         let geoHash = tarFeat.properties.geoHash;
+//         // if (geoHash.length !== srcGHashDict.precision) { // prep GeoHash for search
+//         //     geoHash = geoHash.slice(0,srcGHashDict.precision+1);
+//         // }
+//         geoHash = geoHash.slice(0,tarFeat.properties.geoHashPrecision+1);
+//         // this will search src dictionary based on target's own size - larger/less precise geoHash it encapsulate,
+//         // the more it needs to search
+//         const srcFeatArrInd: number[] = srcGHashDict[geoHash];
+//         // find srcGHash dictionary for array of srcFeat indices that share the same GeoHash
+//         let injected: boolean = false;
+//         if (srcFeatArrInd !== undefined) { // === undefined: no source near target - inject 0
+//             for (let i=0; i<srcFeatArrInd.length;i++) {
+//                 const ind = srcFeatArrInd[i];
+//                 const srcFeat = srcfColl.features[ind];
+//                 const contain = turf.booleanContains(tarFeat,srcFeat);
+//                 const within = turf.booleanWithin(srcFeat,tarFeat);
+//                 if (contain||within) { // src is small enough to fit within tar - inject
+//                     propertyInjection(srcFeat,tarFeat,srcProp,injName,rename);
+//                     injected = true;
+//                     break;
+//                 }
+//                 if (tarFeat.geometry.type === "Polygon") {
+//                     const srcFea = turf.pointOnFeature(srcfColl.features[ind]); // Gives a point that's 100% in feat
+//                     const tarFeat_poly = tarFeat as turf.Feature<turf.Polygon>;
+//                     if(turf.booleanPointInPolygon(srcFea, tarFeat_poly) === true) {
+//                         propertyInjection(srcFea,tarFeat,srcProp,injName,rename);
+//                         injected = true;
+//                         break;
+//                     }
+//                 } else { // Line|Point - high chance of failing. Should they be blocked from function completely?
+//                     const srcFea = srcfColl.features[ind];
+//                     if(turf.booleanEqual(srcFea, tarFeat) === true) {
+//                         propertyInjection(srcFea,tarFeat,srcProp,injName,rename);
+//                         injected = true;
+//                         break;
+//                     }
+//                 }
+//             }
+//         }
+//         if (injected === false) {propertyInjection(undefined,tarFeat,srcProp,injName,rename);}
+//     });
+//     return;
+// }
 
 /*
  *
@@ -361,124 +410,190 @@ export function fCollfCollInjection(injName: string,
  *
 */
 
-interface IGeoHashObj {
-    geoHash: string;
-    precision: number;
-}
+// function polygonsBySquGrid(cellSide: number, mask: turf.Feature<turf.Polygon|turf.MultiPolygon>):
+// turf.FeatureCollection<turf.Polygon> {
+//     return turf.squareGrid(turf.bbox(mask),cellSide/1000,{mask});
+// }
 
-interface IGeoHashDict {
-    precision: number;
-}
+// function idAdd(fColl: turf.FeatureCollection): void {
+//     for (let i=0; i<fColl.features.length; i++) {
+//         fColl.features[i].properties.objId = i;
+//     }
+//     return;
+// }
 
-/**
- * Injects each feature with a GeoHash, and returns a GeoHash dictionary
- *
- * @param fColl FeatureCollection
- * @param precision Max number of letters in encoded GeoHash
- * @return GeoHash dictionary with array of featureIndex as values
- */
-export function geoHashDictionary(fColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
-                                  precision: number = 8): IGeoHashDict { //
-    const dict: IGeoHashDict = {precision};
-    const fCollFeats = fColl.features;
-    for (let i = 0; i<fCollFeats.length; i++) {
-        const feat = fCollFeats[i];
-        const geoHashObj = geoHashEncode(feat,precision);
-        const geoHashRes = geoHashObj.geoHash;
-        // precision = geoHashObj.precision;
-        dict.precision = geoHashObj.precision;
-        for (let j = 0; j<geoHashRes.length; j++) { // each dictionary key entry will have an array of indices
-            if (dict.hasOwnProperty(geoHashRes.slice(0,j+1))) {
-                dict[geoHashRes.slice(0,j+1)] = dict[geoHashRes.slice(0,j+1)].concat([i]);
-            } else {
-                dict[geoHashRes.slice(0,j+1)] = [i];
-            }
-        }
-    }
-    // remove dictionary keys that have length > precision
-    // Object.keys(dict).forEach((key) => {
-    //     if (key.length > precision) {
-    //         delete dict[key];
-    //     }
-    // });
-    // dict.precision = precision;
-    return dict;
-}
+// interface Idict {
+//     name: string;
+// }
 
-/**
- * Injects feature with a geoHash, and returns a geoHash string
- *
- * @param feature LineString, Point, or Polygon
- * @param precision Max number of letters in encoded GeoHash
- * @return Object containing GeoHash and Precision values
- */
-export function geoHashEncode(feature: turf.Feature<turf.LineString|turf.Polygon|turf.Point>, precision: number = 8):
-IGeoHashObj {
-    let coordArr: number[][];
-    const geomType = feature.geometry.type;
-    let dictPrecision = precision;
-    if (geomType === "Polygon"||geomType === "LineString") {
-    // needs to ensure that boundaries of polygon/line falls within bbox of a geoHash
-    // means geoHash precision needs to be low enough for diagonal boundary points to have same hash value
-        coordArr = ensureCoordArr(turf.bboxPolygon(turf.bbox(feature)));
-        coordArr = [coordArr[0],coordArr[2]]; // line|Polygon will have four geoHash values
-    } else if (geomType === "Point") {
-        coordArr = ensureCoordArr(feature);
-    }
-    const geoHashArr: string[] = []; // check for polygon | line
-    let geoHashRes: string;
-    coordArr.forEach((coord) => { // line|Polygon will have two geoHash values - one for each diagonal bBox point
-        let minLat = -90;
-        let maxLat = 90;
-        let minLon = -180;
-        let maxLon = 180;
-        const lat: number = coord[0];
-        const lon: number = coord[1];
-        let binConv: string = "";
-        for (let j = 0; j<precision*5; j++) {
-            if (j%2===0) { // even are longitude
-                const mid = (maxLon+ minLon)/2;
-                if (lon<mid) {
-                    binConv += "0";
-                    maxLon = mid;
-                } else {
-                    binConv += "1";
-                    minLon = mid;
-                }
-            }
-            if (j%2===1) { // odd are latitude
-                const mid = (maxLat + minLat)/2;
-                if (lat<mid) {
-                    binConv += "0";
-                    maxLat = mid;
-                } else {
-                    binConv += "1";
-                    minLat = mid;
-                }
-            }
-        }
-        geoHashRes = decToBase32(binToDec(binConv));
-        geoHashArr.push(geoHashRes);
-    });
-    if (geoHashArr.length>1) { // Line|Polygon: change precision value for subsequent loops & change geoHassRes
-        for (let j = 0; j<geoHashRes.length; j++) { // check from RTL
-        // do not reduce precision: keep all Hash?
-        // during search: if can't find at current precision - reduce level of precision -> search again w/o repeat
-        // needs to maintain a list of checked keys
-        // keep going until reach precision stated by dictionary
-            const firstRes = geoHashArr[0].slice(0,geoHashRes.length-j);
-            const secRes = geoHashArr[1].slice(0,geoHashRes.length-j);
-            if (firstRes === secRes) { // opposite corner have the same geoHash: Entire bbox falls within geoHash
-                geoHashRes = firstRes;
-                break;
-            }
-            dictPrecision--;
-        }
-    }
-    feature.properties.geoHash = geoHashRes;
-    feature.properties.geoHashPrecision = dictPrecision;
-    return {geoHash: geoHashRes, precision: dictPrecision};
-}
+// function dictCreate(fColl: turf.FeatureCollection, dictName: string = "default"): Idict {
+//     const dict: Idict = {name: dictName};
+//     fColl.features.forEach((feat) => {
+//         dict[feat.properties.objId] = [];
+//     });
+//     return dict;
+// }
+
+// function dictInsert(fColl: turf.FeatureCollection, dictRef: turf.FeatureCollection, dict: Idict): void {
+//     for (let j=0; j<fColl.features.length; j++) {
+//         const orifeat = fColl.features[j];
+//         if (orifeat.geometry === null) {continue;}
+//         const feat = convertPoint(orifeat);
+//         for (let i=0; i<dictRef.features.length; i++) {
+//             const dictRefFeat = dictRef.features[i];
+//             const contain = turf.booleanContains(dictRefFeat,feat);
+//             if (contain) {
+//                 feat.properties.dictId = dictRefFeat.properties.objId;
+//                 dict[dictRefFeat.properties.objId].push(feat);
+//                 break;
+//             }
+//         }
+//     }
+//     return;
+// }
+
+// function convertPoint(feat: turf.Feature): turf.Feature<turf.Point> {
+//     let retFeat;
+//     switch (feat.geometry.type) {
+//         case "Point":
+//             retFeat = feat;
+//             break;
+//         case "Polygon":
+//             retFeat = turf.center(feat);
+//             break;
+//         case "MultiPolygon":
+//             retFeat = turf.center(feat);
+//             break;
+//         case "LineString":
+//             retFeat = turf.along(feat,turf.length(feat)/2);
+//             retFeat.properties.objId = feat.properties.objId;
+//             break;
+//         case "MultiLineString":
+//             retFeat = turf.along(feat,turf.length(feat)/2);
+//             retFeat.properties.objId = feat.properties.objId;
+//             break;
+//     }
+//     return retFeat;
+// }
+
+// interface IGeoHashObj {
+//     geoHash: string;
+//     precision: number;
+// }
+
+// interface IGeoHashDict {
+//     precision: number;
+// }
+
+// /**
+//  * Injects each feature with a GeoHash, and returns a GeoHash dictionary
+//  *
+//  * @param fColl FeatureCollection
+//  * @param precision Max number of letters in encoded GeoHash
+//  * @return GeoHash dictionary with array of featureIndex as values
+//  */
+// export function geoHashDictionary(fColl: turf.FeatureCollection<turf.Point|turf.LineString|turf.Polygon>,
+//                                   precision: number = 8): IGeoHashDict { //
+//     const dict: IGeoHashDict = {precision};
+//     const fCollFeats = fColl.features;
+//     for (let i = 0; i<fCollFeats.length; i++) {
+//         const feat = fCollFeats[i];
+//         const geoHashObj = geoHashEncode(feat,precision);
+//         const geoHashRes = geoHashObj.geoHash;
+//         // precision = geoHashObj.precision;
+//         dict.precision = geoHashObj.precision;
+//         for (let j = 0; j<geoHashRes.length; j++) { // each dictionary key entry will have an array of indices
+//             if (dict.hasOwnProperty(geoHashRes.slice(0,j+1))) {
+//                 dict[geoHashRes.slice(0,j+1)] = dict[geoHashRes.slice(0,j+1)].concat([i]);
+//             } else {
+//                 dict[geoHashRes.slice(0,j+1)] = [i];
+//             }
+//         }
+//     }
+//     // remove dictionary keys that have length > precision
+//     // Object.keys(dict).forEach((key) => {
+//     //     if (key.length > precision) {
+//     //         delete dict[key];
+//     //     }
+//     // });
+//     // dict.precision = precision;
+//     return dict;
+// }
+
+// /**
+//  * Injects feature with a geoHash, and returns a geoHash string
+//  *
+//  * @param feature LineString, Point, or Polygon
+//  * @param precision Max number of letters in encoded GeoHash
+//  * @return Object containing GeoHash and Precision values
+//  */
+// export function geoHashEncode(feature: turf.Feature<turf.LineString|turf.Polygon|turf.Point>, precision: number = 8):
+// IGeoHashObj {
+//     let coordArr: number[][];
+//     const geomType = feature.geometry.type;
+//     let dictPrecision = precision;
+//     if (geomType === "Polygon"||geomType === "LineString") {
+//     // needs to ensure that boundaries of polygon/line falls within bbox of a geoHash
+//     // means geoHash precision needs to be low enough for diagonal boundary points to have same hash value
+//         coordArr = ensureCoordArr(turf.bboxPolygon(turf.bbox(feature)));
+//         coordArr = [coordArr[0],coordArr[2]]; // line|Polygon will have four geoHash values
+//     } else if (geomType === "Point") {
+//         coordArr = ensureCoordArr(feature);
+//     }
+//     const geoHashArr: string[] = []; // check for polygon | line
+//     let geoHashRes: string;
+//     coordArr.forEach((coord) => { // line|Polygon will have two geoHash values - one for each diagonal bBox point
+//         let minLat = -90;
+//         let maxLat = 90;
+//         let minLon = -180;
+//         let maxLon = 180;
+//         const lat: number = coord[0];
+//         const lon: number = coord[1];
+//         let binConv: string = "";
+//         for (let j = 0; j<precision*5; j++) {
+//             if (j%2===0) { // even are longitude
+//                 const mid = (maxLon+ minLon)/2;
+//                 if (lon<mid) {
+//                     binConv += "0";
+//                     maxLon = mid;
+//                 } else {
+//                     binConv += "1";
+//                     minLon = mid;
+//                 }
+//             }
+//             if (j%2===1) { // odd are latitude
+//                 const mid = (maxLat + minLat)/2;
+//                 if (lat<mid) {
+//                     binConv += "0";
+//                     maxLat = mid;
+//                 } else {
+//                     binConv += "1";
+//                     minLat = mid;
+//                 }
+//             }
+//         }
+//         geoHashRes = decToBase32(binToDec(binConv));
+//         geoHashArr.push(geoHashRes);
+//     });
+//     if (geoHashArr.length>1) { // Line|Polygon: change precision value for subsequent loops & change geoHassRes
+//         for (let j = 0; j<geoHashRes.length; j++) { // check from RTL
+//         // do not reduce precision: keep all Hash?
+//         // during search: if can't find at current precision - reduce level of precision -> search again w/o repeat
+//         // needs to maintain a list of checked keys
+//         // keep going until reach precision stated by dictionary
+//             const firstRes = geoHashArr[0].slice(0,geoHashRes.length-j);
+//             const secRes = geoHashArr[1].slice(0,geoHashRes.length-j);
+//             if (firstRes === secRes) { // opposite corner have the same geoHash: Entire bbox falls within geoHash
+//                 geoHashRes = firstRes;
+//                 break;
+//             }
+//             dictPrecision--;
+//         }
+//     }
+//     feature.properties.geoHash = geoHashRes;
+//     feature.properties.geoHashPrecision = dictPrecision;
+//     return {geoHash: geoHashRes, precision: dictPrecision};
+// }
 
 /**
  *
@@ -596,14 +711,21 @@ function findChildInject(arr: string[], feat: turf.Feature, nxt: any, injVal, in
     }
 } // Checked and fixed. Working as of: 13/12/2018
 
+function injectChildren_fColl(arr: string[],f_Coll: turf.FeatureCollection): void {
+    f_Coll.features.forEach((element) => {
+        injectChildren(arr.slice(),element);
+    });
+    return;
+} // Added 13/12/2018 - working
+
 function injectChildren(arr: string[],feat: turf.Feature): void {
-    let res = recursiveChild_Create(arr, feat, undefined, undefined);
+    const res = recursiveChild_Create(arr, feat, undefined, undefined);
     const parent_saved = res[0].slice();
     const child_saved = res[1].slice();
 
     try {
         let res1_firstChild = res[1][0];
-        res[1].shift()
+        res[1].shift();
         if (typeof recursiveChild(res[0],feat,undefined) === "object") {
             res[0] = parent_saved.slice();
             recursiveChild(res[0],feat,undefined)[res1_firstChild] = createChild(res[1]);
@@ -619,14 +741,14 @@ function injectChildren(arr: string[],feat: turf.Feature): void {
     return;
 }// Added 13/12/2018 - working
 
-function createChild(arr: string[],nxt = undefined) {
-    let retObj = undefined;
-    if (nxt == undefined) {
+function createChild(arr: string[],nxt?) {
+    let retObj;
+    if (nxt === undefined) {
         retObj = {};
     } else {
         retObj = nxt;
     }
-    let newRetObj = {};
+    const newRetObj = {};
     newRetObj[arr[arr.length-1]] = retObj;
     arr.pop();
     if (arr.length > 0) {
@@ -639,23 +761,23 @@ function createChild(arr: string[],nxt = undefined) {
 function recursiveChild_Create(arr: string[], feat: turf.Feature, nxt, rem_arr: string[]) {
     let retObj;
     let retArr;
-    
+
     if (nxt === undefined) {
         retObj = feat.properties[arr[0]]; // retrieval starts from properties
     } else {
         retObj = nxt[arr[0]];
     }
-    
+
     if (rem_arr === undefined) {
         retArr = [];
     } else {
         retArr = rem_arr;
     }
-        retArr.push(arr[0]);
-        arr.shift();
+    retArr.push(arr[0]);
+    arr.shift();
     if (retObj === undefined) {
         if (retArr.length > 1) {
-            arr.unshift(retArr[retArr.length-1])
+            arr.unshift(retArr[retArr.length-1]);
             retArr.pop();
         }
         return [retArr,arr];
@@ -663,10 +785,10 @@ function recursiveChild_Create(arr: string[], feat: turf.Feature, nxt, rem_arr: 
     if (arr.length !== 0) {
         return recursiveChild_Create(arr,feat,retObj,retArr);
     } else {
-        throw new Error("All children exists")
+        return [retArr,arr];
+        // throw new Error("All children exists")
     }
 } // Added 13/12/2018 - working
-    
 
 function minMaxMean(feat: turf.Feature, injName: string): void {
     const injObj = feat.properties[injName];
@@ -744,8 +866,9 @@ function findChildValue(str: string, feat: turf.Feature): any {
     return recursiveChild(removeEmpty(cleanedStr.split(".")),feat,undefined);
 }
 
-function injPropertyName(fColl: turf.FeatureCollection<turf.Polygon|turf.Point|turf.LineString>, injName: string): void{
-    fColl.features.forEach((feat) => {
+function injPropertyName(f_Coll: turf.FeatureCollection<turf.Polygon|turf.Point|turf.LineString>,
+                         injName: string): void {
+    f_Coll.features.forEach((feat) => {
         feat.properties[injName] = {};
     });
     return;
